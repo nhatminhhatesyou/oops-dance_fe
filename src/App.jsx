@@ -13,6 +13,8 @@ import Intro from './Components/Intro/Intro'
 import Dashboard from './Components/Dashboard/Dashboard'
 import Login from './Components/Login/Login'
 import Register from './Components/Register/Register'
+import SideBar from './Components/Dashboard/Components/SideBar Section/SideBar'
+import Body from './Components/Dashboard/Components/Body Section/Body'
 
 // Import React react dom
 import {
@@ -33,16 +35,11 @@ const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <div><Dashboard /></div>
-    }
-])
-
-
-const App = () => {
-    return (
-        <div>
-            <RouterProvider router={router} />
-
-            {/* <Navbar />
+    },
+    {
+        path: '/home',
+        element: <div>
+            <Navbar />
             <Home />
             <Intro />
             <Rooms />
@@ -52,7 +49,17 @@ const App = () => {
             <Info />
             <Participants />
             <Subscribers />
-            <Footer /> */}
+            <Footer />
+        </div>
+    },
+
+])
+
+
+const App = () => {
+    return (
+        <div>
+            <RouterProvider router={router} />
         </div>
     )
 }

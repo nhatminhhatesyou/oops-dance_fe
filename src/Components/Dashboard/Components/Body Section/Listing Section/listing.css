@@ -1,0 +1,146 @@
+:root {
+  --PrimaryColor: hsl(0, 66%, 43%);
+  --SecondaryColor: hsl(180, 17%, 95%);
+  --paleGreen: hsl(93, 75%, 76%);
+  --colorOne: hsl(15, 74%, 70%);
+  --colorTwo: hsl(28, 100%, 82%);
+  --HoverColor: #d83f3f;
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(0, 0%, 12%);
+  --textColor: hsl(240, 1%, 48%);
+  --borderColor: hsl(0, 0%, 83%);
+  --whiteColorDeam: hsl(0, 0%, 93%);
+  --greyBg: hwb(0 96% 4%);
+  --greyText: rgb(145, 145, 145);
+  --inputColor: hsl(330, 12%, 97%);
+  --boxShadow: box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  --transition: .4s ease-in-out;
+  --bgColor: hsla(113, 11%, 85%, 0.533);
+  --inputColor: hsl(330, 12%, 97%);
+  --cardColor: #ec5a5a7b;
+  --itemCardColor: hsl(120, 5%, 88%);
+  --itemCardHover: hsl(120, 27%, 87%);
+  --biggestFontSize: 2.5rem;
+  --h1FontSize: 1.5rem;
+  --h2FontSize: 1.25rem;
+  --h3FontSize: 1rem;
+  --normalFontSize: .938rem;
+  --smallFontSize: .813rem;
+  --smallestFontSize: .75rem;
+}
+
+.listingSection {
+  min-width: 300px;
+  width: 100%;
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.listingSection .heading {
+  width: 100%;
+  justify-content: space-between;
+}
+.listingSection .heading h1 {
+  font-size: var(--h2FontSize);
+  color: var(--blackColor);
+  font-weight: 700;
+}
+.listingSection .heading .btn {
+  background: none;
+  color: var(--greyText);
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+.listingSection .heading .btn .icon {
+  transition: 0.3s ease;
+}
+.listingSection .heading .btn:hover {
+  background: var(--PrimaryColor);
+  color: var(--whiteColor);
+  transition: 0.3s ease;
+}
+.listingSection .heading .btn:hover .icon {
+  transform: translateX(10px);
+  transition: 0.3s ease;
+}
+.listingSection .myClasses .secContainer {
+  width: 100%;
+  margin: 1rem 0;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.listingSection .myClasses .secContainer .singleItem {
+  position: relative;
+  width: 150px;
+  height: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 10px;
+  background: var(--itemCardColor);
+}
+.listingSection .myClasses .secContainer .singleItem:hover {
+  background: var(--colorTwo);
+  box-shadow: 0 2px 2px var(--inputColor);
+}
+.listingSection .myClasses .secContainer .singleItem img {
+  border-radius: 10px;
+  top: 2rem;
+  max-width: 100px;
+}
+.listingSection .myClasses .secContainer .singleItem .icon {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  color: var(--PrimaryColor);
+}
+.listingSection .myClasses .secContainer .singleItem h3 {
+  font-size: var(--h3FontSize);
+  font-weight: 550;
+  color: var(--blackColor);
+  padding: 1rem 0;
+}
+.listingSection .todaySchedule {
+  width: 100%;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.listingSection .todaySchedule .schedule {
+  width: 100%;
+}
+.listingSection .todaySchedule .schedule .heading {
+  padding: 1rem 0;
+}
+.listingSection .todaySchedule .schedule .singleCard {
+  padding: 1rem;
+  border-radius: 1rem;
+  background: var(--itemCardColor);
+  gap: 1rem;
+  box-shadow: 0 2px 4px var(--inputColor);
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.listingSection .todaySchedule .schedule .singleCard .users {
+  padding-right: 1rem;
+  border-right: 2px solid var(--whiteColor);
+}
+.listingSection .todaySchedule .schedule .singleCard .users img {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 2px solid var(--inputColor);
+  transition: 0.5s ease;
+}
+.listingSection .todaySchedule .schedule .singleCard .users img:hover {
+  transform: translateY(-10px);
+}
+.listingSection .todaySchedule .schedule .singleCard .cardText span {
+  color: var(--blackColor);
+  font-weight: 500;
+}/*# sourceMappingURL=listing.css.map */
