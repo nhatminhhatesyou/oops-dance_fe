@@ -177,7 +177,7 @@ h2 {
   padding-left: 0;
   padding-right: 0;
   width: 65%;
-  height: 75vh;
+  height: 90%;
   margin: auto;
   justify-content: space-between;
   border-radius: 10px;
@@ -188,7 +188,7 @@ h2 {
   display: flex;
   position: relative;
   flex-basis: 50%;
-  width: 70%;
+  width: 100%;
   height: 100%;
   padding: 0 1.5rem;
   text-align: center;
@@ -206,6 +206,7 @@ h2 {
 }
 .loginPage .container .videoDiv video,
 .registerPage .container .videoDiv video {
+  z-index: 100;
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
@@ -237,6 +238,7 @@ h2 {
 }
 .loginPage .container .videoDiv .footerDiv,
 .registerPage .container .videoDiv .footerDiv {
+  z-index: 101;
   bottom: 10px;
   padding: 0 1rem;
   height: 60px;
@@ -268,10 +270,10 @@ h2 {
 .loginPage .container .formDiv,
 .registerPage .container .formDiv {
   flex-basis: 50%;
-  margin: auto;
+  margin: 2rem;
+  width: auto;
   flex-direction: column;
   gap: 2.5rem;
-  transform: translateY(-1rem);
 }
 .loginPage .container .formDiv .headerDiv,
 .registerPage .container .formDiv .headerDiv {
@@ -292,6 +294,7 @@ h2 {
 }
 .loginPage .container .formDiv .form,
 .registerPage .container .formDiv .form {
+  margin: 1rem;
   gap: 1rem;
 }
 .loginPage .container .formDiv .form .inputDiv .icon,
@@ -356,6 +359,7 @@ h2 {
 
 .navBar {
   position: fixed;
+  left: 0;
   flex-direction: column;
   width: 100%;
   z-index: 1000;
@@ -1284,4 +1288,55 @@ h2 {
 ::-webkit-scrollbar-thumb {
   background: var(--PrimaryColor);
   border-radius: 10px;
+}
+
+@media screen and (max-width: 800px) {
+  .loginPage .container,
+  .registerPage .container {
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+  .loginPage .container .videoDiv,
+  .registerPage .container .videoDiv {
+    width: 100%;
+    min-height: 100px;
+  }
+  .loginPage .container .videoDiv .textDiv .title,
+  .registerPage .container .videoDiv .textDiv .title {
+    font-size: 20px;
+  }
+  .loginPage .container .videoDiv .textDiv p,
+  .registerPage .container .videoDiv .textDiv p {
+    padding: 1rem;
+  }
+  .loginPage .container .videoDiv .footerDiv,
+  .registerPage .container .videoDiv .footerDiv {
+    gap: 1rem;
+    transform: translateY(-0.5rem);
+  }
+  .loginPage .container .videoDiv video,
+  .registerPage .container .videoDiv video {
+    display: none;
+  }
+  .loginPage .container .formDiv,
+  .registerPage .container .formDiv {
+    width: 300px;
+    transform: translateY(-3rem);
+  }
+}
+@media screen and (max-width: 320px) {
+  .loginPage .container,
+  .registerPage .container {
+    margin: auto;
+    padding: 1rem;
+    scale: 80%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .loginPage .container .formDiv,
+  .registerPage .container .formDiv {
+    scale: 90%;
+  }
 }/*# sourceMappingURL=main.css.map */

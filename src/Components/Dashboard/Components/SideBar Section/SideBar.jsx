@@ -2,7 +2,7 @@ import React from 'react'
 import './sidebar.css'
 
 //Imported Images ===============>
-import logo from '../../../../assets/logo.png'
+import logo from '../../Assets_DashBoard/logo.png'
 
 //Imported Icons ============>
 import { IoMdSpeedometer } from "react-icons/io";

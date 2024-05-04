@@ -5,11 +5,11 @@ import './activity.css'
 import { BsArrowRightShort } from "react-icons/bs";
 
 //Imported Images ==================>
-import instructor_1 from '../../../Assets/dolinh_rmbg.png'
-import instructor_2 from '../../../Assets/ami_rmbg.png'
-import instructor_3 from '../../../Assets/bin_rmbg.png'
-import instructor_4 from '../../../Assets/ducbo_rmbg.png'
-import instructor_5 from '../../../Assets/chaeng_rmbg.png'
+import instructor_1 from '../../../Assets_DashBoard/dolinh_rmbg.png'
+import instructor_2 from '../../../Assets_DashBoard/ami_rmbg.png'
+import instructor_3 from '../../../Assets_DashBoard/bin_rmbg.png'
+import instructor_4 from '../../../Assets_DashBoard/ducbo_rmbg.png'
+import instructor_5 from '../../../Assets_DashBoard/chaeng_rmbg.png'
 
 const Activity = () => {
     return (

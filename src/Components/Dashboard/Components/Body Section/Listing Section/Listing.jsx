@@ -2,13 +2,13 @@ import React from 'react'
 import './listing.css'
 
 //Imported images ==================>
-import class_1 from '../../../Assets/dolinh_class_1.jpeg'
-import class_2 from '../../../Assets/dolinh_class_2.jpg'
-import instructor_1 from '../../../Assets/dolinh_rmbg.png'
-import instructor_2 from '../../../Assets/ami_rmbg.png'
-import instructor_3 from '../../../Assets/bin_rmbg.png'
-import instructor_4 from '../../../Assets/ducbo_rmbg.png'
-import instructor_5 from '../../../Assets/chaeng_rmbg.png'
+import class_1 from '../../../Assets_DashBoard/dolinh_class_1.jpeg'
+import class_2 from '../../../Assets_DashBoard/dolinh_class_2.jpg'
+import instructor_1 from '../../../Assets_DashBoard/dolinh_rmbg.png'
+import instructor_2 from '../../../Assets_DashBoard/ami_rmbg.png'
+import instructor_3 from '../../../Assets_DashBoard/bin_rmbg.png'
+import instructor_4 from '../../../Assets_DashBoard/ducbo_rmbg.png'
+import instructor_5 from '../../../Assets_DashBoard/chaeng_rmbg.png'
 
 
 //Imported icons ==================>
@@ -47,7 +47,7 @@ const Listing = () => {
             <div className="cards todaySchedule flex">
                 <div className="schedule">
                     <div className="heading flex">
-                        <h3>Your Schedule Today</h3>
+                        <h3>My Schedule Today</h3>
                         <button className="btn flex">
                             See All <BsArrowRightShort className='icon' />
                         </button>

@@ -8,7 +8,6 @@ const Dashboard = () => {
         <div className='dashBoardContainer flex'>
             <SideBar />
             <Body />
-
         </div>
     )
 }
