@@ -168,9 +168,9 @@ h2 {
   height: 100vh;
   width: 100%;
   margin: auto;
-  border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 7px 50px rgb(214, 223, 213);
+  background: linear-gradient(to right, rgb(230, 86, 86), rgb(241, 203, 239));
 }
 .loginPage .container,
 .registerPage .container {
@@ -199,13 +199,17 @@ h2 {
   overflow: hidden;
 }
 .loginPage .container .videoDiv video,
+.loginPage .container .videoDiv img,
 .loginPage .container .videoDiv .footerDiv,
 .registerPage .container .videoDiv video,
+.registerPage .container .videoDiv img,
 .registerPage .container .videoDiv .footerDiv {
   position: absolute;
 }
 .loginPage .container .videoDiv video,
-.registerPage .container .videoDiv video {
+.loginPage .container .videoDiv img,
+.registerPage .container .videoDiv video,
+.registerPage .container .videoDiv img {
   z-index: 100;
   height: 100%;
   width: 100%;
@@ -241,7 +245,7 @@ h2 {
   z-index: 101;
   bottom: 10px;
   padding: 0 1rem;
-  height: 60px;
+  height: 70px;
   left: 1rem;
   right: 1rem;
   background: rgba(255, 255, 255, 0.548);
@@ -355,6 +359,11 @@ h2 {
   text-decoration: underline;
   cursor: pointer;
   opacity: 1;
+}
+
+.homePage {
+  flex-direction: column;
+  justify-content: center;
 }
 
 .navBar {
@@ -481,45 +490,88 @@ h2 {
   width: 22%;
 }
 
-.rooms .sectionContainer {
-  gap: 1.5rem;
-  background-color: #ffcc6c;
+.rooms {
+  justify-content: center;
+  margin: auto;
+  padding: 0;
 }
-.rooms .sectionContainer .swiper-slide {
-  width: 8rem;
+.rooms .sectionContainer {
+  background-color: var(--greyBg);
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  padding: 3rem;
+  width: 100%;
+}
+.rooms .sectionContainer .room1,
+.rooms .sectionContainer .room2 {
+  width: 100%;
+  background-color: var(--blackColor);
+  flex-direction: column;
+  margin: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  border: 5px solid var(--PrimaryColor);
+}
+.rooms .sectionContainer .room1 .headerDiv,
+.rooms .sectionContainer .room2 .headerDiv {
+  background-color: var(--PrimaryColor);
+  color: var(--whiteColor);
+  padding: 0.5rem;
+  width: 13rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  text-align: center;
+}
+.rooms .sectionContainer .room1 .roomsDetail,
+.rooms .sectionContainer .room2 .roomsDetail {
+  flex-direction: column;
+  padding: 0.5rem;
+  gap: 1.5rem;
+}
+.rooms .sectionContainer .room1 .roomsDetail .roomImages,
+.rooms .sectionContainer .room2 .roomsDetail .roomImages {
+  margin: auto;
+  padding: 0.5rem;
+  width: 100%;
+}
+.rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper,
+.rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper {
+  justify-content: center;
+  width: 750px;
+  max-width: 100%;
+}
+.rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper .swiper-slide,
+.rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper .swiper-slide {
+  width: 20rem;
   height: 20rem;
   position: relative;
 }
-.rooms .sectionContainer .swiper-slide img {
+.rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper .swiper-slide img,
+.rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper .swiper-slide img {
   width: 20rem;
   height: 20rem;
   border-radius: 2rem;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.rooms .sectionContainer .swiper-pagination {
-  position: relative;
-  width: 15rem !important;
-  bottom: 1rem;
+.rooms .sectionContainer .room1 .roomsDetail .textDiv,
+.rooms .sectionContainer .room2 .roomsDetail .textDiv {
+  background-color: var(--PrimaryColor);
+  color: var(--whiteColor);
+  padding: 0.5rem;
+  width: 13rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  text-align: center;
 }
-.rooms .sectionContainer .swiper-pagination .swiper-pagination-bullet {
-  filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
-}
-.rooms .sectionContainer .swiper-pagination .swiper-pagination-bullet-active {
-  background: var(--primary);
-}
-.rooms .sectionContainer .roomsDetail {
-  flex-direction: column;
-}
-.rooms .sectionContainer .roomsDetail .roomImages {
-  background-color: aqua;
-  width: 100%;
-}
+
 .search .sectionContainer {
   width: 100%;
   padding: 1.5rem;
-  border: 2px solid var(--greyBg);
-  border-radius: 16px;
+  border: 5px solid var(--PrimaryColor);
+  border-radius: 2rem;
   row-gap: 2rem;
 }
 .search .sectionContainer .btns {
@@ -591,7 +643,11 @@ h2 {
   max-width: fit-content;
 }
 
+.classes {
+  justify-content: center;
+}
 .classes .sectionContainer {
+  width: 100%;
   color: var(--whiteColor);
   gap: 2rem;
   flex-direction: column;
@@ -623,39 +679,43 @@ h2 {
   font-family: "Merienda", cursive;
   font-size: 90px;
 }
-.classes .sectionContainer table {
+.classes .sectionContainer .timeTableDiv {
+  justify-content: center;
+  position: relative;
+}
+.classes .sectionContainer .timeTableDiv table {
   width: 100%;
   max-width: 100%;
 }
-.classes .sectionContainer table .days th {
+.classes .sectionContainer .timeTableDiv table .days th {
   font-family: "Merienda", cursive;
   font-size: 25px;
 }
-.classes .sectionContainer table .time {
+.classes .sectionContainer .timeTableDiv table .time {
   transform: rotate(90deg);
   transform-origin: center;
   font-weight: 700;
   font-size: larger;
 }
-.classes .sectionContainer table .dance-class {
+.classes .sectionContainer .timeTableDiv table .dance-class {
   display: flex;
   align-items: center;
   position: relative;
   width: auto;
   max-width: 7rem;
   height: 3rem;
-  margin: 1rem 0.5rem 1.5rem 0;
+  margin: 1rem 0.5rem 1.5rem 0.5rem;
 }
-.classes .sectionContainer table .dance-class .class-bg {
+.classes .sectionContainer .timeTableDiv table .dance-class .class-bg {
   position: absolute;
   z-index: -2;
 }
-.classes .sectionContainer table .dance-class .instructor {
+.classes .sectionContainer .timeTableDiv table .dance-class .instructor {
   z-index: 1;
   position: absolute;
-  width: 80px;
+  width: 5.5rem;
 }
-.classes .sectionContainer table .dance-class span {
+.classes .sectionContainer .timeTableDiv table .dance-class span {
   z-index: 2;
   font-family: "League Spartan", sans-serif;
   color: var(--blackColor);
@@ -666,22 +726,22 @@ h2 {
   white-space: normal;
   overflow-wrap: break-word;
 }
-.classes .sectionContainer table .dance-class:first-child .instructor {
-  left: 60px;
+.classes .sectionContainer .timeTableDiv table .dance-class:first-child .instructor {
+  left: 52px;
   top: -25px;
 }
-.classes .sectionContainer table .dance-class:first-child span {
+.classes .sectionContainer .timeTableDiv table .dance-class:first-child span {
   text-align: left;
   margin-left: 1rem;
 }
-.classes .sectionContainer table .dance-class:not(:first-child) {
+.classes .sectionContainer .timeTableDiv table .dance-class:not(:first-child) {
   text-align: right;
 }
-.classes .sectionContainer table .dance-class:not(:first-child) .instructor {
-  left: -15px;
+.classes .sectionContainer .timeTableDiv table .dance-class:not(:first-child) .instructor {
+  left: -20px;
   top: -25px;
 }
-.classes .sectionContainer table .dance-class:not(:first-child) span {
+.classes .sectionContainer .timeTableDiv table .dance-class:not(:first-child) span {
   text-align: right;
   margin-left: 2.2rem;
 }
@@ -735,7 +795,7 @@ h2 {
   flex-direction: column;
   text-align: center;
   gap: 1.5rem;
-  justify-content: space-between;
+  justify-content: center;
 }
 .info .infoContainer .cardsDiv {
   gap: 1.5rem;
@@ -995,6 +1055,9 @@ h2 {
   .participants .sectionContainer .participantsContainer {
     grid-template-columns: repeat(2, 1fr);
   }
+  .rooms .swiper {
+    max-width: 300px;
+  }
   .subscribe .sectionContainer {
     max-width: 80%;
     margin: auto;
@@ -1011,8 +1074,12 @@ h2 {
   .footer .sectionContainer .footerLinks {
     justify-content: center;
   }
-  .classes table {
-    scale: 55%;
+  .classes .sectionContainer .timeTableDiv {
+    height: 200px;
+  }
+  .classes .sectionContainer .timeTableDiv table {
+    position: absolute;
+    scale: 62%;
   }
 }
 @media screen and (min-width: 570px) {
@@ -1062,8 +1129,12 @@ h2 {
     padding-top: 2rem;
     grid-template-columns: repeat(3, 1fr);
   }
-  .classes table {
-    scale: 68%;
+  .classes .sectionContainer .timeTableDiv {
+    height: 200px;
+  }
+  .classes .sectionContainer .timeTableDiv table {
+    position: absolute;
+    scale: 70%;
   }
 }
 @media screen and (min-width: 680px) {
@@ -1093,8 +1164,42 @@ h2 {
   .footer .sectionContainer {
     grid-template-columns: repeat(4, 1fr);
   }
-  .classes table {
-    scale: 80%;
+  .classes .sectionContainer .timeTableDiv {
+    height: 220px;
+  }
+  .classes .sectionContainer .timeTableDiv table {
+    position: absolute;
+    scale: 87%;
+  }
+  .rooms {
+    max-width: 680px;
+  }
+  .rooms .sectionContainer {
+    width: 100%;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail,
+  .rooms .sectionContainer .room2 .roomsDetail {
+    max-width: 100%;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail .roomImages,
+  .rooms .sectionContainer .room2 .roomsDetail .roomImages {
+    width: 80%;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper,
+  .rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper {
+    width: 750px;
+    max-width: 100%;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper .swiper-slide,
+  .rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper .swiper-slide {
+    width: 15rem;
+    height: 15rem;
+    position: relative;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper .swiper-slide img,
+  .rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper .swiper-slide img {
+    width: 15rem;
+    height: 15rem;
   }
 }
 @media screen and (min-width: 768px) {
@@ -1170,8 +1275,40 @@ h2 {
   .participants .sectionContainer .participantsContainer {
     grid-template-columns: repeat(3, 1fr);
   }
-  .classes table {
-    scale: 90%;
+  .classes .sectionContainer .timeTableDiv {
+    height: auto;
+    width: 100%;
+  }
+  .classes .sectionContainer .timeTableDiv table {
+    position: relative;
+    scale: 100%;
+  }
+  .rooms {
+    max-width: 800px;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail,
+  .rooms .sectionContainer .room2 .roomsDetail {
+    width: 100%;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail .roomImages,
+  .rooms .sectionContainer .room2 .roomsDetail .roomImages {
+    width: 100%;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper,
+  .rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper {
+    width: 750px;
+    max-width: 100%;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper .swiper-slide,
+  .rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper .swiper-slide {
+    width: 20rem;
+    height: 20rem;
+    position: relative;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper .swiper-slide img,
+  .rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper .swiper-slide img {
+    width: 20rem;
+    height: 20rem;
   }
 }
 @media screen and (min-width: 960px) {
@@ -1193,6 +1330,23 @@ h2 {
   }
   .classes table {
     scale: 100%;
+  }
+  .rooms {
+    max-width: 100%;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper,
+  .rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper {
+    width: 870px;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper .swiper-slide,
+  .rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper .swiper-slide {
+    width: 25rem;
+    height: 25rem;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper .swiper-slide img,
+  .rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper .swiper-slide img {
+    width: 25rem;
+    height: 25rem;
   }
 }
 @media screen and (min-width: 1024px) {
@@ -1241,6 +1395,23 @@ h2 {
   .search .sectionContainer .btns {
     width: 50%;
   }
+  .rooms {
+    max-width: 100%;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper,
+  .rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper {
+    width: 950px;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper .swiper-slide,
+  .rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper .swiper-slide {
+    width: 25rem;
+    height: 25rem;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper .swiper-slide img,
+  .rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper .swiper-slide img {
+    width: 25rem;
+    height: 25rem;
+  }
 }
 @media screen and (min-width: 1106px) {
   .subscribe .sectionContainer {
@@ -1248,6 +1419,23 @@ h2 {
   }
   .classes table {
     scale: 103%;
+  }
+  .rooms {
+    max-width: 100%;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper,
+  .rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper {
+    width: 1020px;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper .swiper-slide,
+  .rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper .swiper-slide {
+    width: 25rem;
+    height: 25rem;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper .swiper-slide img,
+  .rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper .swiper-slide img {
+    width: 25rem;
+    height: 25rem;
   }
 }
 @media screen and (min-width: 1332px) {
@@ -1269,6 +1457,23 @@ h2 {
   }
   .subscribe .sectionContainer {
     max-width: 50%;
+  }
+  .rooms {
+    max-width: 100%;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper,
+  .rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper {
+    width: 1200px;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper .swiper-slide,
+  .rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper .swiper-slide {
+    width: 25rem;
+    height: 25rem;
+  }
+  .rooms .sectionContainer .room1 .roomsDetail .roomImages .swiper .swiper-slide img,
+  .rooms .sectionContainer .room2 .roomsDetail .roomImages .swiper .swiper-slide img {
+    width: 25rem;
+    height: 25rem;
   }
 }
 ::-moz-selection {
@@ -1317,7 +1522,9 @@ h2 {
     transform: translateY(-0.5rem);
   }
   .loginPage .container .videoDiv video,
-  .registerPage .container .videoDiv video {
+  .loginPage .container .videoDiv img,
+  .registerPage .container .videoDiv video,
+  .registerPage .container .videoDiv img {
     display: none;
   }
   .loginPage .container .formDiv,

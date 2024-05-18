@@ -13,7 +13,7 @@ import Intro from './Components/Intro/Intro'
 
 const HomePage = () => {
     return (
-        <div>
+        <div className='homePage'>
             <Navbar />
             <Home />
             <Intro />

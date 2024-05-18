@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import './Login.css'
 import { Link, useNavigate } from 'react-router-dom'
 import Axios from 'axios';
 
@@ -10,6 +9,7 @@ import { AiOutlineSwapRight } from "react-icons/ai";
 
 //Import Assets ===========>
 import video from '../Assets/login_vid.mov'
+import loginImg from '../Assets/studio-Image2.jpg'
 import logo from '../Assets/logo.png'
 
 
@@ -24,23 +24,33 @@ const Login = () => {
     const [statusHolder, setStatusHolder] = useState('message')
 
     //onclick let us get what the user has entered
-    const loginUser = (e) => {
+    const loginUser = async (e) => {
         //Lets prevent submitting
         e.preventDefault();
         //Use Axios to create API that connects to the server
-        Axios.post('http://localhost:3002/login', {
+        Axios.post('http://127.0.0.1:8000/login/', {
             //create variables to send to the server through route
-            LoginUserName: loginUserName,
-            LoginPassword: loginPassword
+            username: loginUserName,
+            password: loginPassword
         }).then((response) => {
-            console.log(response.data.message)
-
-            if (response.data.message) { // If credentials don't match
-                navigateTo('/login')
-                setLoginStatus(response.data.message)
+            console.log(response)
+            if (response.data.message === "success") { //  LOGIN SUCCESS
+                navigateTo('/instructor')
             }
-            else {                  //ELSE, LOGIN SUCCESS
-                navigateTo('/dashboard')
+        }).catch((error) => {
+            if (error.response) {
+                // Server responsed an error
+                console.log(error.response.data);
+                if (error.response.data.message === "credentials don't match") {
+                    setLoginStatus("credentials don't match")
+                }
+                setLoginStatus(message);
+            } else if (error.request) {
+                // Request sent but no response
+                console.log(error.request);
+            } else {
+                // error init request
+                console.log('Error', error.message);
             }
         })
     }
@@ -50,7 +60,8 @@ const Login = () => {
             setStatusHolder('showMessage');
             setTimeout(() => {
                 setStatusHolder('message')
-            }, 4000);
+                setLoginStatus('')
+            }, 3000);
         }
     }, [loginStatus])
 
@@ -66,7 +77,8 @@ const Login = () => {
 
                 <div className="videoDiv">
 
-                    <video src={video} autoPlay muted loop></video>
+                    <img src={loginImg} />
+                    {/* <video src={video} autoPlay muted loop></video> */}
                     {/* <div className="textDiv">
                         <h2 className="title">A Place Where You Shine</h2>
                         <p>Adopt the peace of nature!</p>

@@ -180,9 +180,9 @@ h2 {
     height: 100vh;
     width: 100%;
     margin: auto;
-    border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 7px 50px rgb(214, 223, 213);
+    background: linear-gradient(to right, rgb(230, 86, 86), rgb(241, 203, 239));
 
     .container {
         padding-left: 0;
@@ -209,11 +209,13 @@ h2 {
             overflow: hidden;
 
             video,
+            img,
             .footerDiv {
                 position: absolute;
             }
 
-            video {
+            video,
+            img {
                 z-index: 100;
                 height: 100%;
                 width: 100%;
@@ -247,7 +249,7 @@ h2 {
                 z-index: 101;
                 bottom: 10px;
                 padding: 0 1rem;
-                height: 60px;
+                height: 70px;
                 left: 1rem;
                 right: 1rem;
                 background: rgba(255, 255, 255, 0.548);
@@ -372,6 +374,10 @@ h2 {
     }
 }
 
+.homePage {
+    flex-direction: column;
+    justify-content: center;
+}
 
 //navBar section styling =============>
 
@@ -527,47 +533,85 @@ h2 {
 
 //Rooms section styling =================>
 .rooms {
+    justify-content: center;
+    margin: auto;
+    padding: 0;
+
     .sectionContainer {
-        gap: 1.5rem;
-        background-color: #ffcc6c;
+        background-color: var(--greyBg);
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        padding: 3rem;
+        width: 100%;
 
-        .swiper-slide {
-            width: 8rem;
-            height: 20rem;
-            position: relative;
-        }
 
-        .swiper-slide img {
-            width: 20rem;
-            height: 20rem;
-            border-radius: 2rem;
-            object-fit: cover;
-        }
 
-        .swiper-pagination {
-            position: relative;
-            width: 15rem !important;
-            bottom: 1rem;
-        }
-
-        .swiper-pagination .swiper-pagination-bullet {
-            filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
-        }
-
-        .swiper-pagination .swiper-pagination-bullet-active {
-            background: var(--primary);
-        }
-
-        .roomsDetail {
+        .room1,
+        .room2 {
+            width: 100%;
+            background-color: var(--blackColor);
             flex-direction: column;
+            margin: .5rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
 
-            .roomImages {
-                background-color: aqua;
-                width: 100%;
+            border-radius: 1.5rem;
+            border: 5px solid var(--PrimaryColor);
+
+            .headerDiv {
+                background-color: var(--PrimaryColor);
+                color: var(--whiteColor);
+                padding: .5rem;
+                width: 13rem;
+                border-top-left-radius: 1rem;
+                border-top-right-radius: 1rem;
+                text-align: center;
             }
 
-            .textDiv {}
+            .roomsDetail {
+                flex-direction: column;
+                padding: .5rem;
+                gap: 1.5rem;
+
+                .roomImages {
+                    margin: auto;
+                    padding: .5rem;
+                    width: 100%;
+
+                    .swiper {
+                        justify-content: center;
+                        width: 750px;
+                        max-width: 100%;
+
+                        .swiper-slide {
+                            width: 20rem;
+                            height: 20rem;
+                            position: relative;
+
+                            img {
+                                width: 20rem;
+                                height: 20rem;
+                                border-radius: 2rem;
+                                object-fit: cover
+                            }
+
+                        }
+                    }
+                }
+
+                .textDiv {
+                    background-color: var(--PrimaryColor);
+                    color: var(--whiteColor);
+                    padding: .5rem;
+                    width: 13rem;
+                    border-bottom-left-radius: 1rem;
+                    border-bottom-right-radius: 1rem;
+                    text-align: center;
+                }
+            }
         }
+
     }
 }
 
@@ -576,8 +620,8 @@ h2 {
     .sectionContainer {
         width: 100%;
         padding: 1.5rem;
-        border: 2px solid var(--greyBg);
-        border-radius: 16px;
+        border: 5px solid var(--PrimaryColor);
+        border-radius: 2rem;
         row-gap: 2rem;
 
 
@@ -666,10 +710,12 @@ h2 {
     }
 }
 
-//Classes sectiong styling ===============>
+//Classes section styling ===============>
 .classes {
+    justify-content: center;
+
     .sectionContainer {
-        //background-color: aquamarine;
+        width: 100%;
         color: var(--whiteColor);
         gap: 2rem;
         flex-direction: column;
@@ -705,91 +751,86 @@ h2 {
             }
         }
 
+        .timeTableDiv {
+            justify-content: center;
+            position: relative;
 
-        table {
-            //background-color: beige;
-            width: 100%;
-            max-width: 100%;
+            table {
+                width: 100%;
+                max-width: 100%;
 
-            td {
-                //background-color: aquamarine;
-                //width: auto;
-            }
-
-            .days th {
-                font-family: "Merienda", cursive;
-                font-size: 25px;
-            }
-
-            .time {
-                transform: rotate(90deg);
-                transform-origin: center;
-                font-weight: 700;
-                font-size: larger;
-            }
-
-            .dance-class {
-                //background-color: aqua;
-                display: flex;
-                align-items: center;
-                position: relative;
-                width: auto;
-                max-width: 7rem;
-                height: 3rem;
-                margin: 1rem .5rem 1.5rem 0;
-
-                .class-bg {
-                    position: absolute;
-                    z-index: -2;
+                .days th {
+                    font-family: "Merienda", cursive;
+                    font-size: 25px;
                 }
 
-                .instructor {
-                    z-index: 1;
-                    position: absolute;
-                    width: 80px;
-                    // left: 50px;
-                    // top: -25px;
-                }
-
-                span {
-                    z-index: 2;
-                    font-family: "League Spartan", sans-serif;
-                    color: var(--blackColor);
-                    text-transform: uppercase;
-                    font-size: 20px;
+                .time {
+                    transform: rotate(90deg);
+                    transform-origin: center;
                     font-weight: 700;
-                    width: 60%;
-                    white-space: normal;
-                    overflow-wrap: break-word;
-                    // text-align: left;
-                    // margin-left: .5rem;
+                    font-size: larger;
                 }
 
-            }
+                .dance-class {
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                    width: auto;
+                    max-width: 7rem;
+                    height: 3rem;
+                    margin: 1rem .5rem 1.5rem .5rem;
 
-            .dance-class:first-child {
-                .instructor {
-                    left: 60px;
-                    top: -25px;
+                    .class-bg {
+                        position: absolute;
+                        z-index: -2;
+                    }
+
+                    .instructor {
+                        z-index: 1;
+                        position: absolute;
+                        width: 5.5rem;
+                    }
+
+                    span {
+                        z-index: 2;
+                        font-family: "League Spartan", sans-serif;
+                        color: var(--blackColor);
+                        text-transform: uppercase;
+                        font-size: 20px;
+                        font-weight: 700;
+                        width: 60%;
+                        white-space: normal;
+                        overflow-wrap: break-word;
+                    }
+
+
+
                 }
 
-                span {
-                    text-align: left;
-                    margin-left: 1rem;
-                }
-            }
+                .dance-class:first-child {
+                    .instructor {
+                        left: 52px;
+                        top: -25px;
+                    }
 
-            .dance-class:not(:first-child) {
-                text-align: right;
-
-                .instructor {
-                    left: -15px;
-                    top: -25px;
+                    span {
+                        text-align: left;
+                        margin-left: 1rem;
+                    }
                 }
 
-                span {
+                .dance-class:not(:first-child) {
                     text-align: right;
-                    margin-left: 2.2rem;
+
+                    .instructor {
+                        left: -20px;
+                        top: -25px;
+                    }
+
+                    span {
+                        text-align: right;
+                        margin-left: 2.2rem;
+                    }
                 }
             }
         }
@@ -868,7 +909,7 @@ h2 {
             flex-direction: column;
             text-align: center;
             gap: 1.5rem;
-            justify-content: space-between;
+            justify-content: center;
         }
 
         .cardsDiv {
@@ -1237,7 +1278,6 @@ h2 {
     }
 
     //participants  section styling =============>
-
     .participants {
         .sectionContainer {
             .participantsContainer {
@@ -1245,6 +1285,14 @@ h2 {
             }
         }
     }
+
+    //Rooms  section styling =============>
+    .rooms {
+        .swiper {
+            max-width: 300px;
+        }
+    }
+
 
     //Subscribe  section styling =============>
     .subscribe {
@@ -1274,10 +1322,19 @@ h2 {
 
     //Classes sectiong styling ===============>
     .classes {
-        table {
-            scale: 55%;
+        .sectionContainer {
+            .timeTableDiv {
+                height: 200px;
+
+                table {
+                    position: absolute;
+                    scale: 62%;
+                }
+            }
         }
     }
+
+
 }
 
 
@@ -1380,8 +1437,15 @@ h2 {
 
     //Classes sectiong styling ===============>
     .classes {
-        table {
-            scale: 68%;
+        .sectionContainer {
+            .timeTableDiv {
+                height: 200px;
+
+                table {
+                    position: absolute;
+                    scale: 70%;
+                }
+            }
         }
     }
 }
@@ -1437,10 +1501,60 @@ h2 {
         }
     }
 
-    //Classes sectiong styling ===============>
+    //Classes section styling ===============>
     .classes {
-        table {
-            scale: 80%;
+        .sectionContainer {
+            .timeTableDiv {
+                height: 220px;
+
+                table {
+                    position: absolute;
+                    scale: 87%;
+                }
+            }
+        }
+    }
+
+    //Rooms section styling =================>
+    .rooms {
+        max-width: 680px;
+
+        .sectionContainer {
+
+            //max-width: 80%;
+            width: 100%;
+
+
+            .room1,
+            .room2 {
+                .roomsDetail {
+                    max-width: 100%;
+
+                    .roomImages {
+                        width: 80%;
+
+                        .swiper {
+                            width: 750px;
+                            max-width: 100%;
+
+                            .swiper-slide {
+                                width: 15rem;
+                                height: 15rem;
+                                position: relative;
+
+                                img {
+                                    width: 15rem;
+                                    height: 15rem;
+                                }
+
+                            }
+                        }
+                    }
+
+                    .textDiv {}
+                }
+            }
+
         }
     }
 
@@ -1580,8 +1694,63 @@ h2 {
 
     //Classes sectiong styling ===============>
     .classes {
-        table {
-            scale: 90%;
+        .sectionContainer {
+
+            .timeTableDiv {
+                //background-color: #d83f3f;
+                height: auto;
+                width: 100%;
+
+                table {
+                    //background-color: #ffcc6c;
+                    position: relative;
+                    scale: 100%;
+                }
+            }
+        }
+    }
+
+    //Rooms section styling =================>
+    .rooms {
+        max-width: 800px;
+
+        .sectionContainer {
+
+            .room1,
+            .room2 {
+                .headerDiv {
+                    //width: 100%;
+                }
+
+                .roomsDetail {
+                    width: 100%;
+
+
+                    .roomImages {
+                        width: 100%;
+
+                        .swiper {
+                            width: 750px;
+                            max-width: 100%;
+
+                            .swiper-slide {
+                                width: 20rem;
+                                height: 20rem;
+                                position: relative;
+
+                                img {
+                                    width: 20rem;
+                                    height: 20rem;
+                                }
+
+                            }
+                        }
+                    }
+
+                    .textDiv {}
+                }
+            }
+
         }
     }
 }
@@ -1620,6 +1789,38 @@ h2 {
     .classes {
         table {
             scale: 100%;
+        }
+    }
+
+    //Rooms section styling =================>
+    .rooms {
+        max-width: 100%;
+
+        .sectionContainer {
+
+            .room1,
+            .room2 {
+
+                .roomsDetail {
+                    .roomImages {
+                        .swiper {
+                            width: 870px;
+
+                            .swiper-slide {
+                                width: 25rem;
+                                height: 25rem;
+
+                                img {
+                                    width: 25rem;
+                                    height: 25rem;
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+
         }
     }
 }
@@ -1696,6 +1897,37 @@ h2 {
             }
         }
     }
+
+    .rooms {
+        max-width: 100%;
+
+        .sectionContainer {
+
+            .room1,
+            .room2 {
+
+                .roomsDetail {
+                    .roomImages {
+                        .swiper {
+                            width: 950px;
+
+                            .swiper-slide {
+                                width: 25rem;
+                                height: 25rem;
+
+                                img {
+                                    width: 25rem;
+                                    height: 25rem;
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
 }
 
 @media screen and (min-width: 1106px) {
@@ -1711,6 +1943,37 @@ h2 {
     .classes {
         table {
             scale: 103%;
+        }
+    }
+
+    .rooms {
+        max-width: 100%;
+
+        .sectionContainer {
+
+            .room1,
+            .room2 {
+
+                .roomsDetail {
+                    .roomImages {
+                        .swiper {
+                            width: 1020px;
+
+                            .swiper-slide {
+                                width: 25rem;
+                                height: 25rem;
+
+                                img {
+                                    width: 25rem;
+                                    height: 25rem;
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+
         }
     }
 }
@@ -1768,6 +2031,37 @@ h2 {
         }
     }
 
+    .rooms {
+        max-width: 100%;
+
+        .sectionContainer {
+
+            .room1,
+            .room2 {
+
+                .roomsDetail {
+                    .roomImages {
+                        .swiper {
+                            width: 1200px;
+
+                            .swiper-slide {
+                                width: 25rem;
+                                height: 25rem;
+
+                                img {
+                                    width: 25rem;
+                                    height: 25rem;
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
 }
 
 ::selection {
@@ -1817,7 +2111,8 @@ h2 {
                     transform: translateY(-.5rem);
                 }
 
-                video {
+                video,
+                img {
                     display: none;
                 }
             }

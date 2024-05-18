@@ -11,6 +11,7 @@ import 'swiper/css/navigation'
 
 //Imported Images ======>
 import imageGrid from '../../Assets_HomePage/studio-Image2.jpg'
+
 //room1:
 import room1_1 from '../../Assets_HomePage/room1_1.jpg'
 import room1_2 from '../../Assets_HomePage/room1_2.jpg'
@@ -35,32 +36,37 @@ const Rooms = () => {
     }, [])
 
     return (
-        < div className='rooms container section' >
+        < div className='rooms section flex' >
 
-            <div className="sectionContainer grid">
-                <div className="room1">
-                    <div className="header">
+            <div className="sectionContainer container flex">
+                <h1>WELCOME TO OUR SPACE</h1>
+                <p>Explore our studio with 2 modern spaces</p>
+
+                <div className="room1 flex">
+                    <div className="headerDiv">
                         <h1>ROOM 1</h1>
                     </div>
 
                     <div className="roomsDetail flex">
                         <div className="roomImages">
+
                             <Swiper
+                                className='swiper'
                                 effect={'coverflow'}
                                 grabCursor={true}
                                 centeredSlides={true}
                                 loop={true}
                                 slidesPerView={'auto'}
+                                spaceBetween={0}
                                 coverflowEffect={
                                     {
                                         rotate: 0,
-                                        stretch: 0,
+                                        stretch: 50,
                                         depth: 100,
                                         modifier: 2.5,
-
                                     }
                                 }
-                                pagination={{ el: '.swiper-pagination', clickable: true }}
+
                                 navigation={{
                                     nextEl: '.swiper-button-next',
                                     prevEl: '.swiper-button-prev',
@@ -85,26 +91,25 @@ const Rooms = () => {
                                     <div className="swiper-button-next slider-arrow">
 
                                     </div>
-
-                                    <div className="swiper-pagination"></div>
                                 </div>
 
                             </Swiper>
                         </div>
                         <div className="textDiv">
-                            <h3>ROOM DETAILS RIGHT HERE...</h3>
+                            <h1>80m2</h1>
                         </div>
                     </div>
                 </div>
 
-                <div className="room2">
-                    <div className="header">
+                <div className="room2 flex">
+                    <div className="headerDiv">
                         <h1>ROOM 2</h1>
                     </div>
 
                     <div className="roomsDetail flex">
                         <div className="roomImages">
                             <Swiper
+                                classname='swiper'
                                 effect={'coverflow'}
                                 grabCursor={true}
                                 centeredSlides={true}
@@ -113,13 +118,12 @@ const Rooms = () => {
                                 coverflowEffect={
                                     {
                                         rotate: 0,
-                                        stretch: 0,
+                                        stretch: 50,
                                         depth: 100,
                                         modifier: 2.5,
 
                                     }
                                 }
-                                pagination={{ el: '.swiper-pagination', clickable: true }}
                                 navigation={{
                                     nextEl: '.swiper-button-next',
                                     prevEl: '.swiper-button-prev',
@@ -153,20 +157,16 @@ const Rooms = () => {
                                     <div className="swiper-button-next slider-arrow">
 
                                     </div>
-
-                                    <div className="swiper-pagination"></div>
                                 </div>
 
                             </Swiper>
                         </div>
                         <div className="textDiv">
-                            <h3>ROOM DETAILS RIGHT HERE...</h3>
+                            <h1>110m2</h1>
                         </div>
                     </div>
 
                 </div>
-
-
             </div>
 
         </div >
