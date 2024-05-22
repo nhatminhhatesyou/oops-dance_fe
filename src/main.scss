@@ -628,7 +628,7 @@ h2 {
         border-radius: 2rem;
         row-gap: 2rem;
         margin-bottom: 5rem;
-        overflow-x: hidden;
+        overflow: hidden;
 
 
         .guide {
@@ -824,7 +824,7 @@ h2 {
                 }
             }
 
-            h3 {
+            h2 {
                 background-color: var(--PrimaryColor);
                 width: fit-content;
                 color: var(--whiteColor);
@@ -832,6 +832,8 @@ h2 {
                 border-radius: .5rem;
                 text-align: center;
                 margin-bottom: 1rem;
+                font-size: var(--h2FontSize);
+                font-weight: 500;
             }
 
             .bookingInfo {
@@ -867,6 +869,25 @@ h2 {
     .showForm {
         right: 50%;
         transition: .6s ease-in-out;
+    }
+
+    .blurLayer {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: inherit;
+        z-index: 2;
+        filter: blur(2px);
+        background: rgba(225, 225, 225, 0.465);
+        backdrop-filter: blur(1px);
+
+    }
+
+    .showLayer {
+        display: block;
     }
 }
 

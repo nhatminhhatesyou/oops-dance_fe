@@ -22,7 +22,7 @@ const HomePage = () => {
             <Support />
             {/* <Classes /> */}
             <Info />
-            <Participants />
+            {/* <Participants /> */}
             <Subscribers />
             <Footer />
         </div>

@@ -128,13 +128,17 @@ const Search = () => {
     const [guestEmail, setGuestEmail] = useState('')
     const [guestPhoneNum, setGuestPhoneNum] = useState('')
     const [activeForm, setActiveForm] = useState('formDiv')
+    const [blur, setBlur] = useState('blurLayer')
+
 
     const removeForm = () => {
         setActiveForm('formDiv')
+        setBlur('blurLayer')
     }
 
     const showForm = () => {
         setActiveForm('formDiv showForm')
+        setBlur('blurLayer showLayer')
     }
 
 
@@ -272,7 +276,7 @@ const Search = () => {
                 <form action="" className="form flex" >
                     <IoIosCloseCircle className='icon' onClick={removeForm} />
                     <div className="guestInfo flex">
-                        <h3>Confirm your information and your booking</h3>
+                        <h2>Confirm your information and your booking</h2>
                         {/*  INPUT */}
                         <div className="inputDiv">
                             <label htmlFor="guestFullName">Your Full Name</label>
@@ -304,7 +308,7 @@ const Search = () => {
                     </div>
 
                     <div className="bookingInfo flex">
-                        <h3>Your Booking</h3>
+                        <h2>Your Booking</h2>
                         <p>Room: {selectedRoom}</p>
                         <p>Date: {startDate.toDateString()}</p>
                         <p>Check In: {checkInTime}</p>
@@ -323,6 +327,8 @@ const Search = () => {
                     </button>
                 </form>
             </div>
+
+            <div className={blur}></div>
         </div>
     );
 };

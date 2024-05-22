@@ -580,7 +580,7 @@ h2 {
   border-radius: 2rem;
   row-gap: 2rem;
   margin-bottom: 5rem;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 .search .sectionContainer .guide {
   position: absolute;
@@ -747,7 +747,7 @@ h2 {
   padding: 0.5rem;
   width: 100%;
 }
-.search .formDiv .form h3 {
+.search .formDiv .form h2 {
   background-color: var(--PrimaryColor);
   width: -moz-fit-content;
   width: fit-content;
@@ -756,6 +756,8 @@ h2 {
   border-radius: 0.5rem;
   text-align: center;
   margin-bottom: 1rem;
+  font-size: var(--h2FontSize);
+  font-weight: 500;
 }
 .search .formDiv .form .bookingInfo {
   flex-direction: column;
@@ -781,6 +783,23 @@ h2 {
 .search .showForm {
   right: 50%;
   transition: 0.6s ease-in-out;
+}
+.search .blurLayer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  z-index: 2;
+  filter: blur(2px);
+  background: rgba(225, 225, 225, 0.465);
+  -webkit-backdrop-filter: blur(1px);
+          backdrop-filter: blur(1px);
+}
+.search .showLayer {
+  display: block;
 }
 
 .classes {
