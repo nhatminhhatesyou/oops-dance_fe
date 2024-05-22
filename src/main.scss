@@ -375,6 +375,7 @@ h2 {
 }
 
 .homePage {
+    overflow: hidden;
     flex-direction: column;
     justify-content: center;
 }
@@ -533,6 +534,7 @@ h2 {
 
 //Rooms section styling =================>
 .rooms {
+    overflow-x: hidden;
     justify-content: center;
     margin: auto;
     padding: 0;
@@ -615,15 +617,25 @@ h2 {
     }
 }
 
-// Search section styling ===============>
 .search {
+    position: relative;
+
     .sectionContainer {
+        flex-direction: column;
         width: 100%;
         padding: 1.5rem;
         border: 5px solid var(--PrimaryColor);
         border-radius: 2rem;
         row-gap: 2rem;
+        margin-bottom: 5rem;
+        overflow-x: hidden;
 
+
+        .guide {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
 
         .btns {
             background: var(--SecondaryColor);
@@ -632,7 +644,8 @@ h2 {
             flex-direction: column;
             width: 100%;
             margin: auto;
-
+            margin-top: 1.5rem;
+            gap: 1rem;
 
             .singleBtn {
                 padding: .8rem 1.5rem;
@@ -654,19 +667,23 @@ h2 {
                 background: var(--PrimaryColor);
                 color: var(--whiteColor);
                 font-weight: 500;
-
             }
-
-            //why tf is this here
         }
 
         .searchInputs {
-            width: 100%;
             justify-content: center;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1rem;
+            height: 100px;
+            z-index: 2;
 
             .singleInput {
+                select {
+                    border: none;
+                    color: var(--textColor);
+                    appearance: none;
+                }
+
                 .iconDiv {
                     padding: 16px;
                     border-radius: 3rem;
@@ -677,7 +694,6 @@ h2 {
                         color: var(--blackColor);
                         opacity: .7;
                     }
-
                 }
 
                 .texts {
@@ -689,10 +705,10 @@ h2 {
                     }
 
                     input {
-                        width: 100%;
                         border: none;
                         outline: none;
                         background: transparent;
+                        width: 100%;
 
                         &::placeholder {
                             font-size: 12px;
@@ -707,6 +723,150 @@ h2 {
             margin: auto;
             max-width: fit-content;
         }
+
+        .searchResult {
+            padding: 1rem;
+            padding-top: 0;
+            width: 100%;
+            background: var(--SecondaryColor);
+            border-radius: 1rem;
+            margin: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+            h1,
+            h2 {
+                margin: .5rem;
+                margin-top: 1rem;
+                color: var(--PrimaryColor);
+            }
+
+            p {
+                background: var(--whiteColor);
+                padding: 0.5rem 1rem;
+                border-radius: 0.5rem;
+                margin-bottom: 0.5rem;
+                color: var(--blackColor);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+
+            .btn {
+                margin-top: .5rem;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .visible {
+            display: block;
+        }
+
+        .error-message {
+            color: var(--PrimaryColor);
+            font-weight: bold;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+
+    }
+
+    .formDiv {
+        position: absolute;
+        z-index: 3;
+        right: -50%;
+        top: 50%;
+        transform: translate(50%, -50%);
+        transition: .6s ease-in-out;
+
+        .form {
+            flex-direction: column;
+            gap: 1.5rem;
+            border: 3px solid var(--PrimaryColor);
+            border-radius: 1rem;
+            padding: 1rem;
+            padding-top: 2rem;
+            background-color: var(--SecondaryColor);
+            width: 300px;
+
+            .guestInfo {
+                flex-direction: column;
+                gap: 1rem;
+
+                .inputDiv {
+                    width: 100%;
+
+                    label {
+                        color: var(--blackColor);
+                        font-weight: 500;
+                    }
+
+                    input {
+                        background: none;
+                        outline: none;
+                        border: none;
+                        width: 100%;
+                    }
+
+                    .input {
+                        background: var(--whiteColor);
+                        border-radius: 2rem;
+                        //border: 1.5px solid var(--blackColor);
+                        padding: .5rem;
+                        width: 100%;
+
+                    }
+                }
+            }
+
+            h3 {
+                background-color: var(--PrimaryColor);
+                width: fit-content;
+                color: var(--whiteColor);
+                padding: .5rem;
+                border-radius: .5rem;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+
+            .bookingInfo {
+                flex-direction: column;
+                background: var(--whiteColor);
+                border-radius: 1rem;
+                padding: 1rem;
+                color: var(--blackColor);
+                margin: auto;
+                width: 100%;
+
+                p {
+                    margin: 0.5rem 0;
+                }
+            }
+
+
+            .icon {
+                position: absolute;
+                top: .5rem;
+                right: .5rem;
+                color: var(--blackColor);
+
+                :hover {
+                    cursor: pointer;
+                }
+            }
+
+
+        }
+    }
+
+    .showForm {
+        right: 50%;
+        transition: .6s ease-in-out;
     }
 }
 
@@ -1270,9 +1430,14 @@ h2 {
     //Search section styling =============>
     .search {
         .sectionContainer {
+            .btns {
+                border-radius: 3rem;
+                flex-direction: row;
+            }
+
             .searchInputs {
                 display: grid;
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(1, 1fr);
             }
         }
     }
@@ -1361,6 +1526,8 @@ h2 {
     //Search section styling =============>
     .search {
         .sectionContainer {
+            justify-content: center;
+
             .btns {
                 border-radius: 3rem;
                 flex-direction: row;
@@ -1368,7 +1535,7 @@ h2 {
 
             .searchInputs {
                 display: grid;
-                grid-template-columns: repeat(2, 1fr);
+
             }
         }
     }
@@ -1480,6 +1647,7 @@ h2 {
     //Search section styling =============>
     .search {
         .sectionContainer {
+
             .btns {
                 border-radius: 3rem;
                 flex-direction: row;
@@ -1487,9 +1655,7 @@ h2 {
 
             .searchInputs {
                 display: grid;
-                grid-template-columns: repeat(2, 1fr);
-
-                .btn {}
+                grid-template-columns: repeat(3, 1fr);
             }
         }
     }
@@ -1600,18 +1766,19 @@ h2 {
     //Search  section styling =============>
     .search {
         .sectionContainer {
+
             .btns {
-                width: 70%;
+                width: 60%;
             }
 
             .searchInputs {
                 display: grid;
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
 
                 .singleInput {
                     .texts {
                         input {
-                            width: 100%;
+                            width: 100%
                         }
                     }
                 }
@@ -1773,13 +1940,9 @@ h2 {
     //Search  section styling =============>
     .search {
         .sectionContainer {
-            .btns {
-                width: 70%;
-            }
-
             .searchInputs {
                 display: grid;
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
 
             }
         }
@@ -1893,7 +2056,7 @@ h2 {
     .search {
         .sectionContainer {
             .btns {
-                width: 50%;
+                //width: 50%;
             }
         }
     }

@@ -20,7 +20,7 @@ const HomePage = () => {
             <Rooms />
             <Search />
             <Support />
-            <Classes />
+            {/* <Classes /> */}
             <Info />
             <Participants />
             <Subscribers />

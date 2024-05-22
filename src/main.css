@@ -362,6 +362,7 @@ h2 {
 }
 
 .homePage {
+  overflow: hidden;
   flex-direction: column;
   justify-content: center;
 }
@@ -491,6 +492,7 @@ h2 {
 }
 
 .rooms {
+  overflow-x: hidden;
   justify-content: center;
   margin: auto;
   padding: 0;
@@ -567,12 +569,23 @@ h2 {
   text-align: center;
 }
 
+.search {
+  position: relative;
+}
 .search .sectionContainer {
+  flex-direction: column;
   width: 100%;
   padding: 1.5rem;
   border: 5px solid var(--PrimaryColor);
   border-radius: 2rem;
   row-gap: 2rem;
+  margin-bottom: 5rem;
+  overflow-x: hidden;
+}
+.search .sectionContainer .guide {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 .search .sectionContainer .btns {
   background: var(--SecondaryColor);
@@ -581,6 +594,8 @@ h2 {
   flex-direction: column;
   width: 100%;
   margin: auto;
+  margin-top: 1.5rem;
+  gap: 1rem;
 }
 .search .sectionContainer .btns .singleBtn {
   padding: 0.8rem 1.5rem;
@@ -602,10 +617,18 @@ h2 {
   font-weight: 500;
 }
 .search .sectionContainer .searchInputs {
-  width: 100%;
   justify-content: center;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
+  height: 100px;
+  z-index: 2;
+}
+.search .sectionContainer .searchInputs .singleInput select {
+  border: none;
+  color: var(--textColor);
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 .search .sectionContainer .searchInputs .singleInput .iconDiv {
   padding: 16px;
@@ -624,10 +647,10 @@ h2 {
   font-weight: 500;
 }
 .search .sectionContainer .searchInputs .singleInput .texts input {
-  width: 100%;
   border: none;
   outline: none;
   background: transparent;
+  width: 100%;
 }
 .search .sectionContainer .searchInputs .singleInput .texts input::-moz-placeholder {
   font-size: 12px;
@@ -641,6 +664,123 @@ h2 {
   margin: auto;
   max-width: -moz-fit-content;
   max-width: fit-content;
+}
+.search .sectionContainer .searchResult {
+  padding: 1rem;
+  padding-top: 0;
+  width: 100%;
+  background: var(--SecondaryColor);
+  border-radius: 1rem;
+  margin: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.search .sectionContainer .searchResult h1,
+.search .sectionContainer .searchResult h2 {
+  margin: 0.5rem;
+  margin-top: 1rem;
+  color: var(--PrimaryColor);
+}
+.search .sectionContainer .searchResult p {
+  background: var(--whiteColor);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--blackColor);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.search .sectionContainer .searchResult p:last-child {
+  margin-bottom: 0;
+}
+.search .sectionContainer .searchResult .btn {
+  margin-top: 0.5rem;
+}
+.search .sectionContainer .hidden {
+  display: none;
+}
+.search .sectionContainer .visible {
+  display: block;
+}
+.search .sectionContainer .error-message {
+  color: var(--PrimaryColor);
+  font-weight: bold;
+  margin-top: 1rem;
+  text-align: center;
+}
+.search .formDiv {
+  position: absolute;
+  z-index: 3;
+  right: -50%;
+  top: 50%;
+  transform: translate(50%, -50%);
+  transition: 0.6s ease-in-out;
+}
+.search .formDiv .form {
+  flex-direction: column;
+  gap: 1.5rem;
+  border: 3px solid var(--PrimaryColor);
+  border-radius: 1rem;
+  padding: 1rem;
+  padding-top: 2rem;
+  background-color: var(--SecondaryColor);
+  width: 300px;
+}
+.search .formDiv .form .guestInfo {
+  flex-direction: column;
+  gap: 1rem;
+}
+.search .formDiv .form .guestInfo .inputDiv {
+  width: 100%;
+}
+.search .formDiv .form .guestInfo .inputDiv label {
+  color: var(--blackColor);
+  font-weight: 500;
+}
+.search .formDiv .form .guestInfo .inputDiv input {
+  background: none;
+  outline: none;
+  border: none;
+  width: 100%;
+}
+.search .formDiv .form .guestInfo .inputDiv .input {
+  background: var(--whiteColor);
+  border-radius: 2rem;
+  padding: 0.5rem;
+  width: 100%;
+}
+.search .formDiv .form h3 {
+  background-color: var(--PrimaryColor);
+  width: -moz-fit-content;
+  width: fit-content;
+  color: var(--whiteColor);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.search .formDiv .form .bookingInfo {
+  flex-direction: column;
+  background: var(--whiteColor);
+  border-radius: 1rem;
+  padding: 1rem;
+  color: var(--blackColor);
+  margin: auto;
+  width: 100%;
+}
+.search .formDiv .form .bookingInfo p {
+  margin: 0.5rem 0;
+}
+.search .formDiv .form .icon {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: var(--blackColor);
+}
+.search .formDiv .form .icon :hover {
+  cursor: pointer;
+}
+.search .showForm {
+  right: 50%;
+  transition: 0.6s ease-in-out;
 }
 
 .classes {
@@ -1048,9 +1188,13 @@ h2 {
   .home {
     padding-top: 12rem;
   }
+  .search .sectionContainer .btns {
+    border-radius: 3rem;
+    flex-direction: row;
+  }
   .search .sectionContainer .searchInputs {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
   .participants .sectionContainer .participantsContainer {
     grid-template-columns: repeat(2, 1fr);
@@ -1093,13 +1237,15 @@ h2 {
     position: absolute;
     top: -10%;
   }
+  .search .sectionContainer {
+    justify-content: center;
+  }
   .search .sectionContainer .btns {
     border-radius: 3rem;
     flex-direction: row;
   }
   .search .sectionContainer .searchInputs {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
   }
   .support .sectionContainer .infoDiv .textDiv {
     margin-top: 2rem;
@@ -1159,7 +1305,7 @@ h2 {
   }
   .search .sectionContainer .searchInputs {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   .footer .sectionContainer {
     grid-template-columns: repeat(4, 1fr);
@@ -1224,11 +1370,11 @@ h2 {
     display: none;
   }
   .search .sectionContainer .btns {
-    width: 70%;
+    width: 60%;
   }
   .search .sectionContainer .searchInputs {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   .search .sectionContainer .searchInputs .singleInput .texts input {
     width: 100%;
@@ -1321,12 +1467,9 @@ h2 {
     font-size: 22px;
     line-height: 4rem;
   }
-  .search .sectionContainer .btns {
-    width: 70%;
-  }
   .search .sectionContainer .searchInputs {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   .classes table {
     scale: 100%;
@@ -1391,9 +1534,6 @@ h2 {
   .home .homeImages .plane {
     top: -20%;
     width: 15%;
-  }
-  .search .sectionContainer .btns {
-    width: 50%;
   }
   .rooms {
     max-width: 100%;

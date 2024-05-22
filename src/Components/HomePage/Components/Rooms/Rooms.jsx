@@ -49,65 +49,6 @@ const Rooms = () => {
 
                     <div className="roomsDetail flex">
                         <div className="roomImages">
-
-                            <Swiper
-                                className='swiper'
-                                effect={'coverflow'}
-                                grabCursor={true}
-                                centeredSlides={true}
-                                loop={true}
-                                slidesPerView={'auto'}
-                                spaceBetween={0}
-                                coverflowEffect={
-                                    {
-                                        rotate: 0,
-                                        stretch: 50,
-                                        depth: 100,
-                                        modifier: 2.5,
-                                    }
-                                }
-
-                                navigation={{
-                                    nextEl: '.swiper-button-next',
-                                    prevEl: '.swiper-button-prev',
-                                    clickable: true,
-                                }}
-                                modules={[EffectCoverflow, Pagination, Navigation]}
-                            >
-                                <SwiperSlide className='swiper-slide'>
-                                    <img src={room1_1} />
-                                </SwiperSlide>
-                                <SwiperSlide className='swiper-slide'>
-                                    <img src={room1_2} />
-                                </SwiperSlide>
-                                <SwiperSlide className='swiper-slide'>
-                                    <img src={room1_3} />
-                                </SwiperSlide>
-
-                                <div className="slider-controler">
-                                    <div className="swiper-button-prev slider-arrow">
-
-                                    </div>
-                                    <div className="swiper-button-next slider-arrow">
-
-                                    </div>
-                                </div>
-
-                            </Swiper>
-                        </div>
-                        <div className="textDiv">
-                            <h1>80m2</h1>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="room2 flex">
-                    <div className="headerDiv">
-                        <h1>ROOM 2</h1>
-                    </div>
-
-                    <div className="roomsDetail flex">
-                        <div className="roomImages">
                             <Swiper
                                 classname='swiper'
                                 effect={'coverflow'}
@@ -167,6 +108,67 @@ const Rooms = () => {
                     </div>
 
                 </div>
+
+                <div className="room2 flex">
+                    <div className="headerDiv">
+                        <h1>ROOM 2</h1>
+                    </div>
+
+                    <div className="roomsDetail flex">
+                        <div className="roomImages">
+
+                            <Swiper
+                                className='swiper'
+                                effect={'coverflow'}
+                                grabCursor={true}
+                                centeredSlides={true}
+                                loop={true}
+                                slidesPerView={'auto'}
+                                spaceBetween={0}
+                                coverflowEffect={
+                                    {
+                                        rotate: 0,
+                                        stretch: 50,
+                                        depth: 100,
+                                        modifier: 2.5,
+                                    }
+                                }
+
+                                navigation={{
+                                    nextEl: '.swiper-button-next',
+                                    prevEl: '.swiper-button-prev',
+                                    clickable: true,
+                                }}
+                                modules={[EffectCoverflow, Pagination, Navigation]}
+                            >
+                                <SwiperSlide className='swiper-slide'>
+                                    <img src={room1_1} />
+                                </SwiperSlide>
+                                <SwiperSlide className='swiper-slide'>
+                                    <img src={room1_2} />
+                                </SwiperSlide>
+                                <SwiperSlide className='swiper-slide'>
+                                    <img src={room1_3} />
+                                </SwiperSlide>
+
+                                <div className="slider-controler">
+                                    <div className="swiper-button-prev slider-arrow">
+
+                                    </div>
+                                    <div className="swiper-button-next slider-arrow">
+
+                                    </div>
+                                </div>
+
+                            </Swiper>
+                        </div>
+                        <div className="textDiv">
+                            <h1>80m2</h1>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
         </div >
