@@ -10,8 +10,6 @@ import axios from 'axios';
 import { FaRegQuestionCircle } from "react-icons/fa";
 import { IoIosCloseCircle } from "react-icons/io";
 
-
-
 const Search = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [selectedRoom, setSelectedRoom] = useState('All Rooms');
@@ -21,6 +19,12 @@ const Search = () => {
     const [showResults, setShowResults] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [isRoomAvailable, setIsRoomAvailable] = useState(false);
+    const [guestID, setGuestID] = useState('');
+    const [activeForm, setActiveForm] = useState('formDiv');
+    const [blur, setBlur] = useState('blurLayer');
+    const [showConfirmation, setShowConfirmation] = useState(false);
+    const [qrCodeUrl, setQrCodeUrl] = useState('');
+    const [confirmationMessage, setConfirmationMessage] = useState('');
 
     useEffect(() => {
         Aos.init({ duration: 2000 });
@@ -122,25 +126,73 @@ const Search = () => {
 
     const timeOptions = generateTimeOptions();
 
-
-    // Guest Booking Info
-    const [guestFullName, setGuestFullName] = useState('')
-    const [guestEmail, setGuestEmail] = useState('')
-    const [guestPhoneNum, setGuestPhoneNum] = useState('')
-    const [activeForm, setActiveForm] = useState('formDiv')
-    const [blur, setBlur] = useState('blurLayer')
-
-
     const removeForm = () => {
-        setActiveForm('formDiv')
-        setBlur('blurLayer')
-    }
+        setActiveForm('formDiv');
+        setBlur('blurLayer');
+    };
+
+    const removeConfirmation = () => {
+        setShowConfirmation(false);
+        setBlur('blurLayer');
+    };
 
     const showForm = () => {
-        setActiveForm('formDiv showForm')
-        setBlur('blurLayer showLayer')
-    }
+        console.log("date: ", startDate.toISOString().split('T')[0]);
 
+        setActiveForm('formDiv showForm');
+        setBlur('blurLayer showLayer');
+    };
+
+    const handleConfirm = async (event) => {
+        event.preventDefault();
+        setShowResults(false)
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/bookings/', {
+                guest: guestID,
+                room_name: selectedRoom,
+                checkin_time: checkInTime,
+                checkout_time: checkOutTime,
+                date: startDate.toISOString().split('T')[0]
+            });
+
+            console.log(response);
+            console.log(response.data.message);
+            if (response.data.message === "Success") {
+                // Success
+                setActiveForm('formDiv');
+                setShowConfirmation(true);
+                setConfirmationMessage("Thank you and just one last step, please deposit in 5 mins to finish your booking:");
+                // Thay thế bằng URL của mã QR thực tế
+                setQrCodeUrl('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=YourPaymentLinkHere');
+            }
+        } catch (error) {
+            if (error.response) {
+                // Server responsed an error
+                console.log("all error data:");
+                console.log(error.response.data);
+
+                if (error.response.data.non_field_errors) {
+                    console.log("non_field_errors:");
+                    console.log(error.response.data.non_field_errors['0']);
+                    // setAddClassStatus('Class already exists');
+                } else if (error.response.data.guest) {
+                    console.log("no guest message:");
+                    console.log(error.response.data.guest);
+                    // setAddClassStatus("Invalid Guest ID");
+                } else if (error.response.data.room_name) {
+                    console.log("no room name message:");
+                    console.log(error.response.data.room_name);
+                    // setAddClassStatus("Invalid Room Name");
+                }
+            } else if (error.request) {
+                // Request sent but no response
+                console.log(error.request);
+            } else {
+                // error init request
+                console.log('Error', error.message);
+            }
+        }
+    };
 
     return (
         <div className='search container section'>
@@ -267,41 +319,20 @@ const Search = () => {
                         </div>
                     )}
                 </div>
-
-
             </div>
 
             {/* BOOKING FORM */}
             <div className={activeForm}>
-                <form action="" className="form flex" >
+                <form className="form flex" onSubmit={handleConfirm}>
                     <IoIosCloseCircle className='icon' onClick={removeForm} />
                     <div className="guestInfo flex">
-                        <h2>Confirm your information and your booking</h2>
+                        <h2>Please check your booking's information below</h2>
                         {/*  INPUT */}
                         <div className="inputDiv">
-                            <label htmlFor="guestFullName">Your Full Name</label>
+                            <label htmlFor="guestFullName">Guest ID</label>
                             <div className="input flex">
                                 <input type="text" id='guestFullName' placeholder='Enter' onChange={(event) => {
-                                    setGuestFullName(event.target.value)
-                                }} />
-                            </div>
-                        </div>
-                        {/*  INPUT */}
-                        <div className="inputDiv">
-                            <label htmlFor="guestEmail">Your Email</label>
-                            <div className="input flex">
-                                <input type="text" id='guestEmail' placeholder='Enter' onChange={(event) => {
-                                    setGuestEmail(event.target.value)
-                                }} />
-                            </div>
-                        </div>
-
-                        {/*  INPUT */}
-                        <div className="inputDiv">
-                            <label htmlFor="guestPhoneNum">Phone Number</label>
-                            <div className="input flex">
-                                <input type="text" id='guestPhoneNum' placeholder='Enter' onChange={(event) => {
-                                    setGuestPhoneNum(event.target.value)
+                                    setGuestID(event.target.value)
                                 }} />
                             </div>
                         </div>
@@ -315,20 +346,21 @@ const Search = () => {
                         <p>Check Out: {checkOutTime}</p>
                     </div>
 
-
-
-
-                    {/* ADD-CLASS STATUS */}
-                    {/* <span className={statusHolder}>{bookingFormStatus}</span> */}
-
-                    {/* SUBMIT BUTTON */}
-                    <button type='submit' className='btn' >
+                    <button type='submit' className='btn'>
                         <span>Confirm</span>
                     </button>
                 </form>
             </div>
 
             <div className={blur}></div>
+
+            {showConfirmation && (
+                <div className="confirmation">
+                    <IoIosCloseCircle className='icon' onClick={removeConfirmation} />
+                    <h2>{confirmationMessage}</h2>
+                    <img src={qrCodeUrl} alt="QR Code for Payment" />
+                </div>
+            )}
         </div>
     );
 };

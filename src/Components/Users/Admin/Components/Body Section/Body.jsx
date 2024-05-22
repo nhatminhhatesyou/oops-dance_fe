@@ -1,9 +1,8 @@
 import React from 'react'
 import './body.css'
 import { useLocation, Route, Routes } from 'react-router-dom';
-import Main from './Main/main'
-import ClassManager from './Classes Management/ClassManager'
-import Classes from '../../../../HomePage/Components/Classes/Classes';
+import Main from './Main/Main';
+import ClassManager from './Classes Management/ClassManager';
 import Bookings from './Bookings/Bookings';
 
 

@@ -10,8 +10,6 @@ import {
     createBrowserRouter,
     RouterProvider
 } from 'react-router-dom'
-import SideBar from './Components/Users/Instructor/Components/SideBar Section/SideBar'
-import Main from './Components/Users/Admin/Components/Body Section/Main/main'
 
 //Create router
 const router = createBrowserRouter([

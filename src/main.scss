@@ -533,6 +533,7 @@ h2 {
 }
 
 //Rooms section styling =================>
+
 .rooms {
     overflow-x: hidden;
     justify-content: center;
@@ -617,6 +618,8 @@ h2 {
     }
 }
 
+//Search section styling =================>
+
 .search {
     position: relative;
 
@@ -629,7 +632,6 @@ h2 {
         row-gap: 2rem;
         margin-bottom: 5rem;
         overflow: hidden;
-
 
         .guide {
             position: absolute;
@@ -772,8 +774,6 @@ h2 {
             margin-top: 1rem;
             text-align: center;
         }
-
-
     }
 
     .formDiv {
@@ -816,27 +816,28 @@ h2 {
                     .input {
                         background: var(--whiteColor);
                         border-radius: 2rem;
-                        //border: 1.5px solid var(--blackColor);
                         padding: .5rem;
                         width: 100%;
-
                     }
                 }
             }
 
             h2 {
-                background-color: var(--PrimaryColor);
-                width: fit-content;
-                color: var(--whiteColor);
-                padding: .5rem;
-                border-radius: .5rem;
-                text-align: center;
-                margin-bottom: 1rem;
                 font-size: var(--h2FontSize);
+                text-align: center;
                 font-weight: 500;
             }
 
             .bookingInfo {
+                h2 {
+                    background-color: var(--PrimaryColor);
+                    width: fit-content;
+                    color: var(--whiteColor);
+                    padding: .5rem;
+                    border-radius: .5rem;
+                    margin-bottom: 1rem;
+                }
+
                 flex-direction: column;
                 background: var(--whiteColor);
                 border-radius: 1rem;
@@ -850,7 +851,6 @@ h2 {
                 }
             }
 
-
             .icon {
                 position: absolute;
                 top: .5rem;
@@ -861,8 +861,6 @@ h2 {
                     cursor: pointer;
                 }
             }
-
-
         }
     }
 
@@ -883,13 +881,55 @@ h2 {
         filter: blur(2px);
         background: rgba(225, 225, 225, 0.465);
         backdrop-filter: blur(1px);
-
     }
 
     .showLayer {
         display: block;
     }
+
+    .confirmation {
+        text-align: center;
+        margin-top: 20px;
+        position: absolute;
+        z-index: 3;
+        right: 50%;
+        top: 50%;
+        transform: translate(50%, -50%);
+        flex-direction: column;
+        gap: 1.5rem;
+        border: 3px solid var(--PrimaryColor);
+        border-radius: 1rem;
+        padding: 1rem;
+        padding-top: 2rem;
+        background-color: var(--whiteColor);
+
+
+        h2 {
+            color: var(--PrimaryColor);
+            font-size: var(--h2FontSize);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        img {
+            margin-top: 1rem;
+            width: 150px;
+            height: 150px;
+        }
+
+        .icon {
+            position: absolute;
+            top: .5rem;
+            right: .5rem;
+            color: var(--blackColor);
+
+            :hover {
+                cursor: pointer;
+            }
+        }
+    }
 }
+
 
 //Classes section styling ===============>
 .classes {
