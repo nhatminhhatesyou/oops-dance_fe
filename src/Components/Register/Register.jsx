@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import Axios from 'axios'
+import Axios from '../../axiosConfig'
 
 //Import icons
 import { FaUserShield } from "react-icons/fa";
@@ -18,6 +18,7 @@ const Register = () => {
     const [email, setEmail] = useState('')
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
+    const [registerStatus, setRegisterStatus] = useState('');
 
     const navigateTo = useNavigate()
 
@@ -25,18 +26,34 @@ const Register = () => {
     const createUser = async (e) => {
         e.preventDefault();
         //Use Axios to create API that connects to the server
-        Axios.post('http://127.0.0.1:8000/register/', {
-            //create variables to send to the server through route
-            email: email,
-            username: userName,
-            password: password
-        }).then(() => {
-            console.log('User has been created')
-            navigateTo('/login')
-            setEmail('')
-            setUserName('')
-            setPassword('')
-        })
+        // Axios.post('http://127.0.0.1:8000/register/', {
+        //     //create variables to send to the server through route
+        //     email: email,
+        //     username: userName,
+        //     password: password
+        // }).then(() => {
+        //     console.log('User has been created')
+        //     navigateTo('/login')
+        //     setEmail('')
+        //     setUserName('')
+        //     setPassword('')
+        // })
+
+        try {
+            const response = await Axios.post('/register/', {
+                email: email,
+                username: userName,
+                password: password
+            });
+            if (response.data.token) {
+                localStorage.setItem('token', response.data.token);
+                setAuth(true);
+                navigateTo('/instructor');
+            }
+        } catch (error) {
+            console.log(error.response.data);
+            setRegisterStatus('Failed to register');
+        }
     }
 
 

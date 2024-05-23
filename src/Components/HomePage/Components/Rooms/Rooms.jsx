@@ -150,6 +150,15 @@ const Rooms = () => {
                                 <SwiperSlide className='swiper-slide'>
                                     <img src={room1_3} />
                                 </SwiperSlide>
+                                <SwiperSlide className='swiper-slide'>
+                                    <img src={room1_1} />
+                                </SwiperSlide>
+                                <SwiperSlide className='swiper-slide'>
+                                    <img src={room1_2} />
+                                </SwiperSlide>
+                                <SwiperSlide className='swiper-slide'>
+                                    <img src={room1_3} />
+                                </SwiperSlide>
 
                                 <div className="slider-controler">
                                     <div className="swiper-button-prev slider-arrow">

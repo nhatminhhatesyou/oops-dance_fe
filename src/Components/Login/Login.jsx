@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import Axios from 'axios';
+import Axios from '../../axiosConfig';
 
 //Import icons
 import { FaUserShield } from "react-icons/fa";
@@ -13,7 +13,7 @@ import loginImg from '../Assets/studio-Image2.jpg'
 import logo from '../Assets/logo.png'
 
 
-const Login = () => {
+const Login = ({ setAuth }) => {
     // useState Hook
     const [loginUserName, setLoginUserName] = useState('')
     const [loginPassword, setLoginPassword] = useState('')
@@ -28,31 +28,57 @@ const Login = () => {
         //Lets prevent submitting
         e.preventDefault();
         //Use Axios to create API that connects to the server
-        Axios.post('http://127.0.0.1:8000/login/', {
-            //create variables to send to the server through route
-            username: loginUserName,
-            password: loginPassword
-        }).then((response) => {
-            console.log(response)
-            if (response.data.message === "success") { //  LOGIN SUCCESS
-                navigateTo('/instructor')
+
+        // Axios.post('http://127.0.0.1:8000/login/', {
+        //     //create variables to send to the server through route
+        //     username: loginUserName,
+        //     password: loginPassword
+        // }).then((response) => {
+        //     console.log(response)
+        //     if (response.data.message === "success") { //  LOGIN SUCCESS
+        //         navigateTo('/instructor')
+        //     }
+        // }).catch((error) => {
+        //     if (error.response) {
+        //         // Server responsed an error
+        //         console.log(error.response.data);
+        //         if (error.response.data.message === "credentials don't match") {
+        //             setLoginStatus("credentials don't match")
+        //         }
+        //         setLoginStatus(message);
+        //     } else if (error.request) {
+        //         // Request sent but no response
+        //         console.log(error.request);
+        //     } else {
+        //         // error init request
+        //         console.log('Error', error.message);
+        //     }
+        // })
+
+        try {
+            const response = await Axios.post('/login/', {
+                username: loginUserName,
+                password: loginPassword
+            });
+            console.log(response);
+            if (response.data.token) {
+                localStorage.setItem('token', response.data.token);
+                setAuth(true);
+                navigateTo('/instructor');
             }
-        }).catch((error) => {
+        } catch (error) {
             if (error.response) {
-                // Server responsed an error
                 console.log(error.response.data);
                 if (error.response.data.message === "credentials don't match") {
-                    setLoginStatus("credentials don't match")
+                    setLoginStatus("credentials don't match");
                 }
                 setLoginStatus(message);
             } else if (error.request) {
-                // Request sent but no response
                 console.log(error.request);
             } else {
-                // error init request
                 console.log('Error', error.message);
             }
-        })
+        }
     }
 
     useEffect(() => {

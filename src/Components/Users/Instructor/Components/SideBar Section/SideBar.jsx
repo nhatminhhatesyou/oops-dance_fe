@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import LogoutButton from '../../../../Logout/LogoutButton'
 
 import './sidebar.css'
 
@@ -114,9 +115,9 @@ const SideBar = () => {
             </div>
 
 
-            <Link to={"/login"} className="logOutBtn flex">
-                <button className="btn">Log Out</button>
-            </Link>
+            <div className="logOutBtn flex">
+                <LogoutButton />
+            </div>
 
 
             <div className="sideBarCard">

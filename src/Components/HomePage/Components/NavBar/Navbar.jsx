@@ -1,37 +1,35 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 //Import icons
-import { SiConsul } from 'react-icons/si'
-import { BsPhoneVibrate } from 'react-icons/bs'
-import { AiOutlineGlobal } from 'react-icons/ai'
+import { SiConsul } from 'react-icons/si';
+import { BsPhoneVibrate } from 'react-icons/bs';
+import { AiOutlineGlobal } from 'react-icons/ai';
 import { HiMenu } from "react-icons/hi";
-import { CgMenuGridO } from 'react-icons/cg'
+import { CgMenuGridO } from 'react-icons/cg';
 
 //import images
-import logo from '../../Assets_HomePage/logo.png'
+import logo from '../../Assets_HomePage/logo.png';
 
-const Navbar = () => {
-
+const Navbar = ({ scrollToSection, refs }) => {
     //Remove the Navbar in the small width screens ================>
-    const [active, setActive] = useState('navBarMenu')
+    const [active, setActive] = useState('navBarMenu');
     const showNavBar = () => {
-        setActive('navBarMenu showNavBar')
-    }
+        setActive('navBarMenu showNavBar');
+    };
     const removeNavBar = () => {
-        setActive('navBarMenu')
-    }
+        setActive('navBarMenu');
+    };
 
     //Add a background color to the second Navbar ==============>
-    const [noBg, addBg] = useState('navBarTwo')
+    const [noBg, addBg] = useState('navBarTwo');
     const addBgColor = () => {
         if (window.scrollY >= 10) {
-            addBg('navBarTwo navbar_With_Bg')
+            addBg('navBarTwo navbar_With_Bg');
         } else {
-            addBg('navBarTwo')
+            addBg('navBarTwo');
         }
-
-    }
-    window.addEventListener('scroll', addBgColor)
+    };
+    window.addEventListener('scroll', addBgColor);
 
     return (
         <div className='navBar flex'>
@@ -40,11 +38,11 @@ const Navbar = () => {
                     <img src={logo} className='logo' />
                     <div className={active}>
                         <ul className="menu flex">
-                            <li onClick={removeNavBar} className="listItem">Home</li>
-                            <li onClick={removeNavBar} className="listItem">About</li>
-                            <li onClick={removeNavBar} className="listItem">Offers</li>
-                            <li onClick={removeNavBar} className="listItem">Room</li>
-                            <li onClick={removeNavBar} className="listItem">Classes</li>
+                            <li onClick={() => { removeNavBar(); scrollToSection(refs.homeRef); }} className="listItem">Home</li>
+                            <li onClick={() => { removeNavBar(); scrollToSection(refs.aboutRef); }} className="listItem">About</li>
+                            <li onClick={() => { removeNavBar(); scrollToSection(refs.offersRef); }} className="listItem">Offers</li>
+                            <li onClick={() => { removeNavBar(); scrollToSection(refs.roomsRef); }} className="listItem">Room</li>
+                            <li onClick={() => { removeNavBar(); scrollToSection(refs.classesRef); }} className="listItem">Classes</li>
                             <button onClick={removeNavBar} className='btn flex btnOne'>
                                 Contact
                             </button>
@@ -65,7 +63,7 @@ const Navbar = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;
