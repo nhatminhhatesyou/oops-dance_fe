@@ -1,3 +1,32 @@
-36:23
-1:19:05
-1:40:40
+.mainAdmin {
+
+    .bottom {
+        margin-top: 2rem;
+        gap: 2rem;
+        align-items: flex-start;
+    }
+}
+
+//MEDIA QUERIES ====================>
+
+@media screen and (max-width: 900px) {
+    .bottom {
+        flex-direction: column;
+    }
+}
+
+
+
+
+import React from 'react'
+import './main.css'
+import Top from './Top Section/Top'
+import Listing from './Listing Section/Listing'
+import Activity from './Activity Section/Activity'
+
+
+const Main=()=> {
+    return (<div className='mainAdmin' > <Top /> <div className="bottom flex" > <Listing /> <Activity /> </div> </div>)
+}
+
+export default Main

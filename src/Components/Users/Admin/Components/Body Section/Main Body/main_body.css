@@ -1,4 +1,4 @@
-.mainAdmin .bottom {
+.mainBody .bottom {
   margin-top: 2rem;
   gap: 2rem;
   align-items: flex-start;
@@ -8,4 +8,4 @@
   .bottom {
     flex-direction: column;
   }
-}/*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=main_body.css.map */

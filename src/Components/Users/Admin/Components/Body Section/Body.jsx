@@ -1,9 +1,9 @@
 import React from 'react'
 import './body.css'
 import { useLocation, Route, Routes } from 'react-router-dom';
-import Main from './Main/Main';
 import ClassManager from './Classes Management/ClassManager';
 import Bookings from './Bookings/Bookings';
+import MainBody from './Main Body/MainBody';
 
 
 const Body = () => {
@@ -12,7 +12,7 @@ const Body = () => {
     return (
         <div className='mainContentAdmin'>
             <Routes>
-                <Route path={'/'} element={<Main />} />
+                <Route path={'/'} element={<MainBody />} />
                 <Route path={'/classes'} element={<ClassManager />} />
                 <Route path={'/bookings'} element={<Bookings />} />
 
