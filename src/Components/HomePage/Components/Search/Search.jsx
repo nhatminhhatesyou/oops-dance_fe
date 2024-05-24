@@ -4,7 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { RxCalendar } from 'react-icons/rx';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
-import axios from 'axios';
+import axios from '../../../../axiosConfig';
 
 //IMPORTED ICON ================>
 import { FaRegQuestionCircle } from "react-icons/fa";

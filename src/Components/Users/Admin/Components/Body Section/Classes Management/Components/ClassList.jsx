@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Axios from 'axios';
+import Axios from '../../../../../../../axiosConfig';
 
 //IMPORTED ICON ================>
 import { BsFillTrashFill } from "react-icons/bs";

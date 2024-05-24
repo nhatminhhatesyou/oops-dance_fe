@@ -9,6 +9,7 @@ import { CgMenuGridO } from 'react-icons/cg';
 
 //import images
 import logo from '../../Assets_HomePage/logo.png';
+import LogoutButton from '../../../Logout/LogoutButton';
 
 const Navbar = ({ scrollToSection, refs }) => {
     //Remove the Navbar in the small width screens ================>
@@ -60,6 +61,8 @@ const Navbar = ({ scrollToSection, refs }) => {
                     <a href="/login">
                         <span>Sign In</span>
                     </a>
+
+                    <LogoutButton />
                 </div>
             </div>
         </div>
