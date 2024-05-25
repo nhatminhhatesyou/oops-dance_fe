@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import './sidebar.css'
 
 //Imported Images ===============>
-import logo from '../../Assets_Instructor/logo.png'
+import logo from '../../Assets_Admin/logo.png'
 
 //Imported Icons ============>
 import { IoMdSpeedometer } from "react-icons/io";
@@ -18,6 +18,7 @@ import { FaDoorOpen } from "react-icons/fa6";
 import { FaUserGroup } from "react-icons/fa6";
 import { FaHouseUser } from "react-icons/fa6";
 import { SiBytedance } from "react-icons/si";
+import LogoutButton from '../../../../Logout/LogoutButton';
 
 
 const SideBar = () => {
@@ -141,9 +142,9 @@ const SideBar = () => {
             </div>
 
 
-            <Link to={"/login"} className="logOutBtn flex">
-                <button className="btn">Log Out</button>
-            </Link>
+            <div className="logOutBtn flex">
+                <LogoutButton />
+            </div>
 
 
             <div className="sideBarCard">

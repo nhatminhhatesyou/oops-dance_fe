@@ -2,10 +2,10 @@ import React from 'react'
 import './listing.css'
 
 //Imported images ==================>
-import class_1 from '../../../../Assets_Instructor/dolinh_class_1.jpeg'
-import class_2 from '../../../../Assets_Instructor/dolinh_class_2.jpg'
-import small_room from '../../../../Assets_Instructor/small_room.jpg'
-import large_room from '../../../../Assets_Instructor/large_room.jpg'
+import class_1 from '../../../../Assets_Admin/dolinh_class_1.jpeg'
+import class_2 from '../../../../Assets_Admin/dolinh_class_2.jpg'
+import small_room from '../../../../Assets_Admin/small_room.jpg'
+import large_room from '../../../../Assets_Admin/large_room.jpg'
 
 
 //Imported icons ==================>

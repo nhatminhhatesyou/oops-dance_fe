@@ -61,8 +61,6 @@ const Navbar = ({ scrollToSection, refs }) => {
                     <a href="/login">
                         <span>Sign In</span>
                     </a>
-
-                    <LogoutButton />
                 </div>
             </div>
         </div>

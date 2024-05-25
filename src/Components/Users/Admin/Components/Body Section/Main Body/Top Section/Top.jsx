@@ -9,10 +9,10 @@ import { RiNotificationLine } from "react-icons/ri";
 
 
 //Imported images ================>
-import user1 from '../../../../Assets_Instructor/user_1.png'
+import user1 from '../../../../Assets_Admin/user_1.png'
 
 //Imported videos ================>
-import video from '../../../../Assets_Instructor/video_short.mp4'
+import video from '../../../../Assets_Admin/video_short.mp4'
 
 
 const Top = () => {

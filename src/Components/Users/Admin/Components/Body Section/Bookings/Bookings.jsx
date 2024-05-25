@@ -1,8 +1,14 @@
 import React from 'react'
+import './bookings.css'
+import NextBooking from './Components/NextBooking'
+import BookingList from './Components/BookingList'
 
 const Bookings = () => {
     return (
-        <div>Bookings</div>
+        <div>
+            <NextBooking />
+            <BookingList />
+        </div>
     )
 }
 

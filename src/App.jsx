@@ -57,6 +57,7 @@ const App = () => {
         localStorage.removeItem('token');
         setIsAuthenticated(false);
         localStorage.setItem('isAuthenticated', 'false');
+        console.log("LOG OUT")
     };
 
     return (
@@ -76,6 +77,7 @@ const App = () => {
                         <>
                             <Route path="/login" element={<Login setAuth={setIsAuthenticated} />} />
                             <Route path="/register" element={<Register setAuth={setIsAuthenticated} />} />
+                            <Route path="/home" element={<HomePage />} />
                             <Route path="/" element={<Navigate to="/login" />} />
                             <Route path="*" element={<Navigate to="/login" />} />
                         </>

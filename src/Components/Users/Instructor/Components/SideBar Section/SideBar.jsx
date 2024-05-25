@@ -47,7 +47,7 @@ const SideBar = () => {
                         <a href="#" className="menuLink flex">
                             <MdDeliveryDining className='icon' />
                             <span className="smallText">
-                                My Orders
+                                My Classes
                             </span>
                         </a>
                     </li>
@@ -56,15 +56,7 @@ const SideBar = () => {
                         <a href="#" className="menuLink flex">
                             <MdOutlineExplore className='icon' />
                             <span className="smallText">
-                                Explore
-                            </span>
-                        </a>
-                    </li>
-                    <li className="listItem">
-                        <a href="#" className="menuLink flex">
-                            <BsTrophy className='icon' />
-                            <span className="smallText">
-                                Products
+                                My Bookings
                             </span>
                         </a>
                     </li>
@@ -99,15 +91,7 @@ const SideBar = () => {
                         <a href="#" className="menuLink flex">
                             <MdOutlinePermContactCalendar className='icon' />
                             <span className="smallText">
-                                Contacts
-                            </span>
-                        </a>
-                    </li>
-                    <li className="listItem">
-                        <a href="#" className="menuLink flex">
-                            <BsCreditCard2Front className='icon' />
-                            <span className="smallText">
-                                Billing
+                                My Profile
                             </span>
                         </a>
                     </li>
