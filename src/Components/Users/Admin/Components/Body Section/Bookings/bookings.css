@@ -26,74 +26,72 @@
   --smallestFontSize: .75rem;
 }
 
-.sectionContainer {
+.adminBookings .sectionContainer {
   margin-bottom: 2rem;
   background-color: var(--whiteColor);
   padding: 2rem;
   border-radius: 2rem;
   box-shadow: 1px 1px 3px 1px var(--greyText);
 }
-.sectionContainer .heading {
+.adminBookings .sectionContainer .heading {
   color: var(--PrimaryColor);
 }
-
-.nextBooking .secContainer {
+.adminBookings .nextBooking .secContainer {
   margin: 1rem 0;
   gap: 2rem;
   overflow: hidden;
   justify-content: center;
   grid-template-columns: repeat(2, 1fr);
 }
-.nextBooking .secContainer .singleItem {
+.adminBookings .nextBooking .secContainer .singleItem {
   align-items: center;
   border-radius: 10px;
   padding: 1rem;
   background: var(--greyBg);
   gap: 1rem;
 }
-.nextBooking .secContainer .singleItem .imgCard {
+.adminBookings .nextBooking .secContainer .singleItem .imgCard {
   background-color: var(--cardColor);
   padding: 1rem;
   border-radius: 10px;
   flex-direction: column;
 }
-.nextBooking .secContainer .singleItem .imgCard h3 {
+.adminBookings .nextBooking .secContainer .singleItem .imgCard h3 {
   font-size: var(--h3FontSize);
   font-weight: 550;
   color: var(--whiteColor);
   padding: 1rem 0;
 }
-.nextBooking .secContainer .singleItem .imgCard:hover {
+.adminBookings .nextBooking .secContainer .singleItem .imgCard:hover {
   background: var(--PrimaryColor);
   box-shadow: 0 2px 2px var(--inputColor);
   cursor: pointer;
 }
-.nextBooking .secContainer .singleItem .imgCard:hover h3 {
+.adminBookings .nextBooking .secContainer .singleItem .imgCard:hover h3 {
   color: var(--whiteColor);
 }
-.nextBooking .secContainer .singleItem .imgCard img {
+.adminBookings .nextBooking .secContainer .singleItem .imgCard img {
   border-radius: 10px;
   top: 2rem;
   max-width: 180px;
   box-shadow: var(--boxShadow);
 }
-.nextBooking .secContainer .singleItem .details {
+.adminBookings .nextBooking .secContainer .singleItem .details {
   flex-direction: column;
   gap: 2rem;
 }
-.nextBooking .secContainer .singleItem .details h3 {
+.adminBookings .nextBooking .secContainer .singleItem .details h3 {
   font-size: var(--h3FontSize);
   font-weight: 550;
 }
-
-.bookingList .tableDiv {
+.adminBookings .bookingList .tableDiv {
   flex-direction: column;
   gap: 1.5rem;
   padding: 1rem;
   overflow: hidden;
   z-index: 1;
 }
-.bookingList .tableDiv h2 {
+.adminBookings .bookingList .tableDiv h2 {
   background-color: var(--whiteColor);
   color: var(--PrimaryColor);
   border: 2px solid var(--PrimaryColor);
@@ -101,23 +99,23 @@
   border-top-right-radius: 1.5rem;
   border-top-left-radius: 1.5rem;
 }
-.bookingList .tableDiv table {
+.adminBookings .bookingList .tableDiv table {
   text-align: center;
   border: 2px solid var(--blackColor);
 }
-.bookingList .tableDiv table td,
-.bookingList .tableDiv table th {
+.adminBookings .bookingList .tableDiv table td,
+.adminBookings .bookingList .tableDiv table th {
   border: 2px solid var(--blackColor);
   padding: 0.5rem;
 }
-.bookingList .tableDiv table thead {
+.adminBookings .bookingList .tableDiv table thead {
   background: var(--PrimaryColor);
   color: white;
 }
-.bookingList .tableDiv .btn {
+.adminBookings .bookingList .tableDiv .btn {
   font-size: var(--h2FontSize);
   font-weight: 500;
 }
-.bookingList .tableDiv .icon :hover {
+.adminBookings .bookingList .tableDiv .icon :hover {
   color: var(--PrimaryColor);
 }/*# sourceMappingURL=bookings.css.map */

@@ -5,7 +5,7 @@ import BookingList from './Components/BookingList'
 
 const Bookings = () => {
     return (
-        <div>
+        <div className='adminBookings'>
             <NextBooking />
             <BookingList />
         </div>
