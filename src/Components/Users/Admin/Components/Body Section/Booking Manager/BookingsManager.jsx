@@ -1,12 +1,10 @@
 import React from 'react'
-import './bookings.css'
-import NextBooking from './Components/NextBooking'
+import './bookingsManager.css'
 import BookingList from './Components/BookingList'
 
 const Bookings = () => {
     return (
         <div className='adminBookings'>
-            <NextBooking />
             <BookingList />
         </div>
     )

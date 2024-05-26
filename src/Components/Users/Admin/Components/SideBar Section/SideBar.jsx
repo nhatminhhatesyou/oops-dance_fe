@@ -43,47 +43,47 @@ const SideBar = () => {
                 <ul className="menuLists grid">
 
                     <li className="listItem">
-                        <a href="/admin/dashboard" className="menuLink flex">
+                        <Link to="/admin/dashboard" className="menuLink flex">
                             <IoMdSpeedometer className='icon' />
                             <span className="smallText">
                                 Dash Board
                             </span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li className="listItem">
-                        <a href="/admin/rooms" className="menuLink flex">
+                        <Link to="/admin/rooms" className="menuLink flex">
                             <FaDoorOpen className='icon' />
                             <span className="smallText">
                                 Rooms
                             </span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li className="listItem">
-                        <a href="/admin/bookings" className="menuLink flex">
+                        <Link to="/admin/bookings" className="menuLink flex">
                             <FaDoorClosed className='icon' />
                             <span className="smallText">
                                 Bookings
                             </span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li className="listItem">
-                        <a href="/admin/classes" className="menuLink flex">
+                        <Link to="/admin/classes" className="menuLink flex">
                             <SiBytedance className='icon' />
                             <span className="smallText">
                                 Classes
                             </span>
-                        </a>
+                        </Link>
                     </li>
                     <li className="listItem">
-                        <a href="/admin/users" className="menuLink flex">
+                        <Link to="/admin/users" className="menuLink flex">
                             <FaUserGroup className='icon' />
                             <span className="smallText">
                                 Users
                             </span>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </div>
@@ -95,46 +95,46 @@ const SideBar = () => {
                 <ul className="menuLists grid">
 
                     <li className="listItem">
-                        <a href="#" className="menuLink flex">
+                        <Link to="#" className="menuLink flex">
                             <AiOutlinePieChart className='icon' />
                             <span className="smallText">
                                 Charts
                             </span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li className="listItem">
-                        <a href="#" className="menuLink flex">
+                        <Link to="#" className="menuLink flex">
                             <BiTrendingUp className='icon' />
                             <span className="smallText">
                                 Trends
                             </span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li className="listItem">
-                        <a href="#" className="menuLink flex">
+                        <Link to="#" className="menuLink flex">
                             <MdOutlinePermContactCalendar className='icon' />
                             <span className="smallText">
                                 Contacts
                             </span>
-                        </a>
+                        </Link>
                     </li>
                     <li className="listItem">
-                        <a href="#" className="menuLink flex">
+                        <Link to="#" className="menuLink flex">
                             <BsCreditCard2Front className='icon' />
                             <span className="smallText">
                                 Billing
                             </span>
-                        </a>
+                        </Link>
                     </li>
                     <li className="listItem">
-                        <a href="#" className="menuLink flex">
+                        <Link to="#" className="menuLink flex">
                             <FaHouseUser className='icon' />
                             <span className="smallText">
                                 Home Page Setting
                             </span>
-                        </a>
+                        </Link>
                     </li>
 
 

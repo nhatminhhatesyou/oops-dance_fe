@@ -26,15 +26,9 @@
   --smallestFontSize: .75rem;
 }
 
-.adminBookings .sectionContainer {
-  margin-bottom: 2rem;
-  background-color: var(--whiteColor);
-  padding: 2rem;
-  border-radius: 2rem;
-  box-shadow: 1px 1px 3px 1px var(--greyText);
-}
-.adminBookings .sectionContainer .heading {
+.adminBookings .heading {
   color: var(--PrimaryColor);
+  overflow: hidden;
 }
 .adminBookings .nextBooking .secContainer {
   margin: 1rem 0;
@@ -84,20 +78,57 @@
   font-size: var(--h3FontSize);
   font-weight: 550;
 }
-.adminBookings .bookingList .tableDiv {
+.adminBookings .bookingList {
   flex-direction: column;
-  gap: 1.5rem;
-  padding: 1rem;
   overflow: hidden;
-  z-index: 1;
+  gap: 2rem;
 }
-.adminBookings .bookingList .tableDiv h2 {
+.adminBookings .bookingList .heading {
   background-color: var(--whiteColor);
   color: var(--PrimaryColor);
   border: 2px solid var(--PrimaryColor);
   padding: 1rem;
   border-top-right-radius: 1.5rem;
   border-top-left-radius: 1.5rem;
+}
+.adminBookings .bookingList .filterDiv {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: var(--PrimaryColor);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.adminBookings .bookingList .filterDiv label {
+  font-weight: bold;
+  margin-right: 10px;
+  color: var(--whiteColor);
+}
+.adminBookings .bookingList .filterDiv select,
+.adminBookings .bookingList .filterDiv input {
+  padding: 8px 12px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: var(--whiteColor);
+  transition: border-color 0.3s ease;
+}
+.adminBookings .bookingList .filterDiv select:focus,
+.adminBookings .bookingList .filterDiv input:focus {
+  border-color: var(--focusBorderColor);
+}
+.adminBookings .bookingList .filterDiv input {
+  flex: 1;
+}
+.adminBookings .bookingList .tableDiv {
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow: hidden;
+  z-index: 1;
 }
 .adminBookings .bookingList .tableDiv table {
   text-align: center;
@@ -112,10 +143,17 @@
   background: var(--PrimaryColor);
   color: white;
 }
+.adminBookings .bookingList .tableDiv table thead th:not(:last-child):hover {
+  background: var(--cardColor);
+  cursor: pointer;
+}
+.adminBookings .bookingList .tableDiv table tbody {
+  color: var(--blackColor);
+}
 .adminBookings .bookingList .tableDiv .btn {
   font-size: var(--h2FontSize);
   font-weight: 500;
 }
 .adminBookings .bookingList .tableDiv .icon :hover {
   color: var(--PrimaryColor);
-}/*# sourceMappingURL=bookings.css.map */
+}/*# sourceMappingURL=bookingsManager.css.map */

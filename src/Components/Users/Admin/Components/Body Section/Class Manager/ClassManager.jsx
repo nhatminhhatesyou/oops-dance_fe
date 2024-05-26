@@ -8,7 +8,7 @@ import Schedule from './Components/Schedule';
 
 const ClassManager = () => {
     return (
-        <div className='classManager flex'>
+        <div className='classManager'>
             <ClassList />
             <Schedule />
         </div>

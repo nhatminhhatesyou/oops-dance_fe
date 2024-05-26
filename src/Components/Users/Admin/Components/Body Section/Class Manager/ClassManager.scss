@@ -30,13 +30,6 @@
 }
 
 .classManager {
-    flex-direction: column;
-    gap: 1.5rem;
-    position: relative;
-    height: 100%;
-    width: 100%;
-    overflow-x: hidden;
-
     .tableDiv {
         flex-direction: column;
         gap: 1.5rem;
@@ -85,13 +78,6 @@
                 color: var(--PrimaryColor);
             }
         }
-    }
-
-    .sectionContainer {
-        padding: 1rem;
-        background: var(--whiteColor);
-        border-radius: 10px;
-        box-shadow: 1px 1px 3px 1px var(--greyText);
     }
 
     .blurLayer {

@@ -29,27 +29,12 @@
     --smallestFontSize: .75rem;
 }
 
-.adminBookings {
-    .sectionContainer {
-        margin-bottom: 2rem;
-        background-color: var(--whiteColor);
-        padding: 2rem;
-        border-radius: 2rem;
-        box-shadow: 1px 1px 3px 1px var(--greyText);
-
-        .heading {
-            color: var(--PrimaryColor);
-        }
-
-    }
-
-    .nextBooking {
+.roomManager {
+    .singleRoom {
         .secContainer {
-            // width: 100%;
             margin: 1rem 0;
             gap: 2rem;
             overflow: hidden;
-            // background-color: #d83f3f;
             justify-content: center;
             grid-template-columns: repeat(2, 1fr);
 
@@ -107,57 +92,5 @@
             }
         }
 
-    }
-
-    .bookingList {
-        .tableDiv {
-            flex-direction: column;
-            gap: 1.5rem;
-            padding: 1rem;
-            overflow: hidden;
-            z-index: 1;
-
-            h2 {
-                background-color: var(--whiteColor);
-                color: var(--PrimaryColor);
-                border: 2px solid var(--PrimaryColor);
-                padding: 1rem;
-                border-top-right-radius: 1.5rem;
-                border-top-left-radius: 1.5rem;
-            }
-
-            table {
-                //border-spacing: 0rem;
-                text-align: center;
-                border: 2px solid var(--blackColor);
-                //border-radius: 1rem;
-
-
-
-                td,
-                th {
-                    border: 2px solid var(--blackColor);
-                    padding: .5rem;
-                }
-
-                thead {
-                    background: var(--PrimaryColor);
-                    color: white;
-
-
-                }
-            }
-
-            .btn {
-                font-size: var(--h2FontSize);
-                font-weight: 500;
-            }
-
-            .icon {
-                :hover {
-                    color: var(--PrimaryColor);
-                }
-            }
-        }
     }
 }

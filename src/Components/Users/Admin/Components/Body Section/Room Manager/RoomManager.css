@@ -1,0 +1,76 @@
+:root {
+  --PrimaryColor: hsl(0, 66%, 43%);
+  --SecondaryColor: hsl(180, 17%, 95%);
+  --paleGreen: hsl(93, 75%, 76%);
+  --colorOne: hsl(15, 74%, 70%);
+  --colorTwo: hsl(28, 100%, 82%);
+  --HoverColor: #d83f3f;
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(0, 0%, 12%);
+  --textColor: hsl(240, 1%, 48%);
+  --borderColor: hsl(0, 0%, 83%);
+  --whiteColorDeam: hsl(0, 0%, 93%);
+  --greyBg: hwb(0 96% 4%);
+  --greyText: rgb(145, 145, 145);
+  --inputColor: hsl(330, 12%, 97%);
+  --boxShadow: box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  --transition: .4s ease-in-out;
+  --bgColor: hsla(113, 11%, 85%, 0.533);
+  --inputColor: hsl(330, 12%, 97%);
+  --biggestFontSize: 2.5rem;
+  --h1FontSize: 1.5rem;
+  --h2FontSize: 1.25rem;
+  --h3FontSize: 1rem;
+  --normalFontSize: .938rem;
+  --smallFontSize: .813rem;
+  --smallestFontSize: .75rem;
+}
+
+.roomManager .singleRoom .secContainer {
+  margin: 1rem 0;
+  gap: 2rem;
+  overflow: hidden;
+  justify-content: center;
+  grid-template-columns: repeat(2, 1fr);
+}
+.roomManager .singleRoom .secContainer .singleItem {
+  align-items: center;
+  border-radius: 10px;
+  padding: 1rem;
+  background: var(--greyBg);
+  gap: 1rem;
+}
+.roomManager .singleRoom .secContainer .singleItem .imgCard {
+  background-color: var(--cardColor);
+  padding: 1rem;
+  border-radius: 10px;
+  flex-direction: column;
+}
+.roomManager .singleRoom .secContainer .singleItem .imgCard h3 {
+  font-size: var(--h3FontSize);
+  font-weight: 550;
+  color: var(--whiteColor);
+  padding: 1rem 0;
+}
+.roomManager .singleRoom .secContainer .singleItem .imgCard:hover {
+  background: var(--PrimaryColor);
+  box-shadow: 0 2px 2px var(--inputColor);
+  cursor: pointer;
+}
+.roomManager .singleRoom .secContainer .singleItem .imgCard:hover h3 {
+  color: var(--whiteColor);
+}
+.roomManager .singleRoom .secContainer .singleItem .imgCard img {
+  border-radius: 10px;
+  top: 2rem;
+  max-width: 180px;
+  box-shadow: var(--boxShadow);
+}
+.roomManager .singleRoom .secContainer .singleItem .details {
+  flex-direction: column;
+  gap: 2rem;
+}
+.roomManager .singleRoom .secContainer .singleItem .details h3 {
+  font-size: var(--h3FontSize);
+  font-weight: 550;
+}/*# sourceMappingURL=RoomManager.css.map */
