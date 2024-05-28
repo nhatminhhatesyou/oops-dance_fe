@@ -38,11 +38,11 @@
 }
 .attendance .todayClassesDiv .heading {
   color: var(--whiteColor);
-  background: var(--blackColor);
+  background: var(--PrimaryColor);
   border: none;
 }
 .attendance .todayClassesDiv .cards {
-  background-color: var(--blackColor);
+  background-color: var(--PrimaryColor);
   width: 100%;
 }
 .attendance .todayClassesDiv .singleItem .heading1 {

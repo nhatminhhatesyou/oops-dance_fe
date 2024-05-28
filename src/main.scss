@@ -410,6 +410,14 @@ h2 {
         }
 
         .atb {
+
+            .avatarContainer {
+                width: 40px;
+                border: 2px solid var(--blackColor);
+                border-radius: 10px;
+                background-color: var(--whiteColor);
+            }
+
             gap: 1rem;
             width: fit-content;
 

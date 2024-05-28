@@ -397,6 +397,12 @@ h2 {
   width: -moz-fit-content;
   width: fit-content;
 }
+.navBar .navBarTwo .atb .avatarContainer {
+  width: 40px;
+  border: 2px solid var(--blackColor);
+  border-radius: 10px;
+  background-color: var(--whiteColor);
+}
 .navBar .navBarTwo .atb span {
   color: var(--blackColor);
   font-size: 13px;

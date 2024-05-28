@@ -37,7 +37,7 @@ const HomePage = () => {
             <Search />
             <Support />
             <div ref={classesRef}>
-                <Classes />
+                <Search />
             </div>
             <Info />
             <Participants />

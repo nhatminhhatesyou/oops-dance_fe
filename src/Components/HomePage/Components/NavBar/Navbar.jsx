@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
-
-//Import icons
-import { SiConsul } from 'react-icons/si';
-import { BsPhoneVibrate } from 'react-icons/bs';
-import { AiOutlineGlobal } from 'react-icons/ai';
-import { HiMenu } from "react-icons/hi";
-import { CgMenuGridO } from 'react-icons/cg';
-
-//import images
+import { useAuth } from '../../../../AuthContext';
 import logo from '../../Assets_HomePage/logo.png';
-import LogoutButton from '../../../Logout/LogoutButton';
+import avatarPlaceholder from '../../Assets_HomePage/dolinh.png';
+import { HiMenu } from "react-icons/hi";
 
 const Navbar = ({ scrollToSection, refs }) => {
-    //Remove the Navbar in the small width screens ================>
+    const { user, isAuthenticated, handleLogout } = useAuth();
+    console.log("USER DATA:", user)
+
     const [active, setActive] = useState('navBarMenu');
     const showNavBar = () => {
         setActive('navBarMenu showNavBar');
@@ -21,7 +16,6 @@ const Navbar = ({ scrollToSection, refs }) => {
         setActive('navBarMenu');
     };
 
-    //Add a background color to the second Navbar ==============>
     const [noBg, addBg] = useState('navBarTwo');
     const addBgColor = () => {
         if (window.scrollY >= 10) {
@@ -31,6 +25,11 @@ const Navbar = ({ scrollToSection, refs }) => {
         }
     };
     window.addEventListener('scroll', addBgColor);
+
+    const [showDropdown, setShowDropdown] = useState(false);
+    const toggleDropdown = () => {
+        setShowDropdown(!showDropdown);
+    };
 
     return (
         <div className='navBar flex'>
@@ -54,13 +53,37 @@ const Navbar = ({ scrollToSection, refs }) => {
                         <HiMenu className='icon' />
                     </div>
                 </div>
+
                 <div className="atb flex">
-                    <a href="/register">
-                        <span>Sign Up</span>
-                    </a>
-                    <a href="/login">
-                        <span>Sign In</span>
-                    </a>
+                    {isAuthenticated ? (
+                        <div className="avatarContainer">
+                            <img
+                                src={user?.avatarUrl || avatarPlaceholder}
+                                alt="User Avatar"
+                                className="avatar"
+                                onClick={toggleDropdown}
+                            />
+                            {showDropdown && (
+                                <ul className="dropdownMenu">
+                                    <li className="dropdownItem">My Bookings</li>
+                                    <li className="dropdownItem">My Classes</li>
+                                    <li className="dropdownItem">My Profile</li>
+                                    <li className="dropdownItem">
+                                        <button onClick={handleLogout}>Logout</button>
+                                    </li>
+                                </ul>
+                            )}
+                        </div>
+                    ) : (
+                        <>
+                            <a href="/register">
+                                <span>Sign Up</span>
+                            </a>
+                            <a href="/login">
+                                <span>Sign In</span>
+                            </a>
+                        </>
+                    )}
                 </div>
             </div>
         </div>
