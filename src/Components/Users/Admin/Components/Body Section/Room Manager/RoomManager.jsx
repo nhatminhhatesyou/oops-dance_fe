@@ -8,7 +8,7 @@ import room1 from '../../../Assets_Admin/large_room.jpg'
 const Rooms = () => {
     return (
         <div className='roomManager'>
-            <div className='singleRoom sectionContainer'>
+            <div className='detailDiv sectionContainer'>
                 <div className="heading">
                     <h1>Room Details</h1>
                 </div>
@@ -37,7 +37,12 @@ const Rooms = () => {
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <div className="statsDiv sectionContainer">
+                <div className="heading">
+                    <h1>CHART</h1>
+                </div>
             </div>
         </div>
     )

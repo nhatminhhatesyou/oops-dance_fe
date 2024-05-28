@@ -67,7 +67,7 @@ const App = () => {
                     {isAuthenticated ? (
                         <>
                             <Route path="/logout" element={<LogoutButton />} />
-                            <Route path="/instructor" element={<Instructor />} />
+                            <Route path="/instructor/*" element={<Instructor />} />
                             <Route path="/admin/*" element={<Admin />} />
                             <Route path="/" element={<Navigate to="/instructor" />} />
                             <Route path="/home" element={<HomePage />} />

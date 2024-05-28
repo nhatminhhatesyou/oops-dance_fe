@@ -4,14 +4,21 @@
   padding: 2rem;
   overflow: auto;
 }
-.mainContentInstructor .bottom {
-  margin-top: 2rem;
-  gap: 2rem;
-  align-items: flex-start;
+.mainContentInstructor .sectionContainer {
+  margin-bottom: 2rem;
+  background-color: var(--whiteColor);
+  padding: 2rem;
+  border-radius: 2rem;
+  box-shadow: 1px 1px 3px 1px var(--greyText);
 }
-
-@media screen and (max-width: 900px) {
-  .bottom {
-    flex-direction: column;
-  }
+.mainContentInstructor .sectionContainer .heading {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+  background-color: var(--whiteColor);
+  color: var(--PrimaryColor);
+  border: 3px solid var(--PrimaryColor);
+  padding: 1rem;
+  border-top-right-radius: 1.5rem;
+  border-top-left-radius: 1.5rem;
 }/*# sourceMappingURL=body.css.map */

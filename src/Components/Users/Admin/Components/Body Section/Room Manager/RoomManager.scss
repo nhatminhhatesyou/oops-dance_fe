@@ -30,7 +30,21 @@
 }
 
 .roomManager {
-    .singleRoom {
+    .sectionContainer {
+        .heading {
+            width: fit-content;
+            margin: auto;
+            background-color: var(--whiteColor);
+            color: var(--PrimaryColor);
+            border: 3px solid var(--PrimaryColor);
+            padding: 1rem;
+            border-top-right-radius: 1.5rem;
+            border-top-left-radius: 1.5rem;
+        }
+
+    }
+
+    .detailDiv {
         .secContainer {
             margin: 1rem 0;
             gap: 2rem;

@@ -2,14 +2,8 @@ import React from 'react'
 import './listing.css'
 
 //Imported images ==================>
-import class_1 from '../../../Assets_Instructor/dolinh_class_1.jpeg'
-import class_2 from '../../../Assets_Instructor/dolinh_class_2.jpg'
-import instructor_1 from '../../../Assets_Instructor/dolinh_rmbg.png'
-import instructor_2 from '../../../Assets_Instructor/ami_rmbg.png'
-import instructor_3 from '../../../Assets_Instructor/bin_rmbg.png'
-import instructor_4 from '../../../Assets_Instructor/ducbo_rmbg.png'
-import instructor_5 from '../../../Assets_Instructor/chaeng_rmbg.png'
-
+import class_1 from '../../../../../Assets_Instructor/dolinh_class_1.jpeg'
+import class_2 from '../../../../../Assets_Instructor/dolinh_class_2.jpg'
 
 //Imported icons ==================>
 import { BsArrowRightShort } from "react-icons/bs";

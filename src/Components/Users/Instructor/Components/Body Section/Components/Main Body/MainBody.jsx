@@ -4,7 +4,6 @@ import Top from './Top Section/Top'
 import Listing from './Listing Section/Listing'
 import Activity from './Activity Section/Activity'
 
-
 const MainBody = () => {
     return (
         <div className='mainBody' >

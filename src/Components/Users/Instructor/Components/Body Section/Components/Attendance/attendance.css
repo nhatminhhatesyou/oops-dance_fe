@@ -1,0 +1,94 @@
+:root {
+  --PrimaryColor: hsl(0, 66%, 43%);
+  --SecondaryColor: hsl(180, 17%, 95%);
+  --paleGreen: hsl(93, 75%, 76%);
+  --colorOne: hsl(15, 74%, 70%);
+  --colorTwo: hsl(28, 100%, 82%);
+  --HoverColor: #d83f3f;
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(0, 0%, 12%);
+  --textColor: hsl(240, 1%, 48%);
+  --borderColor: hsl(0, 0%, 83%);
+  --whiteColorDeam: hsl(0, 0%, 93%);
+  --greyBg: hwb(0 96% 4%);
+  --greyText: rgb(145, 145, 145);
+  --inputColor: hsl(330, 12%, 97%);
+  --boxShadow: box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  --transition: .4s ease-in-out;
+  --bgColor: hsla(113, 11%, 85%, 0.533);
+  --inputColor: hsl(330, 12%, 97%);
+  --biggestFontSize: 2.5rem;
+  --h1FontSize: 1.5rem;
+  --h2FontSize: 1.25rem;
+  --h3FontSize: 1rem;
+  --normalFontSize: .938rem;
+  --smallFontSize: .813rem;
+  --smallestFontSize: .75rem;
+}
+
+.attendance .cards {
+  padding: 1rem;
+  background: var(--greyBg);
+  border-radius: 15px;
+  box-shadow: 1px 1px 3px 1px var(--greyText);
+}
+.attendance .todayClassesDiv {
+  flex-direction: column;
+  gap: 2rem;
+}
+.attendance .todayClassesDiv .heading {
+  color: var(--whiteColor);
+  background: var(--blackColor);
+  border: none;
+}
+.attendance .todayClassesDiv .cards {
+  background-color: var(--blackColor);
+  width: 100%;
+}
+.attendance .todayClassesDiv .singleItem .heading1 {
+  transform: rotate(-90deg);
+  transform-origin: center;
+  text-align: center;
+  color: var(--whiteColor);
+}
+.attendance .todayClassesDiv .singleItem .cards {
+  background-color: var(--whiteColor);
+}
+.attendance .todayClassesDiv .singleItem .todaySchedule {
+  width: 100%;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.attendance .todayClassesDiv .singleItem .todaySchedule .schedule {
+  width: 100%;
+}
+.attendance .todayClassesDiv .singleItem .todaySchedule .schedule .singleCard {
+  padding: 1rem;
+  border-radius: 1rem;
+  background: var(--itemCardColor);
+  gap: 1rem;
+  box-shadow: 0 2px 4px var(--inputColor);
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.attendance .todayClassesDiv .singleItem .todaySchedule .schedule .singleCard .users {
+  padding-right: 1rem;
+  border-right: 2px solid var(--whiteColor);
+}
+.attendance .todayClassesDiv .singleItem .todaySchedule .schedule .singleCard .users img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 2px solid var(--inputColor);
+  transition: 0.5s ease;
+}
+.attendance .todayClassesDiv .singleItem .todaySchedule .schedule .singleCard .users img:hover {
+  transform: translateY(-10px);
+}
+.attendance .todayClassesDiv .singleItem .todaySchedule .schedule .singleCard .cardText span {
+  color: var(--blackColor);
+  font-weight: 500;
+}/*# sourceMappingURL=attendance.css.map */

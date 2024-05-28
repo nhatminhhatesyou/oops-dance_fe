@@ -1,6 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import LogoutButton from '../../../../Logout/LogoutButton'
+import { Link, useNavigate } from 'react-router-dom'
+
 
 import './sidebar.css'
 
@@ -20,10 +21,14 @@ import { BsQuestionCircle } from "react-icons/bs";
 
 
 const SideBar = () => {
+    const navigateTo = useNavigate()
+    const handleNavigate = (path) => {
+        navigateTo(path);
+    }
     return (
         <div className='sideBar grid'>
 
-            <div className="logoDiv flex">
+            <div onClick={() => handleNavigate('/instructor')} className="logoDiv flex">
                 <img src={logo} />
                 <h2>Oops! Dance Studio</h2>
             </div>
@@ -35,30 +40,30 @@ const SideBar = () => {
                 <ul className="menuLists grid">
 
                     <li className="listItem">
-                        <a href="#" className="menuLink flex">
-                            <IoMdSpeedometer className='icon' />
-                            <span className="smallText">
-                                Dash Board
-                            </span>
-                        </a>
-                    </li>
-
-                    <li className="listItem">
-                        <a href="#" className="menuLink flex">
+                        <Link to="#" className="menuLink flex">
                             <MdDeliveryDining className='icon' />
                             <span className="smallText">
                                 My Classes
                             </span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li className="listItem">
-                        <a href="#" className="menuLink flex">
+                        <Link to="#" className="menuLink flex">
                             <MdOutlineExplore className='icon' />
                             <span className="smallText">
                                 My Bookings
                             </span>
-                        </a>
+                        </Link>
+                    </li>
+
+                    <li className="listItem">
+                        <Link to="attendance" className="menuLink flex">
+                            <IoMdSpeedometer className='icon' />
+                            <span className="smallText">
+                                Attendance
+                            </span>
+                        </Link>
                     </li>
                 </ul>
             </div>
@@ -70,30 +75,30 @@ const SideBar = () => {
                 <ul className="menuLists grid">
 
                     <li className="listItem">
-                        <a href="#" className="menuLink flex">
+                        <Link to="#" className="menuLink flex">
                             <AiOutlinePieChart className='icon' />
                             <span className="smallText">
                                 Charts
                             </span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li className="listItem">
-                        <a href="#" className="menuLink flex">
+                        <Link to="#" className="menuLink flex">
                             <BiTrendingUp className='icon' />
                             <span className="smallText">
                                 Trends
                             </span>
-                        </a>
+                        </Link>
                     </li>
 
                     <li className="listItem">
-                        <a href="#" className="menuLink flex">
+                        <Link to="#" className="menuLink flex">
                             <MdOutlinePermContactCalendar className='icon' />
                             <span className="smallText">
                                 My Profile
                             </span>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </div>
