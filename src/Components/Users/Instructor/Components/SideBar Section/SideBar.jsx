@@ -40,7 +40,7 @@ const SideBar = () => {
                 <ul className="menuLists grid">
 
                     <li className="listItem">
-                        <Link to="#" className="menuLink flex">
+                        <Link to="my-classes" className="menuLink flex">
                             <MdDeliveryDining className='icon' />
                             <span className="smallText">
                                 My Classes
@@ -49,7 +49,7 @@ const SideBar = () => {
                     </li>
 
                     <li className="listItem">
-                        <Link to="#" className="menuLink flex">
+                        <Link to="my-bookings" className="menuLink flex">
                             <MdOutlineExplore className='icon' />
                             <span className="smallText">
                                 My Bookings

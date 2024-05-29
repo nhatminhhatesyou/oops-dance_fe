@@ -52,13 +52,14 @@ export const AuthProvider = ({ children }) => {
             setUser(null);
             setIsAuthenticated(false);
             localStorage.removeItem('token'); // Clear token from localStorage
+
         } catch (error) {
             console.error('Logout failed', error);
         }
     };
 
     return (
-        <AuthContext.Provider value={{ user, isAuthenticated, setIsAuthenticated, handleLogout }}>
+        <AuthContext.Provider value={{ setUser, user, isAuthenticated, setIsAuthenticated, handleLogout }}>
             {children}
         </AuthContext.Provider>
     );

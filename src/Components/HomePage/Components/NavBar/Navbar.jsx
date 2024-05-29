@@ -1,13 +1,25 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../../../AuthContext';
 import logo from '../../Assets_HomePage/logo.png';
-import avatarPlaceholder from '../../Assets_HomePage/dolinh.png';
 import { HiMenu } from "react-icons/hi";
+import { Link } from 'react-router-dom'
+
+import avatarPlaceholder from '../../Assets_HomePage/avatar.png';
+
+
+//IMPORTED ICONS ============================>
+import { FaRegUser } from "react-icons/fa";
+import { MdFactCheck } from "react-icons/md";
+import { FaDoorOpen } from "react-icons/fa";
+import { FaRegCalendarCheck } from "react-icons/fa";
+import { FiSettings } from "react-icons/fi";
+import { FaLongArrowAltRight } from "react-icons/fa";
+
+
+
 
 const Navbar = ({ scrollToSection, refs }) => {
     const { user, isAuthenticated, handleLogout } = useAuth();
-    console.log("USER DATA:", user)
-
     const [active, setActive] = useState('navBarMenu');
     const showNavBar = () => {
         setActive('navBarMenu showNavBar');
@@ -65,12 +77,76 @@ const Navbar = ({ scrollToSection, refs }) => {
                             />
                             {showDropdown && (
                                 <ul className="dropdownMenu">
-                                    <li className="dropdownItem">My Bookings</li>
-                                    <li className="dropdownItem">My Classes</li>
-                                    <li className="dropdownItem">My Profile</li>
-                                    <li className="dropdownItem">
-                                        <button onClick={handleLogout}>Logout</button>
-                                    </li>
+                                    <div className="subMenu flex">
+                                        <div className="userInfo">
+                                            <img src={user?.avatarUrl || avatarPlaceholder} />
+                                            <h3>Welcome, {user.username}!</h3>
+                                        </div>
+                                        <hr />
+                                        <li className="dropdownItem">
+                                            <div className='iconDiv'>
+
+                                                <FaRegUser className='icon' />
+                                            </div>
+                                            <Link to="/instructor" className='link'>
+                                                <h3>
+                                                    My Profile
+                                                </h3>
+                                                <FaLongArrowAltRight />
+                                            </Link>
+                                        </li>
+                                        <li className="dropdownItem">
+                                            <div className='iconDiv'>
+                                                <MdFactCheck className='icon' />
+                                            </div>
+                                            <Link to="/instructor/my-bookings" className='link'>
+                                                <h3>
+                                                    My Bookings
+                                                </h3>
+                                                <FaLongArrowAltRight />
+
+                                            </Link>
+                                        </li>
+                                        <li className="dropdownItem">
+                                            <div className='iconDiv'>
+                                                <FaDoorOpen className='icon' />
+                                            </div>
+                                            <Link to="/instructor/my-classes" className='link'>
+                                                <h3>
+                                                    My Classes
+                                                </h3>
+                                                <FaLongArrowAltRight />
+
+                                            </Link>
+                                        </li>
+                                        <li className="dropdownItem">
+                                            <div className='iconDiv'>
+                                                <FaRegCalendarCheck className='icon' />
+                                            </div>
+                                            <Link to="/instructor/attendance" className='link'>
+                                                <h3>
+                                                    Attendance
+                                                </h3>
+                                                <FaLongArrowAltRight />
+
+                                            </Link>
+                                        </li>
+                                        <li className="dropdownItem">
+                                            <div className='iconDiv'>
+                                                <FiSettings className='icon' />
+                                            </div>
+                                            <Link to="/" className='link'>
+                                                <h3>
+                                                    Setting
+                                                </h3>
+                                                <FaLongArrowAltRight />
+
+                                            </Link>
+                                        </li>
+                                        <li className="dropdownItem button">
+                                            <button className='btn' onClick={handleLogout}>Logout</button>
+                                        </li>
+                                    </div>
                                 </ul>
                             )}
                         </div>

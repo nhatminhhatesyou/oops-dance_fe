@@ -412,10 +412,81 @@ h2 {
         .atb {
 
             .avatarContainer {
-                width: 40px;
-                border: 2px solid var(--blackColor);
-                border-radius: 10px;
-                background-color: var(--whiteColor);
+                .avatar {
+                    width: 40px;
+                    border: 2px solid var(--PrimaryColor);
+                    border-radius: .5rem;
+                    background-color: var(--whiteColor);
+                }
+
+                .dropdownMenu {
+                    position: absolute;
+                    top: 100%;
+                    right: 2%;
+                    transition: .4s ease-in-out;
+
+                    .subMenu {
+                        flex-direction: column;
+                        gap: .5rem;
+                        background: var(--whiteColor);
+                        border: 2px solid var(--PrimaryColor);
+                        border-radius: 1rem;
+                        padding: 1rem;
+                        margin: 10px;
+                        box-shadow: 10px 10px 3px rgba(0, 0, 0, 0.1);
+
+
+                        .userInfo {
+                            display: flex;
+                            align-items: center;
+
+                            img {
+                                width: 40px;
+                                border-radius: 50%;
+                                margin-right: 15px;
+                            }
+
+                        }
+
+                        .dropdownItem {
+                            display: flex;
+                            gap: .5rem;
+                            width: 100%;
+                            // background-color: #ffcc6c;
+                            align-items: center;
+
+                            .link {
+                                width: 100%;
+                                display: flex;
+                                justify-content: space-between;
+                                text-decoration: none;
+                                color: var(--blackColor);
+                                font-size: 13px;
+                            }
+
+                            .iconDiv {
+                                background-color: var(--PrimaryColor);
+                                padding: .5rem;
+                                width: 35px;
+                                height: 35px;
+                                border-radius: 50%;
+                                color: var(--whiteColor);
+                            }
+                        }
+
+                        .button {
+                            justify-content: center;
+                        }
+
+                        hr {
+                            border: 0;
+                            height: 2px;
+                            width: 100%;
+                            background: var(--PrimaryColor);
+                            margin: 10px 0 10px;
+                        }
+                    }
+                }
             }
 
             gap: 1rem;

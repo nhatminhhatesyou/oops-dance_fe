@@ -22,7 +22,7 @@ const Login = () => {
     const [loginStatus, setLoginStatus] = useState('');
     const [statusHolder, setStatusHolder] = useState('message');
 
-    const { setIsAuthenticated } = useAuth();
+    const { setUser, setIsAuthenticated } = useAuth();
 
     const loginUser = async (e) => {
         e.preventDefault();
@@ -35,6 +35,7 @@ const Login = () => {
             if (response.data.token) {
                 localStorage.setItem('token', response.data.token);
                 setIsAuthenticated(true);
+                setUser(response.data.user)
                 navigateTo('/home');
             }
         } catch (error) {

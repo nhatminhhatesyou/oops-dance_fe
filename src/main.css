@@ -397,11 +397,68 @@ h2 {
   width: -moz-fit-content;
   width: fit-content;
 }
-.navBar .navBarTwo .atb .avatarContainer {
+.navBar .navBarTwo .atb .avatarContainer .avatar {
   width: 40px;
-  border: 2px solid var(--blackColor);
-  border-radius: 10px;
+  border: 2px solid var(--PrimaryColor);
+  border-radius: 0.5rem;
   background-color: var(--whiteColor);
+}
+.navBar .navBarTwo .atb .avatarContainer .dropdownMenu {
+  position: absolute;
+  top: 100%;
+  right: 2%;
+  transition: 0.4s ease-in-out;
+}
+.navBar .navBarTwo .atb .avatarContainer .dropdownMenu .subMenu {
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--whiteColor);
+  border: 2px solid var(--PrimaryColor);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 10px;
+  box-shadow: 10px 10px 3px rgba(0, 0, 0, 0.1);
+}
+.navBar .navBarTwo .atb .avatarContainer .dropdownMenu .subMenu .userInfo {
+  display: flex;
+  align-items: center;
+}
+.navBar .navBarTwo .atb .avatarContainer .dropdownMenu .subMenu .userInfo img {
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+.navBar .navBarTwo .atb .avatarContainer .dropdownMenu .subMenu .dropdownItem {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  align-items: center;
+}
+.navBar .navBarTwo .atb .avatarContainer .dropdownMenu .subMenu .dropdownItem .link {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  color: var(--blackColor);
+  font-size: 13px;
+}
+.navBar .navBarTwo .atb .avatarContainer .dropdownMenu .subMenu .dropdownItem .iconDiv {
+  background-color: var(--PrimaryColor);
+  padding: 0.5rem;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  color: var(--whiteColor);
+}
+.navBar .navBarTwo .atb .avatarContainer .dropdownMenu .subMenu .button {
+  justify-content: center;
+}
+.navBar .navBarTwo .atb .avatarContainer .dropdownMenu .subMenu hr {
+  border: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--PrimaryColor);
+  margin: 10px 0 10px;
 }
 .navBar .navBarTwo .atb span {
   color: var(--blackColor);
