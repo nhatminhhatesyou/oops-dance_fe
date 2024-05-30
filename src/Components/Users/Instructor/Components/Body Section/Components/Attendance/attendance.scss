@@ -56,11 +56,13 @@
         }
 
         .singleItem {
+
             .heading1 {
                 transform: rotate(-90deg);
                 transform-origin: center;
                 text-align: center;
                 color: var(--whiteColor);
+                width: 50%;
             }
 
             .cards {
@@ -68,15 +70,14 @@
             }
 
             .todaySchedule {
-                width: 100%;
-                justify-content: space-between;
-                gap: 1rem;
-                align-items: flex-start;
-
-
+                // min-height: 200px;
 
                 .schedule {
+                    display: flex;
+                    flex-direction: column;
                     width: 100%;
+                    text-align: center;
+                    gap: 1rem;
 
                     .singleCard {
                         padding: 1rem;
@@ -85,9 +86,8 @@
                         gap: 1rem;
                         box-shadow: 0 2px 4px var(--inputColor);
                         justify-content: space-between;
-                        margin-bottom: 1rem;
 
-                        .users {
+                        .classImg {
                             padding-right: 1rem;
                             border-right: 2px solid var(--whiteColor);
 
@@ -98,6 +98,7 @@
                                 object-fit: cover;
                                 border: 2px solid var(--inputColor);
                                 transition: .5s ease;
+                                background-color: var(--blackColor);
 
                                 &:hover {
                                     transform: translateY(-10px);

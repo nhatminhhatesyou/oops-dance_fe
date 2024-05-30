@@ -20,6 +20,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 
 const Navbar = ({ scrollToSection, refs }) => {
     const { user, isAuthenticated, handleLogout } = useAuth();
+    console.log("user data at home page:", user)
     const [active, setActive] = useState('navBarMenu');
     const showNavBar = () => {
         setActive('navBarMenu showNavBar');

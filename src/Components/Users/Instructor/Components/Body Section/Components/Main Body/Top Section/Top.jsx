@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import './top.css'
+import { useAuth } from '../../../../../../../../AuthContext';
+import axios from '../../../../../../../../axiosConfig';
 
 //Imported icons ================>
 import { BiSearchAlt } from "react-icons/bi";
@@ -18,12 +20,46 @@ import video from '../../../../../Assets_Instructor/video_short.mp4'
 
 
 const Top = () => {
+    const { user } = useAuth()
+    const [classCount, setClassCount] = useState(0)
+    const [attendanceCount, setAttendanceCount] = useState(0)
+    useEffect(() => {
+        const fetchClassCount = async () => {
+            try {
+                const response = await axios.get(`/class_count_by_instructor/${user.id}/`);
+                setClassCount(response.data.class_count);
+            } catch (error) {
+                console.error('Error fetching class count:', error);
+            }
+        };
+
+        const fetchAttendanceCount = async () => {
+            try {
+                const response = await axios.get(`/attendance_count_by_instructor/${user.id}/`);
+                setAttendanceCount(response.data.attendance_count);
+            } catch (error) {
+                console.error('Error fetching class count:', error);
+            }
+        };
+
+        if (user && user.id) {
+            fetchClassCount();
+            fetchAttendanceCount();
+        }
+
+    }, [user]);
+
+    console.log("user data:", user)
+    console.log("class count:", classCount)
+
+
+
     return (
         <div className='instructorTopSection'>
             <div className="headerSection flex">
                 <div className="title">
                     <h1>Welcome to ODS!</h1>
-                    <p>Hello Do Linh, Welcome back!</p>
+                    <p>Hello {user.username}, Welcome back!</p>
                 </div>
 
                 <div className="searchBar flex">
@@ -64,13 +100,13 @@ const Top = () => {
 
                             <div className="flex">
                                 <span>
-                                    Classes <br /> <small>2</small>
+                                    Classes <br /> <small>{classCount}</small>
                                 </span>
                                 <span>
-                                    Participants <br /> <small>127</small>
+                                    Participants <br /> <small>waiting...</small>
                                 </span>
                                 <span>
-                                    Attendance session <br /> <small>15 </small>
+                                    Attendance session <br /> <small>{attendanceCount}</small>
                                 </span>
                             </div>
 

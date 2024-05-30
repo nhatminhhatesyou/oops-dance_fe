@@ -8,7 +8,10 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(() => {
+        // return localStorage.getItem('user') !== 'null';
+        return "null";
+    });
     const [isAuthenticated, setIsAuthenticatedState] = useState(() => {
         return localStorage.getItem('isAuthenticated') === 'true';
     });
@@ -26,15 +29,19 @@ export const AuthProvider = ({ children }) => {
                     setUser(response.data.user);
                     setIsAuthenticatedState(true);
                     localStorage.setItem('isAuthenticated', 'true');
+                    // localStorage.setItem('user', response.data.user);
                 } catch (err) {
                     setUser(null);
                     setIsAuthenticatedState(false);
                     localStorage.setItem('isAuthenticated', 'false');
+                    // localStorage.setItem('user', null);
+
                 }
             } else {
                 setUser(null);
                 setIsAuthenticatedState(false);
                 localStorage.setItem('isAuthenticated', 'false');
+                // localStorage.setItem('user', null);
             }
         };
 
