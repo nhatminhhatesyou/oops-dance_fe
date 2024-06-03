@@ -25,20 +25,6 @@ const Register = () => {
     //onclick let us get what the user has entered
     const createUser = async (e) => {
         e.preventDefault();
-        //Use Axios to create API that connects to the server
-        // Axios.post('http://127.0.0.1:8000/register/', {
-        //     //create variables to send to the server through route
-        //     email: email,
-        //     username: userName,
-        //     password: password
-        // }).then(() => {
-        //     console.log('User has been created')
-        //     navigateTo('/login')
-        //     setEmail('')
-        //     setUserName('')
-        //     setPassword('')
-        // })
-
         try {
             const response = await Axios.post('/register/', {
                 email: email,

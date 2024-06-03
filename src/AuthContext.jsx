@@ -9,8 +9,8 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(() => {
-        // return localStorage.getItem('user') !== 'null';
-        return "null";
+        const storedUser = localStorage.getItem('user');
+        return storedUser ? JSON.parse(storedUser) : 'null';
     });
     const [isAuthenticated, setIsAuthenticatedState] = useState(() => {
         return localStorage.getItem('isAuthenticated') === 'true';
@@ -29,19 +29,22 @@ export const AuthProvider = ({ children }) => {
                     setUser(response.data.user);
                     setIsAuthenticatedState(true);
                     localStorage.setItem('isAuthenticated', 'true');
-                    // localStorage.setItem('user', response.data.user);
+                    localStorage.setItem('user', JSON.stringify(response.data.user));
                 } catch (err) {
                     setUser(null);
                     setIsAuthenticatedState(false);
                     localStorage.setItem('isAuthenticated', 'false');
-                    // localStorage.setItem('user', null);
+                    localStorage.setItem('user', null);
+                    console.log("err1")
 
                 }
             } else {
                 setUser(null);
                 setIsAuthenticatedState(false);
                 localStorage.setItem('isAuthenticated', 'false');
-                // localStorage.setItem('user', null);
+                localStorage.setItem('user', null);
+                console.log("err2")
+
             }
         };
 
@@ -59,6 +62,7 @@ export const AuthProvider = ({ children }) => {
             setUser(null);
             setIsAuthenticated(false);
             localStorage.removeItem('token'); // Clear token from localStorage
+            localStorage.setItem('user', null);
 
         } catch (error) {
             console.error('Logout failed', error);

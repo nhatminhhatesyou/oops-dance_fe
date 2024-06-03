@@ -5,12 +5,15 @@ import { RxCalendar } from 'react-icons/rx';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import axios from '../../../../axiosConfig';
+import { useAuth } from '../../../../AuthContext';
+
 
 //IMPORTED ICON ================>
 import { FaRegQuestionCircle } from "react-icons/fa";
 import { IoIosCloseCircle } from "react-icons/io";
 
 const Search = () => {
+    const { user } = useAuth();
     const [startDate, setStartDate] = useState(new Date());
     const [selectedRoom, setSelectedRoom] = useState('All Rooms');
     const [availableSlots, setAvailableSlots] = useState({});
@@ -19,7 +22,6 @@ const Search = () => {
     const [showResults, setShowResults] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [isRoomAvailable, setIsRoomAvailable] = useState(false);
-    const [guestID, setGuestID] = useState('');
     const [activeForm, setActiveForm] = useState('formDiv');
     const [blur, setBlur] = useState('blurLayer');
     const [showConfirmation, setShowConfirmation] = useState(false);
@@ -37,7 +39,7 @@ const Search = () => {
 
     const fetchAvailableSlots = async (date) => {
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/available-rooms`, {
+            const response = await axios.get(`/available-rooms`, {
                 params: {
                     date: date.toISOString().split('T')[0],
                 },
@@ -147,8 +149,8 @@ const Search = () => {
         event.preventDefault();
         setShowResults(false)
         try {
-            const response = await axios.post('http://127.0.0.1:8000/bookings/', {
-                guest: guestID,
+            const response = await axios.post('/bookings/', {
+                guest: user.id,
                 room_name: selectedRoom,
                 checkin_time: checkInTime,
                 checkout_time: checkOutTime,
@@ -162,7 +164,7 @@ const Search = () => {
                 setActiveForm('formDiv');
                 setShowConfirmation(true);
                 setConfirmationMessage("Thank you and just one last step, please deposit in 5 mins to finish your booking:");
-                // Thay thế bằng URL của mã QR thực tế
+                // EXAMPLE QR
                 setQrCodeUrl('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=YourPaymentLinkHere');
             }
         } catch (error) {
@@ -323,33 +325,37 @@ const Search = () => {
 
             {/* BOOKING FORM */}
             <div className={activeForm}>
-                <form className="form flex" onSubmit={handleConfirm}>
-                    <IoIosCloseCircle className='icon' onClick={removeForm} />
-                    <div className="guestInfo flex">
-                        <h2>Please check your booking's information below</h2>
-                        {/*  INPUT */}
-                        <div className="inputDiv">
-                            <label htmlFor="guestFullName">Guest ID</label>
-                            <div className="input flex">
-                                <input type="text" id='guestFullName' placeholder='Enter' onChange={(event) => {
-                                    setGuestID(event.target.value)
-                                }} />
+                {user !== null ? (
+                    <form className="form flex" onSubmit={handleConfirm}>
+                        <IoIosCloseCircle className='icon' onClick={removeForm} />
+                        <div className="guestInfo flex">
+                            <h2>Please check your booking's information below</h2>
+                            <div className="bookingInfo flex">
+                                <h2>Your Booking</h2>
+                                <p>Guest: {user.username}</p>
+                                <p>Room: {selectedRoom}</p>
+                                <p>Date: {startDate.toDateString()}</p>
+                                <p>Check In: {checkInTime}</p>
+                                <p>Check Out: {checkOutTime}</p>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="bookingInfo flex">
-                        <h2>Your Booking</h2>
-                        <p>Room: {selectedRoom}</p>
-                        <p>Date: {startDate.toDateString()}</p>
-                        <p>Check In: {checkInTime}</p>
-                        <p>Check Out: {checkOutTime}</p>
-                    </div>
+                        <button type='submit' className='btn'>
+                            <span>Confirm</span>
+                        </button>
+                    </form>
+                ) : (
+                    <form className="form flex">
+                        <IoIosCloseCircle className='icon' onClick={removeForm} />
+                        <div className="guestInfo flex">
+                            <div className="bookingInfo flex">
+                                <h2>You have to login to use this feature</h2>
+                            </div>
+                        </div>
+                    </form>
+                )}
 
-                    <button type='submit' className='btn'>
-                        <span>Confirm</span>
-                    </button>
-                </form>
+
             </div>
 
             <div className={blur}></div>

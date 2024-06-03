@@ -9,19 +9,30 @@ import { AuthProvider, useAuth } from './AuthContext';
 import LogoutButton from './Components/Logout/LogoutButton';
 
 const AppRoutes = () => {
-    const { isAuthenticated } = useAuth();
-    console.log("auth?: ", isAuthenticated)
+    const { user, isAuthenticated } = useAuth();
+    // console.log("USER:", user)
+    // console.log("auth:", isAuthenticated)
+    // console.log("LocalStorage user:", localStorage.getItem('user'))
 
     return (
         <Routes>
             {isAuthenticated ? (
                 <>
                     <Route path="/logout" element={<LogoutButton />} />
-                    <Route path="/instructor/*" element={<Instructor />} />
-                    <Route path="/admin/*" element={<Admin />} />
-                    <Route path="/" element={<Navigate to="/instructor" />} />
+                    <Route path="/" element={<Navigate to="/home" />} />
                     <Route path="/home" element={<HomePage />} />
                     <Route path="*" element={<Navigate to="/home" />} />
+
+                    {user.role === 'instructor' ? (
+                        <>
+                            <Route path="/instructor/*" element={<Instructor />} />
+                        </>
+                    ) : user.role === 'admin' ? (
+                        <>
+                            <Route path="/admin/*" element={<Admin />} />
+                        </>
+                    ) : null}
+
                 </>
             ) : (
                 <>

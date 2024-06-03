@@ -30,14 +30,110 @@
 }
 
 .attendance {
+    position: relative;
+
+    .tableDiv {
+        gap: 1.5rem;
+        padding: 1rem;
+        overflow: hidden;
+        z-index: 1;
+
+        h2 {
+            background-color: var(--whiteColor);
+            color: var(--PrimaryColor);
+            border: 2px solid var(--PrimaryColor);
+            padding: 1rem;
+            border-top-right-radius: 1.5rem;
+            border-top-left-radius: 1.5rem;
+        }
+
+        table {
+            //border-spacing: 0rem;
+            text-align: center;
+            border: 2px solid var(--blackColor);
+            //border-radius: 1rem;
+
+
+
+            td,
+            th {
+                border: 2px solid var(--blackColor);
+                padding: .5rem;
+            }
+
+            thead {
+                background: var(--PrimaryColor);
+                color: white;
+
+
+            }
+        }
+
+        .btn {
+            font-size: var(--h2FontSize);
+            font-weight: 500;
+        }
+
+        .icon {
+            :hover {
+                color: var(--PrimaryColor);
+            }
+        }
+    }
+
     .cards {
         padding: 1rem;
         background: var(--greyBg);
         border-radius: 15px;
         box-shadow: 1px 1px 3px 1px var(--greyText);
+        text-align: center;
     }
 
-    .historyDiv {}
+    .historyDiv {
+        flex-direction: column;
+
+        .heading {
+            color: var(--whiteColor);
+            background: var(--PrimaryColor);
+            border: none;
+            text-align: center;
+        }
+
+        .tableDiv {
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 1rem;
+            overflow: hidden;
+            z-index: 1;
+
+            h2 {
+                background-color: var(--whiteColor);
+                color: var(--PrimaryColor);
+                border: 2px solid var(--PrimaryColor);
+                padding: 1rem;
+                border-top-right-radius: 1.5rem;
+                border-top-left-radius: 1.5rem;
+            }
+
+            table {
+                text-align: center;
+                border: 2px solid var(--blackColor);
+
+                td,
+                th {
+                    border: 2px solid var(--blackColor);
+                    padding: .5rem;
+                }
+
+                thead {
+                    background: var(--PrimaryColor);
+                    color: white;
+
+
+                }
+            }
+        }
+    }
 
     .todayClassesDiv {
         flex-direction: column;
@@ -47,7 +143,6 @@
             color: var(--whiteColor);
             background: var(--PrimaryColor);
             border: none;
-
         }
 
         .cards {
@@ -62,15 +157,16 @@
                 transform-origin: center;
                 text-align: center;
                 color: var(--whiteColor);
-                width: 50%;
+                max-width: 150px;
             }
 
             .cards {
                 background-color: var(--whiteColor);
+                min-height: 120px;
+
             }
 
             .todaySchedule {
-                // min-height: 200px;
 
                 .schedule {
                     display: flex;
@@ -120,5 +216,106 @@
             }
 
         }
+
+        .reportDiv {
+            flex-direction: column;
+
+            h2 {
+                color: var(--whiteColor);
+            }
+
+            .btn {
+                background: var(--whiteColor);
+                color: var(--blackColor);
+                font-weight: 500;
+
+                :hover {
+                    background: var(--blackColor);
+                    color: var(--whiteColor);
+                }
+            }
+        }
+    }
+
+    .checkinDiv {
+        .formDiv {
+            position: absolute;
+            z-index: 1001;
+            right: -50%;
+            top: 50%;
+            transform: translate(50%, -50%);
+            transition: .6s ease-in-out;
+
+            .form {
+                border: 2px solid var(--PrimaryColor);
+                border-radius: 1rem;
+                padding: 1rem;
+                padding-top: 2rem;
+                background-color: var(--greyBg);
+                width: 300px;
+
+                h3 {
+                    background-color: var(--PrimaryColor);
+                    width: fit-content;
+                    color: var(--whiteColor);
+                    padding: .5rem;
+                    border-top-right-radius: 1rem;
+                    border-bottom-right-radius: 1rem;
+                }
+
+                .icon {
+                    position: absolute;
+                    top: .5rem;
+                    right: .5rem;
+                    color: var(--blackColor);
+
+                    :hover {
+                        cursor: pointer;
+                    }
+                }
+
+                .inputDiv {
+                    input {
+                        background: none;
+                        outline: none;
+                        border: none;
+                        width: 100%;
+                    }
+
+                    .input {
+                        background: var(--whiteColor);
+                        border-radius: 2rem;
+                        border: 2px solid var(--blackColor);
+                        padding: .5rem;
+                        width: 100%;
+
+                    }
+                }
+            }
+        }
+
+        .showForm {
+            right: 50%;
+            transition: .6s ease-in-out;
+        }
+    }
+
+    .blurLayer {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: inherit;
+        z-index: 1000;
+        filter: blur(2px);
+        background: rgba(225, 225, 225, 0.465);
+        backdrop-filter: blur(1px);
+
+    }
+
+    .showLayer {
+        display: block;
     }
 }

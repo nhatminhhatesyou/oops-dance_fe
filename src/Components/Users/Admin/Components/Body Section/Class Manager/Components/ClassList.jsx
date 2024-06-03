@@ -17,7 +17,6 @@ const ClassList = () => {
     const [activeForm1, setActiveForm1] = useState('formDiv flex')
     const [blur, setBlur] = useState('blurLayer')
     const showForm1 = () => {
-        console.log("Mở FORM NÈK")
         setActiveForm1('formDiv flex showForm')
         setBlur('blurLayer showLayer')
     }
@@ -45,7 +44,7 @@ const ClassList = () => {
     const uploadClass = (e) => {
         e.preventDefault();
         //Use Axios to create API that connects to the server
-        Axios.post('http://127.0.0.1:8000/add_class/', {
+        Axios.post('/add_class/', {
             class_name: className,
             instructor_id: instructorID,
             price: price,
@@ -53,8 +52,6 @@ const ClassList = () => {
             room_id: roomID
 
         }).then((response) => {
-            console.log(response)
-            console.log(response.data.message)
             if (response.data.message === "Success") {
                 setAddClassStatus(response.data.message)
                 fetchClasses()
@@ -90,7 +87,7 @@ const ClassList = () => {
 
     //Delete  =======>
     const handleDeleteClass = (classId) => {
-        Axios.delete(`http://127.0.0.1:8000/class/${classId}/`)
+        Axios.delete(`/class/${classId}/`)
             .then((response) => {
                 alert("Lớp học đã được xóa.");
                 console.log("Lớp học đã được xóa.")
@@ -105,7 +102,7 @@ const ClassList = () => {
 
     //Edit  =======>
     const handleEditClass = () => {
-        Axios.patch(`http://127.0.0.1:8000/class/${classId}/`, {
+        Axios.patch(`/class/${classId}/`, {
             class_name: className,
             instructor_id: instructorID,
             price: price,
@@ -136,8 +133,6 @@ const ClassList = () => {
         const IDs = classData.schedules.map(schedule => schedule.id);
         setScheduleIds(IDs)
 
-        console.log("Mở FORM NÈK")
-        console.log("Room id: ", roomID)
         setActiveForm2('formDiv flex showForm')
         setBlur('blurLayer showLayer')
     }
@@ -160,7 +155,7 @@ const ClassList = () => {
     }, []);
 
     const fetchClasses = () => {
-        Axios.get('http://127.0.0.1:8000/class-list/')
+        Axios.get('/class-list/')
             .then((response) => {
                 setClasses(response.data);
             })

@@ -31,9 +31,10 @@ const Login = () => {
                 username: loginUserName,
                 password: loginPassword
             });
-            console.log(response);
             if (response.data.token) {
                 localStorage.setItem('token', response.data.token);
+                localStorage.setItem('isAuthenticated', 'true');
+                localStorage.setItem('user', JSON.stringify(response.data.user));
                 setIsAuthenticated(true);
                 setUser(response.data.user)
                 navigateTo('/home');

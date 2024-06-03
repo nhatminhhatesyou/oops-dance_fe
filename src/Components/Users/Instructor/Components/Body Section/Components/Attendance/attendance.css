@@ -26,11 +26,86 @@
   --smallestFontSize: .75rem;
 }
 
+.attendance {
+  position: relative;
+}
+.attendance .tableDiv {
+  gap: 1.5rem;
+  padding: 1rem;
+  overflow: hidden;
+  z-index: 1;
+}
+.attendance .tableDiv h2 {
+  background-color: var(--whiteColor);
+  color: var(--PrimaryColor);
+  border: 2px solid var(--PrimaryColor);
+  padding: 1rem;
+  border-top-right-radius: 1.5rem;
+  border-top-left-radius: 1.5rem;
+}
+.attendance .tableDiv table {
+  text-align: center;
+  border: 2px solid var(--blackColor);
+}
+.attendance .tableDiv table td,
+.attendance .tableDiv table th {
+  border: 2px solid var(--blackColor);
+  padding: 0.5rem;
+}
+.attendance .tableDiv table thead {
+  background: var(--PrimaryColor);
+  color: white;
+}
+.attendance .tableDiv .btn {
+  font-size: var(--h2FontSize);
+  font-weight: 500;
+}
+.attendance .tableDiv .icon :hover {
+  color: var(--PrimaryColor);
+}
 .attendance .cards {
   padding: 1rem;
   background: var(--greyBg);
   border-radius: 15px;
   box-shadow: 1px 1px 3px 1px var(--greyText);
+  text-align: center;
+}
+.attendance .historyDiv {
+  flex-direction: column;
+}
+.attendance .historyDiv .heading {
+  color: var(--whiteColor);
+  background: var(--PrimaryColor);
+  border: none;
+  text-align: center;
+}
+.attendance .historyDiv .tableDiv {
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+  overflow: hidden;
+  z-index: 1;
+}
+.attendance .historyDiv .tableDiv h2 {
+  background-color: var(--whiteColor);
+  color: var(--PrimaryColor);
+  border: 2px solid var(--PrimaryColor);
+  padding: 1rem;
+  border-top-right-radius: 1.5rem;
+  border-top-left-radius: 1.5rem;
+}
+.attendance .historyDiv .tableDiv table {
+  text-align: center;
+  border: 2px solid var(--blackColor);
+}
+.attendance .historyDiv .tableDiv table td,
+.attendance .historyDiv .tableDiv table th {
+  border: 2px solid var(--blackColor);
+  padding: 0.5rem;
+}
+.attendance .historyDiv .tableDiv table thead {
+  background: var(--PrimaryColor);
+  color: white;
 }
 .attendance .todayClassesDiv {
   flex-direction: column;
@@ -50,10 +125,11 @@
   transform-origin: center;
   text-align: center;
   color: var(--whiteColor);
-  width: 50%;
+  max-width: 150px;
 }
 .attendance .todayClassesDiv .singleItem .cards {
   background-color: var(--whiteColor);
+  min-height: 120px;
 }
 .attendance .todayClassesDiv .singleItem .todaySchedule .schedule {
   display: flex;
@@ -90,4 +166,87 @@
 .attendance .todayClassesDiv .singleItem .todaySchedule .schedule .singleCard .cardText span {
   color: var(--blackColor);
   font-weight: 500;
+}
+.attendance .todayClassesDiv .reportDiv {
+  flex-direction: column;
+}
+.attendance .todayClassesDiv .reportDiv h2 {
+  color: var(--whiteColor);
+}
+.attendance .todayClassesDiv .reportDiv .btn {
+  background: var(--whiteColor);
+  color: var(--blackColor);
+  font-weight: 500;
+}
+.attendance .todayClassesDiv .reportDiv .btn :hover {
+  background: var(--blackColor);
+  color: var(--whiteColor);
+}
+.attendance .checkinDiv .formDiv {
+  position: absolute;
+  z-index: 1001;
+  right: -50%;
+  top: 50%;
+  transform: translate(50%, -50%);
+  transition: 0.6s ease-in-out;
+}
+.attendance .checkinDiv .formDiv .form {
+  border: 2px solid var(--PrimaryColor);
+  border-radius: 1rem;
+  padding: 1rem;
+  padding-top: 2rem;
+  background-color: var(--greyBg);
+  width: 300px;
+}
+.attendance .checkinDiv .formDiv .form h3 {
+  background-color: var(--PrimaryColor);
+  width: -moz-fit-content;
+  width: fit-content;
+  color: var(--whiteColor);
+  padding: 0.5rem;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+.attendance .checkinDiv .formDiv .form .icon {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: var(--blackColor);
+}
+.attendance .checkinDiv .formDiv .form .icon :hover {
+  cursor: pointer;
+}
+.attendance .checkinDiv .formDiv .form .inputDiv input {
+  background: none;
+  outline: none;
+  border: none;
+  width: 100%;
+}
+.attendance .checkinDiv .formDiv .form .inputDiv .input {
+  background: var(--whiteColor);
+  border-radius: 2rem;
+  border: 2px solid var(--blackColor);
+  padding: 0.5rem;
+  width: 100%;
+}
+.attendance .checkinDiv .showForm {
+  right: 50%;
+  transition: 0.6s ease-in-out;
+}
+.attendance .blurLayer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  z-index: 1000;
+  filter: blur(2px);
+  background: rgba(225, 225, 225, 0.465);
+  -webkit-backdrop-filter: blur(1px);
+          backdrop-filter: blur(1px);
+}
+.attendance .showLayer {
+  display: block;
 }/*# sourceMappingURL=attendance.css.map */

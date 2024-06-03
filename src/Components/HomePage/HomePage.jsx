@@ -31,13 +31,13 @@ const HomePage = () => {
             <div ref={aboutRef} >
                 <Intro />
             </div>
-            {/* <div ref={roomsRef}>
+            <div ref={roomsRef}>
                 <Rooms />
-            </div> */}
+            </div>
             <Search />
             <Support />
             <div ref={classesRef}>
-                <Search />
+                <Classes />
             </div>
             <Info />
             <Participants />

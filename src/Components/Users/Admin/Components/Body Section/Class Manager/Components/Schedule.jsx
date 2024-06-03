@@ -15,7 +15,7 @@ const Schedule = () => {
     }, []);
 
     const fetchSchedule = () => {
-        Axios.get('http://127.0.0.1:8000/schedule-list/')
+        Axios.get('/schedule-list/')
             .then((response) => {
                 setSchedule(response.data); // Lưu trữ danh sách các lớp vào state
             })
@@ -65,7 +65,7 @@ const Schedule = () => {
     const uploadSchedule = (e) => {
         e.preventDefault();
         //Use Axios to create API that connects to the server
-        Axios.post('http://127.0.0.1:8000/add_schedule/', {
+        Axios.post('/add_schedule/', {
             day_of_the_week: day_of_the_week,
             start_time: startTime,
             end_time: endTime
@@ -107,7 +107,7 @@ const Schedule = () => {
 
     //Delete ============>
     const handleDeleteSchedule = (scheduleId) => {
-        Axios.delete(`http://127.0.0.1:8000/schedule/${scheduleId}/`)
+        Axios.delete(`/schedule/${scheduleId}/`)
             .then((response) => {
                 alert("Lịch học đã được xóa.");
                 fetchClasses();
@@ -144,7 +144,7 @@ const Schedule = () => {
 
     //Save changes button =============>
     const handleEditSchedule = () => {
-        Axios.patch(`http://127.0.0.1:8000/schedule/${scheduleId}/`, {
+        Axios.patch(`/schedule/${scheduleId}/`, {
             day_of_the_week: day_of_the_week,
             start_time: startTime,
             end_time: endTime

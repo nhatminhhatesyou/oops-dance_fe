@@ -25,7 +25,7 @@ const BookingList = () => {
     }, [sortConfig, filterType, filterValue, bookings]);
 
     const fetchBookings = () => {
-        Axios.get('http://127.0.0.1:8000/bookings/')
+        Axios.get('/bookings/')
             .then((response) => {
                 setBookings(response.data);
                 setFilteredBookings(response.data);
@@ -133,17 +133,23 @@ const BookingList = () => {
                         />
                     )}
                 </div>
+
                 <div className="tableDiv flex">
                     <table>
                         <thead>
                             <tr>
                                 <th onClick={() => handleSort('id')}>Booking ID</th>
                                 <th onClick={() => handleSort('guest')}>Guest ID</th>
-                                <th onClick={() => handleSort('room')}>Room ID</th>
+                                <th onClick={() => handleSort('room')}>Room</th>
                                 <th onClick={() => handleSort('date')}>Date</th>
                                 <th onClick={() => handleSort('checkin_time')}>Checkin</th>
                                 <th onClick={() => handleSort('checkout_time')}>Checkout</th>
+                                <th onClick={() => handleSort('deposite')}>Deposite</th>
+                                <th onClick={() => handleSort('deposite_status')}>Deposite Status</th>
+                                <th onClick={() => handleSort('bank_transfer')}>Bank Transfer</th>
+                                <th onClick={() => handleSort('cash')}>Cash</th>
                                 <th onClick={() => handleSort('status_name')}>Status</th>
+                                <th >Details</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -156,7 +162,12 @@ const BookingList = () => {
                                     <td>{bookingItem.date}</td>
                                     <td>{bookingItem.checkin_time}</td>
                                     <td>{bookingItem.checkout_time}</td>
+                                    <td>{bookingItem.deposite}</td>
+                                    <td>{bookingItem.deposite_status}</td>
+                                    <td>{bookingItem.bank_transfer}</td>
+                                    <td>{bookingItem.cash}</td>
                                     <td>{bookingItem.status_name}</td>
+                                    <td>{bookingItem.details}</td>
                                     <td>
                                         <BsFillTrashFill className='icon' />
                                         <BsFillPencilFill className='icon' />

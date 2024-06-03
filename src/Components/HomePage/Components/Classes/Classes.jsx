@@ -21,124 +21,128 @@ const Classes = () => {
 
                 <div className='timeTableDiv flex'>
                     <table >
-                        <tr className='days'>
-                            <th></th>
-                            <th>T2</th>
-                            <th>T3</th>
-                            <th>T4</th>
-                            <th>T5</th>
-                            <th>T6</th>
-                            <th>T7</th>
-                        </tr>
+                        <thead>
+                            <tr className='days'>
+                                <th></th>
+                                <th>T2</th>
+                                <th>T3</th>
+                                <th>T4</th>
+                                <th>T5</th>
+                                <th>T6</th>
+                                <th>T7</th>
+                            </tr>
+                        </thead>
 
-                        {/* session 1 */}
-                        <tr>
-                            <td className='time'>18:00</td>
-                            <td >
-                                <div className='dance-class'>
-                                    <img src={class_bg} className='class-bg' />
-                                    <img src={instructor_1} className="instructor" />
-                                    <span>Trending</span>
-                                </div>
-                                <div className='dance-class'>
-                                    <img src={class_bg} className='class-bg' />
-                                    <span></span>
-                                </div>
+                        <tbody>
+                            {/* session 1 */}
+                            <tr>
+                                <td className='time'>18:00</td>
+                                <td >
+                                    <div className='dance-class'>
+                                        <img src={class_bg} className='class-bg' />
+                                        <img src={instructor_1} className="instructor" />
+                                        <span>Trending</span>
+                                    </div>
+                                    <div className='dance-class'>
+                                        <img src={class_bg} className='class-bg' />
+                                        <span></span>
+                                    </div>
 
-                            </td>
-                            <td>
-                                <div className='dance-class'>
-                                    <img src={class_bg} className='class-bg' />
-                                    <span>Kpop 1</span>
-                                </div>
-                                <div className='dance-class'>
-                                    <img src={class_bg} className='class-bg' />
-                                    <img src={instructor_2} className="instructor" />
-                                    <span>Girl Style1</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div className='dance-class'>
-                                    <img src={class_bg} className='class-bg' />
-                                    <span></span>
-                                </div>
-                                <div className='dance-class'>
-                                    <img src={class_bg} className='class-bg' />
-                                    <span></span>
-                                </div>
-                            </td>
-                            <td>
-                                <div className='dance-class'>
-                                    <img src={class_bg} className='class-bg' />
-                                    <span>Trending</span>
-                                </div>
-                                <div className='dance-class'>
-                                    <img src={class_bg} className='class-bg' />
-                                    <span></span>
-                                </div>
-                            </td>
-                            <td>
-                                <div className='dance-class'>
-                                    <img src={class_bg} className='class-bg' />
-                                    <span></span>
-                                </div>
-                                <div className='dance-class'>
-                                    <img src={class_bg} className='class-bg' />
-                                    <span>Girl Style1</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div className='dance-class'>
-                                    <img src={class_bg} className='class-bg' />
-                                    <span>Trending</span>
-                                </div>
-                                <div className='dance-class'>
-                                    <img src={class_bg} className='class-bg' />
-                                    <span>Kpop 1</span>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                                <td>
+                                    <div className='dance-class'>
+                                        <img src={class_bg} className='class-bg' />
+                                        <span>Kpop 1</span>
+                                    </div>
+                                    <div className='dance-class'>
+                                        <img src={class_bg} className='class-bg' />
+                                        <img src={instructor_2} className="instructor" />
+                                        <span>Girl Style1</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className='dance-class'>
+                                        <img src={class_bg} className='class-bg' />
+                                        <span></span>
+                                    </div>
+                                    <div className='dance-class'>
+                                        <img src={class_bg} className='class-bg' />
+                                        <span></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className='dance-class'>
+                                        <img src={class_bg} className='class-bg' />
+                                        <span>Trending</span>
+                                    </div>
+                                    <div className='dance-class'>
+                                        <img src={class_bg} className='class-bg' />
+                                        <span></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className='dance-class'>
+                                        <img src={class_bg} className='class-bg' />
+                                        <span></span>
+                                    </div>
+                                    <div className='dance-class'>
+                                        <img src={class_bg} className='class-bg' />
+                                        <span>Girl Style1</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className='dance-class'>
+                                        <img src={class_bg} className='class-bg' />
+                                        <span>Trending</span>
+                                    </div>
+                                    <div className='dance-class'>
+                                        <img src={class_bg} className='class-bg' />
+                                        <span>Kpop 1</span>
+                                    </div>
+                                </td>
+                            </tr>
 
-                        {/* session 2 */}
-                        <tr>
-                            <td className='time'>20:00</td>
-                            <td>
-                                <div className='dance-class'>
-                                    <img src={class_bg} className='class-bg' />
-                                    <span>Trending</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div className='dance-class'>
-                                    <img src={class_bg} className='class-bg' />
-                                    <span>Trending</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div className='dance-class'>
-                                    <img src={class_bg} className='class-bg' />
-                                    <span>Trending</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div className='dance-class'>
-                                    <img src={class_bg} className='class-bg' />
-                                    <span>Trending</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div className='dance-class'>
-                                    <img src={class_bg} className='class-bg' />
-                                    <span>Trending</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div className='dance-class'>
-                                    <img src={class_bg} className='class-bg' />
-                                    <span>Trending</span>
-                                </div>
-                            </td>
-                        </tr>
+                            {/* session 2 */}
+                            <tr>
+                                <td className='time'>20:00</td>
+                                <td>
+                                    <div className='dance-class'>
+                                        <img src={class_bg} className='class-bg' />
+                                        <span>Trending</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className='dance-class'>
+                                        <img src={class_bg} className='class-bg' />
+                                        <span>Trending</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className='dance-class'>
+                                        <img src={class_bg} className='class-bg' />
+                                        <span>Trending</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className='dance-class'>
+                                        <img src={class_bg} className='class-bg' />
+                                        <span>Trending</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className='dance-class'>
+                                        <img src={class_bg} className='class-bg' />
+                                        <span>Trending</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className='dance-class'>
+                                        <img src={class_bg} className='class-bg' />
+                                        <span>Trending</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
 

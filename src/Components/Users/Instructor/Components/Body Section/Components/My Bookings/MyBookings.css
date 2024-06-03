@@ -1,0 +1,99 @@
+:root {
+  --PrimaryColor: hsl(0, 66%, 43%);
+  --SecondaryColor: hsl(180, 17%, 95%);
+  --paleGreen: hsl(93, 75%, 76%);
+  --colorOne: hsl(15, 74%, 70%);
+  --colorTwo: hsl(28, 100%, 82%);
+  --HoverColor: #d83f3f;
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(0, 0%, 12%);
+  --textColor: hsl(240, 1%, 48%);
+  --borderColor: hsl(0, 0%, 83%);
+  --whiteColorDeam: hsl(0, 0%, 93%);
+  --greyBg: hwb(0 96% 4%);
+  --greyText: rgb(145, 145, 145);
+  --inputColor: hsl(330, 12%, 97%);
+  --boxShadow: box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  --transition: .4s ease-in-out;
+  --bgColor: hsla(113, 11%, 85%, 0.533);
+  --inputColor: hsl(330, 12%, 97%);
+  --biggestFontSize: 2.5rem;
+  --h1FontSize: 1.5rem;
+  --h2FontSize: 1.25rem;
+  --h3FontSize: 1rem;
+  --normalFontSize: .938rem;
+  --smallFontSize: .813rem;
+  --smallestFontSize: .75rem;
+}
+
+.myBookings .recentBooking {
+  flex-direction: column;
+  overflow: hidden;
+  gap: 2rem;
+}
+.myBookings .recentBooking .filterDiv {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: var(--PrimaryColor);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.myBookings .recentBooking .filterDiv label {
+  font-weight: bold;
+  margin-right: 10px;
+  color: var(--whiteColor);
+}
+.myBookings .recentBooking .filterDiv select,
+.myBookings .recentBooking .filterDiv input {
+  padding: 8px 12px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: var(--whiteColor);
+  transition: border-color 0.3s ease;
+}
+.myBookings .recentBooking .filterDiv select:focus,
+.myBookings .recentBooking .filterDiv input:focus {
+  border-color: var(--focusBorderColor);
+}
+.myBookings .recentBooking .filterDiv input {
+  flex: 1;
+}
+.myBookings .recentBooking .tableDiv {
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow: hidden;
+  z-index: 1;
+}
+.myBookings .recentBooking .tableDiv table {
+  text-align: center;
+  border: 2px solid var(--blackColor);
+}
+.myBookings .recentBooking .tableDiv table td,
+.myBookings .recentBooking .tableDiv table th {
+  border: 2px solid var(--blackColor);
+  padding: 0.5rem;
+}
+.myBookings .recentBooking .tableDiv table thead {
+  background: var(--PrimaryColor);
+  color: white;
+}
+.myBookings .recentBooking .tableDiv table thead th:not(:nth-last-child(-n+2)):hover {
+  background: var(--cardColor);
+  cursor: pointer;
+}
+.myBookings .recentBooking .tableDiv table tbody {
+  color: var(--blackColor);
+}
+.myBookings .recentBooking .tableDiv .btn {
+  font-size: var(--h2FontSize);
+  font-weight: 500;
+}
+.myBookings .recentBooking .tableDiv .icon :hover {
+  color: var(--PrimaryColor);
+}/*# sourceMappingURL=MyBookings.css.map */

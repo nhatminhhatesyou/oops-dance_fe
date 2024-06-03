@@ -50,7 +50,7 @@ const Rooms = () => {
                     <div className="roomsDetail flex">
                         <div className="roomImages">
                             <Swiper
-                                classname='swiper'
+                                className='swiper'
                                 effect={'coverflow'}
                                 grabCursor={true}
                                 centeredSlides={true}
