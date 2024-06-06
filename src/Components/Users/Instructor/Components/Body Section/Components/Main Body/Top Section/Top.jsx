@@ -71,7 +71,7 @@ const Top = () => {
                     <TbMessageCircle className='icon' />
                     <RiNotificationLine className='icon' />
                     <div className="adminImage">
-                        <img src={user1} />
+                        <img src={img} />
                     </div>
                 </div>
 

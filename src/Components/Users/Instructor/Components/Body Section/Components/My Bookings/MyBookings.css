@@ -26,12 +26,12 @@
   --smallestFontSize: .75rem;
 }
 
-.myBookings .recentBooking {
+.myBookings .listing {
   flex-direction: column;
   overflow: hidden;
   gap: 2rem;
 }
-.myBookings .recentBooking .filterDiv {
+.myBookings .listing .filterDiv {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
@@ -40,13 +40,13 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.myBookings .recentBooking .filterDiv label {
+.myBookings .listing .filterDiv label {
   font-weight: bold;
   margin-right: 10px;
   color: var(--whiteColor);
 }
-.myBookings .recentBooking .filterDiv select,
-.myBookings .recentBooking .filterDiv input {
+.myBookings .listing .filterDiv select,
+.myBookings .listing .filterDiv input {
   padding: 8px 12px;
   margin-right: 10px;
   border: none;
@@ -57,43 +57,46 @@
   background-color: var(--whiteColor);
   transition: border-color 0.3s ease;
 }
-.myBookings .recentBooking .filterDiv select:focus,
-.myBookings .recentBooking .filterDiv input:focus {
+.myBookings .listing .filterDiv select:focus,
+.myBookings .listing .filterDiv input:focus {
   border-color: var(--focusBorderColor);
 }
-.myBookings .recentBooking .filterDiv input {
+.myBookings .listing .filterDiv input {
   flex: 1;
 }
-.myBookings .recentBooking .tableDiv {
+.myBookings .listing .tableDiv {
   flex-direction: column;
   gap: 1.5rem;
   overflow: hidden;
   z-index: 1;
 }
-.myBookings .recentBooking .tableDiv table {
+.myBookings .listing .tableDiv table {
   text-align: center;
   border: 2px solid var(--blackColor);
 }
-.myBookings .recentBooking .tableDiv table td,
-.myBookings .recentBooking .tableDiv table th {
+.myBookings .listing .tableDiv table td,
+.myBookings .listing .tableDiv table th {
   border: 2px solid var(--blackColor);
   padding: 0.5rem;
 }
-.myBookings .recentBooking .tableDiv table thead {
+.myBookings .listing .tableDiv table thead {
   background: var(--PrimaryColor);
   color: white;
 }
-.myBookings .recentBooking .tableDiv table thead th:not(:nth-last-child(-n+2)):hover {
+.myBookings .listing .tableDiv table thead th:not(:nth-last-child(-n+2)):hover {
   background: var(--cardColor);
   cursor: pointer;
 }
-.myBookings .recentBooking .tableDiv table tbody {
+.myBookings .listing .tableDiv table tbody {
   color: var(--blackColor);
 }
-.myBookings .recentBooking .tableDiv .btn {
+.myBookings .listing .tableDiv table tbody .btn {
+  font-size: 14px;
+}
+.myBookings .listing .tableDiv .btn {
   font-size: var(--h2FontSize);
   font-weight: 500;
 }
-.myBookings .recentBooking .tableDiv .icon :hover {
+.myBookings .listing .tableDiv .icon :hover {
   color: var(--PrimaryColor);
 }/*# sourceMappingURL=MyBookings.css.map */

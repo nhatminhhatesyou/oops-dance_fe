@@ -12,11 +12,9 @@ import logo from '../../Assets_Instructor/logo.png'
 import { IoMdSpeedometer } from "react-icons/io";
 import { MdDeliveryDining } from "react-icons/md";
 import { MdOutlineExplore } from "react-icons/md";
-import { BsTrophy } from "react-icons/bs";
 import { AiOutlinePieChart } from "react-icons/ai";
 import { BiTrendingUp } from "react-icons/bi";
 import { MdOutlinePermContactCalendar } from "react-icons/md";
-import { BsCreditCard2Front } from "react-icons/bs";
 import { BsQuestionCircle } from "react-icons/bs";
 
 
@@ -93,7 +91,7 @@ const SideBar = () => {
                     </li>
 
                     <li className="listItem">
-                        <Link to="#" className="menuLink flex">
+                        <Link to="my-profile" className="menuLink flex">
                             <MdOutlinePermContactCalendar className='icon' />
                             <span className="smallText">
                                 My Profile

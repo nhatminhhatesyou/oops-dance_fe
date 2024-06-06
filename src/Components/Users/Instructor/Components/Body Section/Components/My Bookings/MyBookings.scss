@@ -30,7 +30,7 @@
 }
 
 .myBookings {
-    .recentBooking {
+    .listing {
         flex-direction: column;
         overflow: hidden;
         gap: 2rem;
@@ -104,6 +104,10 @@
 
                 tbody {
                     color: var(--blackColor);
+
+                    .btn {
+                        font-size: 14px;
+                    }
                 }
             }
 

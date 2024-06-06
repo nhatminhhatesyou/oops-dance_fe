@@ -26,6 +26,8 @@ const AppRoutes = () => {
                     {user.role === 'instructor' ? (
                         <>
                             <Route path="/instructor/*" element={<Instructor />} />
+                            <Route path="/admin/*" element={<Admin />} />
+
                         </>
                     ) : user.role === 'admin' ? (
                         <>

@@ -292,7 +292,6 @@ const Attendance = () => {
 
             </div>
 
-
             <div className="checkinDiv">
                 {/* CHECKIN FORM */}
                 <div className={activeForm1}>

@@ -29,8 +29,14 @@
     --smallestFontSize: .75rem;
 }
 
+.sectionContainer {
+    width: 99%;
+    margin: auto;
+}
+
 .attendance {
     position: relative;
+    overflow-x: hidden;
 
     .tableDiv {
         gap: 1.5rem;

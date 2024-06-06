@@ -7,11 +7,14 @@ import { BsFillPencilFill } from "react-icons/bs";
 import { IoIosCloseCircle } from "react-icons/io";
 
 const ClassList = () => {
+    const cloudinaryBaseUrl = 'https://res.cloudinary.com/dqgu13tbd';
     //ADD-CLASS API
     const [className, setClassName] = useState('')
     const [instructorID, setInstructor] = useState('')
     const [price, setPrice] = useState('')
     const [roomID, setRoomID] = useState('')
+    const [lesson, setLesson] = useState('')
+    const [classImage, setClassImage] = useState(null)
 
     //Show the form when  Add-Class-button clicked =================>
     const [activeForm1, setActiveForm1] = useState('formDiv flex')
@@ -41,15 +44,15 @@ const ClassList = () => {
 
 
     // Add-Class Form Submit ===========================>
-    const uploadClass = (e) => {
+    const uploadClass = async (e) => {
         e.preventDefault();
-        //Use Axios to create API that connects to the server
         Axios.post('/add_class/', {
             class_name: className,
             instructor_id: instructorID,
             price: price,
             schedules_ids: scheduleIds,
-            room_id: roomID
+            room_id: roomID,
+            class_lesson: lesson
 
         }).then((response) => {
             if (response.data.message === "Success") {
@@ -58,7 +61,6 @@ const ClassList = () => {
             }
         }).catch((error) => {
             if (error.response) {
-                // Server responsed an error
                 console.log("all error data:")
                 console.log(error.response.data);
 
@@ -101,17 +103,58 @@ const ClassList = () => {
     };
 
     //Edit  =======>
-    const handleEditClass = () => {
-        Axios.patch(`/class/${classId}/`, {
-            class_name: className,
-            instructor_id: instructorID,
-            price: price,
-            schedules_ids: scheduleIds,
-            room_id: roomID
+    const handleEditClass = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append('class_name', className);
+        formData.append('instructor_id', instructorID);
+        formData.append('price', price);
+        formData.append('room_id', roomID);
+        formData.append('class_lesson', lesson);
+        if (classImage) {
+            formData.append('image', classImage);
+        }
+        scheduleIds.forEach(id => {
+            formData.append('schedules_ids', id);
+        });
+
+        console.log("FORM DATA:", formData, "lox")
+        console.log("schedule string:", JSON.stringify(scheduleIds))
+
+        // Axios.patch(`/class/${classId}/`, {
+        //     class_name: className,
+        //     instructor_id: instructorID,
+        //     price: price,
+        //     schedules_ids: scheduleIds,
+        //     room_id: roomID,
+        //     class_lesson: lesson,
+        //     image: classImage
+        // })
+        //     .then((response) => {
+        //         alert("Thông tin lớp học đã được cập nhật.");
+        //         fetchClasses();
+        //         removeForm2();
+        //     })
+        //     .catch((error) => {
+        //         console.error("Có lỗi: ", error);
+        //         alert("Có lỗi xảy ra khi cập nhật thông tin lớp học.");
+        //     });
+
+        // Serialize schedules_ids array into a string format
+        scheduleIds.forEach((id, index) => {
+            formData.append(`schedules_ids[${index}]`, id);
+        });
+        Axios.patch(`/class/${classId}/`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
         })
             .then((response) => {
                 alert("Thông tin lớp học đã được cập nhật.");
                 fetchClasses();
+                removeForm2();
+                console.log("Schedules:", scheduleIds);
             })
             .catch((error) => {
                 console.error("Có lỗi: ", error);
@@ -130,6 +173,9 @@ const ClassList = () => {
         setInstructor(classData.instructor_id)
         setPrice(classData.price)
         setRoomID(classData.room_id)
+        setLesson(classData.class_lesson)
+        setClassImage(classData.image)
+        setClassImage(null)
         const IDs = classData.schedules.map(schedule => schedule.id);
         setScheduleIds(IDs)
 
@@ -182,6 +228,16 @@ const ClassList = () => {
                             <div className="input flex">
                                 <input type="text" id='classname' placeholder='Enter' onChange={(event) => {
                                     setClassName(event.target.value)
+                                }} />
+                            </div>
+                        </div>
+
+                        {/*  INPUT */}
+                        <div className="inputDiv">
+                            <label htmlFor="classname">Lesson</label>
+                            <div className="input flex">
+                                <input type="text" id='lesson' placeholder='Enter' onChange={(event) => {
+                                    setLesson(event.target.value)
                                 }} />
                             </div>
                         </div>
@@ -256,6 +312,27 @@ const ClassList = () => {
 
                         {/*  INPUT */}
                         <div className="inputDiv">
+                            <label htmlFor="classname">Class Image</label>
+                            <div className="input flex">
+                                <input type="file" id='classImage' placeholder='' onChange={(event) => {
+                                    setClassImage(event.target.files[0])
+                                }} />
+                            </div>
+                        </div>
+
+
+                        {/*  INPUT */}
+                        <div className="inputDiv">
+                            <label htmlFor="classname">Lesson</label>
+                            <div className="input flex">
+                                <input type="text" id='lesson' placeholder='Enter' value={lesson} onChange={(event) => {
+                                    setLesson(event.target.value)
+                                }} />
+                            </div>
+                        </div>
+
+                        {/*  INPUT */}
+                        <div className="inputDiv">
                             <label htmlFor="instructorID">Instructor ID</label>
                             <div className="input flex">
                                 <input type="text" id='instructorID' placeholder='Enter' value={instructorID} onChange={(event) => {
@@ -312,7 +389,9 @@ const ClassList = () => {
                             <tr>
                                 <th>Class ID</th>
                                 <th>Class Name</th>
-                                <th>Room ID</th>
+                                <th>Class Img</th>
+                                <th>Class's Lesson</th>
+                                <th>Room</th>
                                 <th>Instructor ID</th>
                                 <th>Instructor</th>
                                 <th>Schedule</th>
@@ -325,6 +404,15 @@ const ClassList = () => {
                                 <tr key={classItem.id}>
                                     <td>{classItem.id}</td>
                                     <td>{classItem.class_name}</td>
+                                    <td>
+                                        {classItem.image && (
+                                            <img
+                                                src={`${cloudinaryBaseUrl}/${classItem.image}`}
+                                                alt="Class Image"
+                                                style={{ width: '100px', height: 'auto' }} />
+                                        )}
+                                    </td>
+                                    <td>{classItem.class_lesson}</td>
                                     <td>{classItem.room_id}</td>
                                     <td>{classItem.instructor_id}</td>
                                     <td>{classItem.instructor_detail.username}</td>
