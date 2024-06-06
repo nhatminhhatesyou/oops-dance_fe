@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import './listing.css'
 import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../../../../../../../AuthContext'
+
 
 //Imported images ==================>
 import class_1 from '../../../../../Assets_Instructor/dolinh_class_1.jpeg'
@@ -10,9 +12,30 @@ import class_2 from '../../../../../Assets_Instructor/dolinh_class_2.jpg'
 import { BsArrowRightShort } from "react-icons/bs";
 import { AiFillHeart } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
+import axios from '../../../../../../../../axiosConfig';
 
 
 const Listing = () => {
+    const cloudinaryBaseUrl = 'https://res.cloudinary.com/dqgu13tbd';
+    const { user } = useAuth();
+    const [userInfo, setUserInfo] = useState([])
+
+    const fetchUserInfo = () => {
+        axios.get(`/users/${user.id}`)
+            .then((response) => {
+                setUserInfo(response.data)
+            })
+            .catch((error) => {
+                console.log("Error fetching User Info:", error)
+            })
+    }
+
+    useEffect(() => {
+        fetchUserInfo();
+    }, [user])
+
+    console.log("USER FETCHED:", userInfo)
+
     const navigateTo = useNavigate()
     const handleNavigate = (path) => {
         navigateTo(path);

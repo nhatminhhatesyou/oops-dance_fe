@@ -21,8 +21,11 @@ import video from '../../../../../Assets_Instructor/video_short.mp4'
 
 const Top = () => {
     const { user } = useAuth()
+    const [userInfo, setUserInfo] = useState([])
     const [classCount, setClassCount] = useState(0)
     const [attendanceCount, setAttendanceCount] = useState(0)
+    const cloudinaryBaseUrl = 'https://res.cloudinary.com/dqgu13tbd';
+
     useEffect(() => {
         const fetchClassCount = async () => {
             try {
@@ -42,6 +45,27 @@ const Top = () => {
             }
         };
 
+        const fetchUserInfo = async () => {
+            try {
+                const response = await axios.get(`/users/${user.id}`);
+                setUserInfo(response.data)
+            } catch (error) {
+                console.error('Error fetching User Info:', error);
+            }
+        }
+        // const fetchUserInfo = () => {
+        //     axios.get(`/users/${user.id}`)
+        //         .then((response) => {
+        //             setUserInfo(response.data)
+        //         })
+        //         .catch((error) => {
+        //             console.log("Error fetching User Info:", error)
+        //         })
+        // }
+
+
+        fetchUserInfo();
+
         if (user && user.id) {
             fetchClassCount();
             fetchAttendanceCount();
@@ -49,10 +73,9 @@ const Top = () => {
 
     }, [user]);
 
-    console.log("user data:", user)
-    console.log("class count:", classCount)
 
-
+    console.log("User avatar link :", userInfo.avatar)
+    console.log("Class count  :", classCount)
 
     return (
         <div className='instructorTopSection'>
@@ -71,7 +94,7 @@ const Top = () => {
                     <TbMessageCircle className='icon' />
                     <RiNotificationLine className='icon' />
                     <div className="adminImage">
-                        <img src={img} />
+                        <img src={`${cloudinaryBaseUrl}/${userInfo?.avatar}` || img} />
                     </div>
                 </div>
 
@@ -119,7 +142,7 @@ const Top = () => {
                         </div>
 
                         <div className="imgDiv">
-                            <img src={img} />
+                            <img src={`${cloudinaryBaseUrl}/${userInfo?.avatar}` || img} />
                         </div>
                     </div>
                 </div>
