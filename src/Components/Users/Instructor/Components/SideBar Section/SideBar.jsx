@@ -73,7 +73,7 @@ const SideBar = () => {
                 <ul className="menuLists grid">
 
                     <li className="listItem">
-                        <Link to="#" className="menuLink flex">
+                        <Link to="chart" className="menuLink flex">
                             <AiOutlinePieChart className='icon' />
                             <span className="smallText">
                                 Charts

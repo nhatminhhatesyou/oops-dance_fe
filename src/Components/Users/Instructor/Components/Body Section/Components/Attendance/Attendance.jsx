@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './attendance.css'
 import { useAuth } from '../../../../../../../AuthContext'
 import axios from '../../../../../../../axiosConfig'
+import { Link, useNavigate } from 'react-router-dom'
 
 //Imported images ==================>
 import logo from '../../../../Assets_Instructor/logo2.png'
@@ -16,7 +17,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 
 
 const Attendance = () => {
-
+    const cloudinaryBaseUrl = 'https://res.cloudinary.com/dqgu13tbd';
     const { user } = useAuth();
     const [todayClasses_All, setTodayClasses_All] = useState([]);
     const [todayClasses_Instructor, setTodayClasses_Instructor] = useState([]);
@@ -27,7 +28,6 @@ const Attendance = () => {
             setTodayClasses_All(response1.data);
             const response2 = await axios.get(`/classes_today/${user.id}/`);
             setTodayClasses_Instructor(response2.data);
-
         } catch (error) {
             console.error('Error fetching today\'s classes:', error);
         }
@@ -56,6 +56,7 @@ const Attendance = () => {
         try {
             const response = await axios.get(`/attendance-list/${user.id}`);
             setAttendanceList(response.data)
+            console.log("attendance list:", attendanceList)
         } catch (error) {
             console.error('Error fetching attendance records:', error)
         }
@@ -172,6 +173,9 @@ const Attendance = () => {
 
     }
 
+    console.log("today class:", todayClasses_Instructor)
+
+
     return (
         <div className='attendance '>
             <div className="historyDiv sectionContainer">
@@ -190,6 +194,7 @@ const Attendance = () => {
                                 <th>Instructor ID</th>
                                 <th>Instructor name</th>
                                 <th>Room ID</th>
+                                <th>Proof</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -204,6 +209,7 @@ const Attendance = () => {
                                     <td>{attendanceItem.instructor_id}</td>
                                     <td>{attendanceItem.instructor_detail.username}</td>
                                     <td>{attendanceItem.room_id}</td>
+                                    <td>{attendanceItem.proof}</td>
                                     <td>{attendanceItem.status}</td>
                                 </tr>
                             ))}
@@ -227,10 +233,11 @@ const Attendance = () => {
                         <div className="schedule">
                             {todayClasses_Instructor.length > 0 ? (
                                 todayClasses_Instructor.map((classItem) => (
+
                                     <div key={classItem.id} className="singleCard flex">
-                                        <div className="classImg">
-                                            <img src={classItem.image || logo} alt="" />
-                                        </div>
+                                        <Link to="/instructor/my-classes" className="classImg">
+                                            <img src={`${cloudinaryBaseUrl}/${classItem.class_instance_detail.image}` || logo} alt="" />
+                                        </Link>
 
                                         <div className="cardText">
                                             <span>
@@ -320,7 +327,7 @@ const Attendance = () => {
                         <div className="inputDiv">
                             <label htmlFor="price">Upload Proof</label>
                             <div className="input flex">
-                                <input type="text" id='proof' placeholder='Enter' onChange={(event) => {
+                                <input type="file" id='proof' placeholder='Enter' onChange={(event) => {
                                 }} />
                             </div>
                         </div>

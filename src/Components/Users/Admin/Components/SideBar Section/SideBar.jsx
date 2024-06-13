@@ -18,6 +18,7 @@ import { FaDoorOpen } from "react-icons/fa6";
 import { FaUserGroup } from "react-icons/fa6";
 import { FaHouseUser } from "react-icons/fa6";
 import { SiBytedance } from "react-icons/si";
+import { FaCalendarCheck } from "react-icons/fa";
 import LogoutButton from '../../../../Logout/LogoutButton';
 
 
@@ -77,6 +78,15 @@ const SideBar = () => {
                             </span>
                         </Link>
                     </li>
+                    <li className="listItem">
+                        <Link to="/admin/attendance-records" className="menuLink flex">
+                            <FaCalendarCheck className='icon' />
+                            <span className="smallText">
+                                Attendance Records
+                            </span>
+                        </Link>
+                    </li>
+
                     <li className="listItem">
                         <Link to="/admin/users" className="menuLink flex">
                             <FaUserGroup className='icon' />

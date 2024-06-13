@@ -7,6 +7,7 @@ import HomePage from './Components/HomePage/HomePage';
 import Admin from './Components/Users/Admin/Admin';
 import { AuthProvider, useAuth } from './AuthContext';
 import LogoutButton from './Components/Logout/LogoutButton';
+// import TableTemplate from './Components/Table/TableTemplate';
 
 const AppRoutes = () => {
     const { user, isAuthenticated } = useAuth();
@@ -18,6 +19,7 @@ const AppRoutes = () => {
         <Routes>
             {isAuthenticated ? (
                 <>
+                    {/* <Route path="/user-manager" element={<TableTemplate />} /> */}
                     <Route path="/logout" element={<LogoutButton />} />
                     <Route path="/" element={<Navigate to="/home" />} />
                     <Route path="/home" element={<HomePage />} />

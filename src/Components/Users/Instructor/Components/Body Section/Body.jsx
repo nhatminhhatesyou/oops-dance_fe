@@ -6,6 +6,7 @@ import MainBody from './Components/Main Body/MainBody';
 import Attendance from './Components/Attendance/Attendance';
 import MyClasses from './Components/My Classes/MyClasses';
 import MyBookings from './Components/My Bookings/MyBookings';
+// import TableTemplate from '../../../../Table/TableTemplate';
 
 
 const Body = () => {
@@ -16,6 +17,7 @@ const Body = () => {
                 <Route path='attendance' element={<Attendance />} />
                 <Route path='my-classes' element={<MyClasses />} />
                 <Route path='my-bookings' element={<MyBookings />} />
+                {/* <Route path='chart' element={<TableTemplate />} /> */}
             </Routes>
         </div>
     )
