@@ -1,6 +1,6 @@
 import React from 'react'
 import './bookingsManager.css'
-import BookingList from './Components/BookingList'
+import BookingList from './Components/BookingList/BookingList'
 
 const Bookings = () => {
     return (

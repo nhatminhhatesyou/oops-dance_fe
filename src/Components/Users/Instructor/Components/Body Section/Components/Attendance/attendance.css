@@ -35,40 +35,6 @@
   position: relative;
   overflow-x: hidden;
 }
-.attendance .tableDiv {
-  gap: 1.5rem;
-  padding: 1rem;
-  overflow: hidden;
-  z-index: 1;
-}
-.attendance .tableDiv h2 {
-  background-color: var(--whiteColor);
-  color: var(--PrimaryColor);
-  border: 2px solid var(--PrimaryColor);
-  padding: 1rem;
-  border-top-right-radius: 1.5rem;
-  border-top-left-radius: 1.5rem;
-}
-.attendance .tableDiv table {
-  text-align: center;
-  border: 2px solid var(--blackColor);
-}
-.attendance .tableDiv table td,
-.attendance .tableDiv table th {
-  border: 2px solid var(--blackColor);
-  padding: 0.5rem;
-}
-.attendance .tableDiv table thead {
-  background: var(--PrimaryColor);
-  color: white;
-}
-.attendance .tableDiv .btn {
-  font-size: var(--h2FontSize);
-  font-weight: 500;
-}
-.attendance .tableDiv .icon :hover {
-  color: var(--PrimaryColor);
-}
 .attendance .cards {
   padding: 1rem;
   background: var(--greyBg);
@@ -85,42 +51,18 @@
   border: none;
   text-align: center;
 }
-.attendance .historyDiv .tableDiv {
-  flex-direction: column;
-  gap: 1.5rem;
-  padding: 1rem;
-  overflow: hidden;
-  z-index: 1;
-}
-.attendance .historyDiv .tableDiv h2 {
-  background-color: var(--whiteColor);
-  color: var(--PrimaryColor);
-  border: 2px solid var(--PrimaryColor);
-  padding: 1rem;
-  border-top-right-radius: 1.5rem;
-  border-top-left-radius: 1.5rem;
-}
-.attendance .historyDiv .tableDiv table {
-  text-align: center;
-  border: 2px solid var(--blackColor);
-}
-.attendance .historyDiv .tableDiv table td,
-.attendance .historyDiv .tableDiv table th {
-  border: 2px solid var(--blackColor);
-  padding: 0.5rem;
-}
-.attendance .historyDiv .tableDiv table thead {
-  background: var(--PrimaryColor);
-  color: white;
-}
 .attendance .todayClassesDiv {
   flex-direction: column;
   gap: 2rem;
+}
+.attendance .todayClassesDiv .flex {
+  align-items: center;
 }
 .attendance .todayClassesDiv .heading {
   color: var(--whiteColor);
   background: var(--PrimaryColor);
   border: none;
+  font-size: 2rem;
 }
 .attendance .todayClassesDiv .cards {
   background-color: var(--PrimaryColor);
@@ -132,6 +74,7 @@
   text-align: center;
   color: var(--whiteColor);
   max-width: 150px;
+  font-size: 1.5rem;
 }
 .attendance .todayClassesDiv .singleItem .cards {
   background-color: var(--whiteColor);

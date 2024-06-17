@@ -47,10 +47,8 @@
         }
 
         table {
-            //border-spacing: 0rem;
             text-align: center;
             border: 2px solid var(--blackColor);
-            //border-radius: 1rem;
 
 
 
@@ -101,7 +99,7 @@
 
     .formDiv {
         position: absolute;
-        z-index: 3;
+        z-index: 99;
         right: -50%;
         top: 50%;
         transform: translate(50%, -50%);
@@ -160,6 +158,8 @@
         transition: .6s ease-in-out;
     }
 
-    .classListDiv {}
+    .classListDiv {
+        // background-color: #d83f3f;
+    }
 
 }

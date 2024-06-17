@@ -107,8 +107,8 @@ const MyBookings = () => {
                                 <th onClick={() => handleSort('date')}>Date</th>
                                 <th onClick={() => handleSort('checkin_time')}>Checkin</th>
                                 <th onClick={() => handleSort('checkout_time')}>Checkout</th>
-                                <th onClick={() => handleSort('deposite')}>Deposite</th>
-                                <th onClick={() => handleSort('deposite_status')}>Deposite Status</th>
+                                <th onClick={() => handleSort('deposit')}>Deposit</th>
+                                <th onClick={() => handleSort('deposit_status')}>Deposit Status</th>
                                 <th onClick={() => handleSort('bank_transfer')}>Bank Transfer</th>
                                 <th onClick={() => handleSort('cash')}>Cash</th>
                                 <th onClick={() => handleSort('status_name')}>Status</th>
@@ -116,7 +116,7 @@ const MyBookings = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredBookings.filter(booking => booking.deposite_status === 'waiting').map((bookingItem) => (
+                            {filteredBookings.filter(booking => booking.deposit_status === 'waiting').map((bookingItem) => (
                                 <tr key={bookingItem.id}>
                                     <td>{bookingItem.id}</td>
                                     <td>{bookingItem.guest}</td>
@@ -124,8 +124,8 @@ const MyBookings = () => {
                                     <td>{bookingItem.date}</td>
                                     <td>{bookingItem.checkin_time}</td>
                                     <td>{bookingItem.checkout_time}</td>
-                                    <td>{bookingItem.deposite}</td>
-                                    <td>{bookingItem.deposite_status}</td>
+                                    <td>{bookingItem.deposit}</td>
+                                    <td>{bookingItem.deposit_status}</td>
                                     <td>{bookingItem.bank_transfer}</td>
                                     <td>{bookingItem.cash}</td>
                                     <td>{bookingItem.status_name}</td>
@@ -172,8 +172,8 @@ const MyBookings = () => {
                                 <th onClick={() => handleSort('date')}>Date</th>
                                 <th onClick={() => handleSort('checkin_time')}>Checkin</th>
                                 <th onClick={() => handleSort('checkout_time')}>Checkout</th>
-                                <th onClick={() => handleSort('deposite')}>Deposite</th>
-                                <th onClick={() => handleSort('deposite_status')}>Deposite Status</th>
+                                <th onClick={() => handleSort('deposit')}>Deposit</th>
+                                <th onClick={() => handleSort('deposit_status')}>Deposit Status</th>
                                 <th onClick={() => handleSort('bank_transfer')}>Bank Transfer</th>
                                 <th onClick={() => handleSort('cash')}>Cash</th>
                                 <th onClick={() => handleSort('status_name')}>Status</th>
@@ -188,8 +188,8 @@ const MyBookings = () => {
                                     <td>{bookingItem.date}</td>
                                     <td>{bookingItem.checkin_time}</td>
                                     <td>{bookingItem.checkout_time}</td>
-                                    <td>{bookingItem.deposite}</td>
-                                    <td>{bookingItem.deposite_status}</td>
+                                    <td>{bookingItem.deposit}</td>
+                                    <td>{bookingItem.deposit_status}</td>
                                     <td>{bookingItem.bank_transfer}</td>
                                     <td>{bookingItem.cash}</td>
                                     <td>{bookingItem.status_name}</td>

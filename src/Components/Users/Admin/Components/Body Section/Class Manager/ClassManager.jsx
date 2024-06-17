@@ -1,8 +1,8 @@
 import './ClassManager.css'
 
 //IMPORTED ICON ================>
-import ClassList from './Components/ClassList';
-import Schedule from './Components/Schedule';
+import ClassList from './Components/Classes/ClassList';
+import Schedule from './Components/Schedules/Schedule';
 
 
 

@@ -38,54 +38,6 @@
     position: relative;
     overflow-x: hidden;
 
-    .tableDiv {
-        gap: 1.5rem;
-        padding: 1rem;
-        overflow: hidden;
-        z-index: 1;
-
-        h2 {
-            background-color: var(--whiteColor);
-            color: var(--PrimaryColor);
-            border: 2px solid var(--PrimaryColor);
-            padding: 1rem;
-            border-top-right-radius: 1.5rem;
-            border-top-left-radius: 1.5rem;
-        }
-
-        table {
-            //border-spacing: 0rem;
-            text-align: center;
-            border: 2px solid var(--blackColor);
-            //border-radius: 1rem;
-
-
-
-            td,
-            th {
-                border: 2px solid var(--blackColor);
-                padding: .5rem;
-            }
-
-            thead {
-                background: var(--PrimaryColor);
-                color: white;
-
-
-            }
-        }
-
-        .btn {
-            font-size: var(--h2FontSize);
-            font-weight: 500;
-        }
-
-        .icon {
-            :hover {
-                color: var(--PrimaryColor);
-            }
-        }
-    }
 
     .cards {
         padding: 1rem;
@@ -105,50 +57,21 @@
             text-align: center;
         }
 
-        .tableDiv {
-            flex-direction: column;
-            gap: 1.5rem;
-            padding: 1rem;
-            overflow: hidden;
-            z-index: 1;
-
-            h2 {
-                background-color: var(--whiteColor);
-                color: var(--PrimaryColor);
-                border: 2px solid var(--PrimaryColor);
-                padding: 1rem;
-                border-top-right-radius: 1.5rem;
-                border-top-left-radius: 1.5rem;
-            }
-
-            table {
-                text-align: center;
-                border: 2px solid var(--blackColor);
-
-                td,
-                th {
-                    border: 2px solid var(--blackColor);
-                    padding: .5rem;
-                }
-
-                thead {
-                    background: var(--PrimaryColor);
-                    color: white;
-
-
-                }
-            }
-        }
     }
 
     .todayClassesDiv {
         flex-direction: column;
         gap: 2rem;
 
+        .flex {
+            align-items: center;
+        }
+
         .heading {
             color: var(--whiteColor);
             background: var(--PrimaryColor);
             border: none;
+            font-size: 2rem;
         }
 
         .cards {
@@ -164,6 +87,7 @@
                 text-align: center;
                 color: var(--whiteColor);
                 max-width: 150px;
+                font-size: 1.5rem;
             }
 
             .cards {
