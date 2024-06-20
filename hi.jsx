@@ -1,176 +1,117 @@
-import React, { useEffect, useState } from 'react';
-import './attendance.css'
-import { useAuth } from '../../../../../../../AuthContext'
-import axios from '../../../../../../../axiosConfig'
-import { Link } from 'react-router-dom'
-import { useDisclosure } from "@nextui-org/react"
+import React from "react";
+import { Card, CardBody, Image, Button, Slider } from "@nextui-org/react";
+import { HeartIcon } from "./HeartIcon";
+import { PauseCircleIcon } from "./PauseCircleIcon";
+import { NextIcon } from "./NextIcon";
+import { PreviousIcon } from "./PreviousIcon";
+import { RepeatOneIcon } from "./RepeatOneIcon";
+import { ShuffleIcon } from "./ShuffleIcon";
 
-// Imported templates
-import TableTemplate from '../../../../../../Table/TableTemplate';
-import CheckinForm from './CheckinForm';
-import CheckoutForm from './CheckoutForm';
-
-const Attendance = () => {
-    const cloudinaryBaseUrl = 'https://res.cloudinary.com/dqgu13tbd';
-    const { user } = useAuth();
-    const [todayClasses_Instructor, setTodayClasses_Instructor] = useState([]);
-    const [attendanceList, setAttendanceList] = useState([]);
-    const [selectedClassData, setSelectedClassData] = useState(null);
-
-    const { isOpen: isCheckinOpen, onOpenChange: onCheckinOpenChange } = useDisclosure();
-    const { isOpen: isCheckoutOpen, onOpenChange: onCheckoutOpenChange } = useDisclosure();
-
-    const fetchTodayClasses = async () => {
-        try {
-            const response = await axios.get(`/classes_today/${user.id}/`);
-            setTodayClasses_Instructor(response.data);
-        } catch (error) {
-            console.error('Error fetching today\'s classes:', error);
-        }
-    };
-
-    const fetchAttendanceList = async () => {
-        try {
-            const response = await axios.get(`/attendance-list/${user.id}`);
-            setAttendanceList(response.data);
-        } catch (error) {
-            console.error('Error fetching attendance records:', error);
-        }
-    };
-
-    useEffect(() => {
-        if (user && user.id) {
-            fetchTodayClasses();
-            fetchAttendanceList();
-        }
-    }, [user]);
-
-    const getTodaySchedule = (schedules) => {
-        let todayDayOfWeek = (new Date().getDay() - 1);
-        if (todayDayOfWeek < 0) {
-            todayDayOfWeek = todayDayOfWeek + 7;
-        }
-
-        const todaySchedule = schedules.find(schedule => schedule.day_of_the_week === todayDayOfWeek.toString());
-        return `${todaySchedule?.start_time} - ${todaySchedule?.end_time}`;
-    };
-
-    const columns = [
-        { name: "ID", uid: "id" },
-        { name: "Class Name", uid: "class_name" },
-        { name: "Date", uid: "date" },
-        { name: "Checkin Time", uid: "checkin_time" },
-        { name: "Checkout Time", uid: "checkout_time" },
-        { name: "Instructor ID", uid: "instructor_id" },
-        { name: "Instructor Name", uid: "instructor_name" },
-        { name: "Room ID", uid: "room_id" },
-        { name: "Proof", uid: "proof" },
-        { name: "Status", uid: "status" },
-    ];
-
-    const formattedData = attendanceList.map((attendanceItem) => ({
-        id: attendanceItem.id,
-        class_name: attendanceItem.class_instance_detail.class_name,
-        date: attendanceItem.date,
-        checkin_time: attendanceItem.checkin_time,
-        checkout_time: attendanceItem.checkout_time,
-        instructor_id: attendanceItem.instructor_id,
-        instructor_name: attendanceItem.instructor_detail.username,
-        room_id: attendanceItem.room_id,
-        proof: attendanceItem.proof,
-        status: attendanceItem.status,
-    }));
-
-    const handleShowCheckinForm = (classData) => {
-        setSelectedClassData(classData);
-        onCheckinOpenChange(true);
-    };
-
-    const handleShowCheckoutForm = (classData) => {
-        setSelectedClassData(classData);
-        onCheckoutOpenChange(true);
-    };
+export default function App() {
+    const [liked, setLiked] = React.useState(false);
 
     return (
-        <div className='attendance '>
-            <div className="historyDiv sectionContainer">
-                <div className="header">
-                    <h2>Your Attendance Records</h2>
-                </div>
-                <div className='tableDiv'>
-                    <TableTemplate
-                        columns={columns}
-                        data={formattedData}
-                        initialVisibleColumns={columns.map(col => col.uid)}
-                    />
-                </div>
-            </div>
-
-            <div className="todayClassesDiv sectionContainer flex">
-                <div className="heading">
-                    <h1>Classes Today</h1>
-                </div>
-
-                {/* INSTRUCTOR'S TODAY-CLASSES */}
-                <div className="singleItem flex cards">
-                    <div className="heading1">
-                        <h1>Your Classes Today</h1>
+        <Card
+            isBlurred
+            className="border-none bg-background/60 dark:bg-default-100/50 max-w-[610px]"
+            shadow="sm"
+        >
+            <CardBody>
+                <div className="grid grid-cols-6 md:grid-cols-12 gap-6 md:gap-4 items-center justify-center">
+                    <div className="relative col-span-6 md:col-span-4">
+                        <Image
+                            alt="Album cover"
+                            className="object-cover"
+                            height={200}
+                            shadow="md"
+                            src="https://nextui.org/images/album-cover.png"
+                            width="100%"
+                        />
                     </div>
 
-                    <div className="cards todaySchedule flex">
-                        <div className="schedule">
-                            {todayClasses_Instructor.length > 0 ? (
-                                todayClasses_Instructor.map((classItem) => (
-                                    <div key={classItem.id} className="singleCard flex">
-                                        <Link to="/instructor/my-classes" className="classImg">
-                                            <img src={`${cloudinaryBaseUrl}/${classItem.class_instance_detail.image}` || logo} alt="" />
-                                        </Link>
+                    <div className="flex flex-col col-span-6 md:col-span-8">
+                        <div className="flex justify-between items-start">
+                            <div className="flex flex-col gap-0">
+                                <h3 className="font-semibold text-foreground/90">Daily Mix</h3>
+                                <p className="text-small text-foreground/80">12 Tracks</p>
+                                <h1 className="text-large font-medium mt-2">Frontend Radio</h1>
+                            </div>
+                            <Button
+                                isIconOnly
+                                className="text-default-900/60 data-[hover]:bg-foreground/10 -translate-y-2 translate-x-2"
+                                radius="full"
+                                variant="light"
+                                onPress={() => setLiked((v) => !v)}
+                            >
+                                <HeartIcon
+                                    className={liked ? "[&>path]:stroke-transparent" : ""}
+                                    fill={liked ? "currentColor" : "none"}
+                                />
+                            </Button>
+                        </div>
 
-                                        <div className="cardText">
-                                            <span>
-                                                {classItem.class_instance_detail.class_name} <br />
-                                                {getTodaySchedule(classItem.class_instance_detail.schedules)}
-                                            </span>
-                                        </div>
+                        <div className="flex flex-col mt-3 gap-1">
+                            <Slider
+                                aria-label="Music progress"
+                                classNames={{
+                                    track: "bg-default-500/30",
+                                    thumb: "w-2 h-2 after:w-2 after:h-2 after:bg-foreground",
+                                }}
+                                color="foreground"
+                                defaultValue={33}
+                                size="sm"
+                            />
+                            <div className="flex justify-between">
+                                <p className="text-small">1:23</p>
+                                <p className="text-small text-foreground/50">4:32</p>
+                            </div>
+                        </div>
 
-                                        {classItem.status === "pending" ? (
-                                            <button className="btn" onClick={() => handleShowCheckinForm(classItem)}>Check In Now</button>
-                                        ) : classItem.status === "in_progress" ? (
-                                            <button className="btn" onClick={() => handleShowCheckoutForm(classItem)}>Check Out Now</button>
-                                        ) : <button className="btn" >Completed</button>}
-                                    </div>
-                                ))
-                            ) : (
-                                <h2>No class for today</h2>
-                            )}
+                        <div className="flex w-full items-center justify-center">
+                            <Button
+                                isIconOnly
+                                className="data-[hover]:bg-foreground/10"
+                                radius="full"
+                                variant="light"
+                            >
+                                <RepeatOneIcon className="text-foreground/80" />
+                            </Button>
+                            <Button
+                                isIconOnly
+                                className="data-[hover]:bg-foreground/10"
+                                radius="full"
+                                variant="light"
+                            >
+                                <PreviousIcon />
+                            </Button>
+                            <Button
+                                isIconOnly
+                                className="w-auto h-auto data-[hover]:bg-foreground/10"
+                                radius="full"
+                                variant="light"
+                            >
+                                <PauseCircleIcon size={54} />
+                            </Button>
+                            <Button
+                                isIconOnly
+                                className="data-[hover]:bg-foreground/10"
+                                radius="full"
+                                variant="light"
+                            >
+                                <NextIcon />
+                            </Button>
+                            <Button
+                                isIconOnly
+                                className="data-[hover]:bg-foreground/10"
+                                radius="full"
+                                variant="light"
+                            >
+                                <ShuffleIcon className="text-foreground/80" />
+                            </Button>
                         </div>
                     </div>
                 </div>
-
-                <div className="reportDiv cards flex">
-                    <h2>Anything's wrong? Send a report</h2>
-                    <button className='btn'>Make a report</button>
-                </div>
-
-            </div>
-
-            <CheckinForm
-                isOpen={isCheckinOpen}
-                onOpenChange={onCheckinOpenChange}
-                classData={selectedClassData}
-                user={user}
-                fetchAttendanceList={fetchAttendanceList}
-                fetchTodayClasses={fetchTodayClasses}
-            />
-
-            <CheckoutForm
-                isOpen={isCheckoutOpen}
-                onOpenChange={onCheckoutOpenChange}
-                classData={selectedClassData}
-                user={user}
-                fetchAttendanceList={fetchAttendanceList}
-                fetchTodayClasses={fetchTodayClasses}
-            />
-        </div>
-    )
+            </CardBody>
+        </Card>
+    );
 }

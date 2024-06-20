@@ -6,7 +6,7 @@ import class_bg from "../../Assets_HomePage/timetable-class-bg.png"
 import instructor_1 from "../../Assets_HomePage/dolinh.png"
 import instructor_2 from "../../Assets_HomePage/chaeng.png"
 
-const Classes = () => {
+const TimeTable = () => {
     return (
         <div className="classes container section flex">
             <div className="sectionContainer flex">
@@ -151,4 +151,4 @@ const Classes = () => {
     )
 }
 
-export default Classes
+export default TimeTable

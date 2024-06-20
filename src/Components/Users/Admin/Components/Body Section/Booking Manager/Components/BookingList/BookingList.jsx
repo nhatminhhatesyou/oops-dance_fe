@@ -20,6 +20,7 @@ const BookingList = () => {
         Axios.get('/bookings/')
             .then((response) => {
                 setBookings(response.data);
+                console.log(("Fetched Bookings:", response.data));
             })
             .catch((error) => {
                 console.log(error);
@@ -69,7 +70,7 @@ const BookingList = () => {
 
     const formattedBookingList = bookings.map(record => ({
         id: record.id,
-        guest: record.guest_id,
+        guest_id: record.guest,
         guest_avatar: record.guest_detail.avatar,
         guest_email: record.guest_detail.email,
         guest_username: record.guest_detail.username,
@@ -85,6 +86,8 @@ const BookingList = () => {
         details: record.details,
         actions: "Actions",
     }));
+
+    console.log("FORMATTED BOOKINGs:", formattedBookingList)
 
     const renderActions = (item) => (
         <Dropdown>

@@ -34,8 +34,6 @@ const Listing = () => {
         fetchUserInfo();
     }, [user])
 
-    console.log("USER FETCHED:", userInfo)
-
     const navigateTo = useNavigate()
     const handleNavigate = (path) => {
         navigateTo(path);

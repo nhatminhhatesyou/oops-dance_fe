@@ -37,7 +37,8 @@ const statusColorMap = {
     pending: "warning",
     confirmed: "success",
     canceled: "danger",
-    waiting: "secondary"
+    waiting: "secondary",
+    cancelled: "danger"
 };
 
 const cloudinaryBaseUrl = 'https://res.cloudinary.com/dqgu13tbd';
@@ -50,7 +51,9 @@ const TableTemplate = ({
     rowsPerPageOptions = [5, 10, 15],
     renderActions,
     onAddNew,
+    AddNewBtn_active
 }) => {
+    const [addNewbtn_active, setAddNewBtn] = useState(AddNewBtn_active)
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalImage, setModalImage] = useState("");
     const [filterValue, setFilterValue] = React.useState("");
@@ -75,12 +78,15 @@ const TableTemplate = ({
     const filteredItems = React.useMemo(() => {
         let filteredData = [...data];
 
+        //SEARCH VALUE SETTING HERE
         if (hasSearchFilter) {
             filteredData = filteredData.filter((item) =>
             (
                 item.username?.toLowerCase().includes(filterValue.toLowerCase()) ||
                 item.instructor_name?.toLowerCase().includes(filterValue.toLowerCase()) ||
-                item.day_of_the_week_value?.toLowerCase().includes(filterValue.toLowerCase())
+                item.day_of_the_week_value?.toLowerCase().includes(filterValue.toLowerCase()) ||
+                item.date?.toLowerCase().includes(filterValue.toLowerCase()) ||
+                item.class_name?.toLowerCase().includes(filterValue.toLowerCase())
 
             )
             );
@@ -88,9 +94,7 @@ const TableTemplate = ({
 
         if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
             filteredData = filteredData.filter((item) =>
-                // Array.from(statusFilter).includes(item.deposit_status + item.status),
                 Array.from(statusFilter).some(status => status === item.deposit_status || status === item.status)
-
             );
         }
 
@@ -123,7 +127,7 @@ const TableTemplate = ({
 
     const renderCell = React.useCallback((item, columnKey) => {
         const cellValue = item[columnKey];
-        console.log(item);
+        // console.log(item);
 
         switch (columnKey) {
             case "status":
@@ -194,14 +198,35 @@ const TableTemplate = ({
                         </User>
                     </div>
                 );
+            case "checkin_proof":
+                return (
+                    <div className="flex justify-center">
+                        {item.checkin_proof ? (
+                            <Avatar
+                                src={`${cloudinaryBaseUrl}/${item.checkin_proof}`}
+                                radius="sm"
+                                onClick={() => handleImageClick(`${cloudinaryBaseUrl}/${item.checkin_proof}`)}
+                                style={{ cursor: "pointer" }}
+                            />
+                        ) : (
+                            <span>No Proof</span>
+                        )}
+                    </div>
+                );
             case "checkout_proof":
                 return (
-                    <Avatar
-                        src={`${cloudinaryBaseUrl}/${item.checkout_proof}`}
-                        radius="sm"
-                        onClick={() => handleImageClick(`${cloudinaryBaseUrl}/${item.checkout_proof}`)}
-                        style={{ cursor: "pointer" }}
-                    />
+                    <div className="flex justify-center">
+                        {item.checkout_proof ? (
+                            <Avatar
+                                src={`${cloudinaryBaseUrl}/${item.checkout_proof}`}
+                                radius="sm"
+                                onClick={() => handleImageClick(`${cloudinaryBaseUrl}/${item.checkout_proof}`)}
+                                style={{ cursor: "pointer" }}
+                            />
+                        ) : (
+                            <span>No Proof</span>
+                        )}
+                    </div>
                 );
             case "checkout_time":
             case "date":
@@ -252,7 +277,7 @@ const TableTemplate = ({
                     <Input
                         isClearable
                         className="w-full sm:max-w-[44%]"
-                        placeholder="Search by name..."
+                        placeholder="Search..."
                         startContent={<SearchIcon />}
                         value={filterValue}
                         onClear={() => onClear()}
@@ -301,7 +326,7 @@ const TableTemplate = ({
                                 ))}
                             </DropdownMenu>
                         </Dropdown>
-                        <Button color="danger" endContent={<PlusIcon />} onClick={onAddNew}>
+                        <Button color="danger" endContent={<PlusIcon />} onClick={onAddNew} className={addNewbtn_active}>
                             Add New
                         </Button>
                     </div>
@@ -372,7 +397,7 @@ const TableTemplate = ({
                 bottomContent={bottomContent}
                 bottomContentPlacement="outside"
                 classNames={{
-                    wrapper: "max-h-[382px] text-center",
+                    wrapper: "max-h-screen text-center", //Change table height here
                 }}
                 selectedKeys={selectedKeys}
                 selectionMode="multiple"

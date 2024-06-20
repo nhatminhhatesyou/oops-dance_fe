@@ -6,6 +6,7 @@ import Bookings from './Booking Manager/BookingsManager';
 import Rooms from './Room Manager/RoomManager';
 import MainBody from './Main Body/MainBody';
 import Attendance from './Attendance/Attendance';
+import Students from './Students/Students';
 
 
 const Body = () => {
@@ -19,6 +20,7 @@ const Body = () => {
                 <Route path="bookings" element={<Bookings />} />
                 <Route path="rooms" element={<Rooms />} />
                 <Route path="attendance-records" element={<Attendance />} />
+                <Route path="students" element={<Students />} />
 
             </Routes>
         </div>

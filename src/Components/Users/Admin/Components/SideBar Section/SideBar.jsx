@@ -44,15 +44,6 @@ const SideBar = () => {
                 <ul className="menuLists grid">
 
                     <li className="listItem">
-                        <Link to="/admin/dashboard" className="menuLink flex">
-                            <IoMdSpeedometer className='icon' />
-                            <span className="smallText">
-                                Dash Board
-                            </span>
-                        </Link>
-                    </li>
-
-                    <li className="listItem">
                         <Link to="/admin/rooms" className="menuLink flex">
                             <FaDoorOpen className='icon' />
                             <span className="smallText">
@@ -74,7 +65,15 @@ const SideBar = () => {
                         <Link to="/admin/classes" className="menuLink flex">
                             <SiBytedance className='icon' />
                             <span className="smallText">
-                                Classes
+                                Classes & Schedules
+                            </span>
+                        </Link>
+                    </li>
+                    <li className="listItem">
+                        <Link to="/admin/students" className="menuLink flex">
+                            <SiBytedance className='icon' />
+                            <span className="smallText">
+                                Dance Students
                             </span>
                         </Link>
                     </li>
@@ -86,15 +85,6 @@ const SideBar = () => {
                             </span>
                         </Link>
                     </li>
-
-                    <li className="listItem">
-                        <Link to="/admin/users" className="menuLink flex">
-                            <FaUserGroup className='icon' />
-                            <span className="smallText">
-                                Users
-                            </span>
-                        </Link>
-                    </li>
                 </ul>
             </div>
 
@@ -103,6 +93,14 @@ const SideBar = () => {
                     SETTING
                 </h3>
                 <ul className="menuLists grid">
+                    <li className="listItem">
+                        <Link to="/admin/users" className="menuLink flex">
+                            <FaUserGroup className='icon' />
+                            <span className="smallText">
+                                Users
+                            </span>
+                        </Link>
+                    </li>
 
                     <li className="listItem">
                         <Link to="#" className="menuLink flex">
@@ -115,29 +113,13 @@ const SideBar = () => {
 
                     <li className="listItem">
                         <Link to="#" className="menuLink flex">
-                            <BiTrendingUp className='icon' />
-                            <span className="smallText">
-                                Trends
-                            </span>
-                        </Link>
-                    </li>
-
-                    <li className="listItem">
-                        <Link to="#" className="menuLink flex">
                             <MdOutlinePermContactCalendar className='icon' />
                             <span className="smallText">
                                 Contacts
                             </span>
                         </Link>
                     </li>
-                    <li className="listItem">
-                        <Link to="#" className="menuLink flex">
-                            <BsCreditCard2Front className='icon' />
-                            <span className="smallText">
-                                Billing
-                            </span>
-                        </Link>
-                    </li>
+
                     <li className="listItem">
                         <Link to="#" className="menuLink flex">
                             <FaHouseUser className='icon' />

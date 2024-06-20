@@ -8,8 +8,10 @@ import Rooms from './Components/Rooms/Rooms';
 import Participants from './Components/Participants/Participants';
 import Subscribers from './Components/Subscribers/Subscribers';
 import Footer from './Components/Footer/Footer';
-import Classes from './Components/Classes/Classes';
+import TimeTable from './Components/Classes/TimeTable';
 import Intro from './Components/Intro/Intro';
+import ClassInfo from './Components/Classes/ClassInfo';
+import Instructor from './Components/Classes/Instructor';
 
 const HomePage = () => {
     const homeRef = useRef(null);
@@ -37,7 +39,9 @@ const HomePage = () => {
             <Search />
             <Support />
             <div ref={classesRef}>
-                <Classes />
+                <ClassInfo />
+                <Instructor />
+                <TimeTable />
             </div>
             <Info />
             <Participants />

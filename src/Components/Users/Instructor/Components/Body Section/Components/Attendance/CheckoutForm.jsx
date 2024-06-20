@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
     Modal,
-    Input,
     Button,
     Spacer,
     ModalHeader,
@@ -10,12 +9,12 @@ import {
     ModalContent,
 } from "@nextui-org/react";
 import axios from '../../../../../../../axiosConfig';
+import { Spinner } from "@nextui-org/spinner"; // Import Spinner
 
 const CheckoutForm = ({ isOpen, onOpenChange, classData, user, fetchAttendanceList, fetchTodayClasses }) => {
     const [className, setClassName] = useState('');
     const [roomID, setRoomID] = useState('');
     const [attendanceID, setAttendanceID] = useState('');
-    const [checkInStatus, setcheckInStatus] = useState('');
     const [proof, setProof] = useState(null);
     const [fileName, setFileName] = useState('');
     const [loading, setLoading] = useState(false);
@@ -31,10 +30,8 @@ const CheckoutForm = ({ isOpen, onOpenChange, classData, user, fetchAttendanceLi
     const handleCheckOut = async () => {
         setLoading(true); // Set loading to true when the form submission starts
         const formData = new FormData();
-
         const currentTime = new Date();
         const formattedTime = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
-
         formData.append('checkout_time', formattedTime);
         formData.append('status', "waiting");
 
@@ -48,14 +45,15 @@ const CheckoutForm = ({ isOpen, onOpenChange, classData, user, fetchAttendanceLi
                     'Content-Type': 'multipart/form-data'
                 }
             });
-
-            alert("Checkout Success!");
             fetchAttendanceList();
             fetchTodayClasses();
             onOpenChange(false);
         } catch (error) {
             console.error("Error: ", error);
             alert("ERROR");
+        } finally {
+            setLoading(false); // Stop loading after the request is done
+            alert("Checkout Success!");
         }
     };
 
@@ -88,7 +86,7 @@ const CheckoutForm = ({ isOpen, onOpenChange, classData, user, fetchAttendanceLi
                                 color="primary"
                                 onPress={() => document.getElementById('proof').click()}
                             >
-                                Upload Image
+                                Upload Proof
                             </Button>
                             <input
                                 type="file"
@@ -102,11 +100,11 @@ const CheckoutForm = ({ isOpen, onOpenChange, classData, user, fetchAttendanceLi
                         <Spacer y={1} />
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="danger" variant="light" onPress={() => onOpenChange(false)}>
+                        <Button color="danger" variant="light" onPress={() => onOpenChange(false)} disabled={loading}>
                             Close
                         </Button>
-                        <Button color="primary" onPress={handleCheckOut}>
-                            Check Out
+                        <Button color="primary" onPress={handleCheckOut} disabled={loading}>
+                            {loading ? <Spinner color="white" size="sm" /> : 'Check Out'}
                         </Button>
                     </ModalFooter>
                 </>

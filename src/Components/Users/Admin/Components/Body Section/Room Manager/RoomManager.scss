@@ -30,81 +30,11 @@
 }
 
 .roomManager {
-    .sectionContainer {
-        .heading {
-            width: fit-content;
-            margin: auto;
-            background-color: var(--whiteColor);
-            color: var(--PrimaryColor);
-            border: 3px solid var(--PrimaryColor);
-            padding: 1rem;
-            border-top-right-radius: 1.5rem;
-            border-top-left-radius: 1.5rem;
-        }
-
+    .shadow-white {
+        box-shadow: 0 4px 6px rgba(255, 255, 255, 0.5);
     }
 
-    .detailDiv {
-        .secContainer {
-            margin: 1rem 0;
-            gap: 2rem;
-            overflow: hidden;
-            justify-content: center;
-            grid-template-columns: repeat(2, 1fr);
-
-
-            .singleItem {
-                align-items: center;
-                border-radius: 10px;
-                padding: 1rem;
-                background: var(--greyBg);
-                gap: 1rem;
-
-                .imgCard {
-                    background-color: var(--cardColor);
-                    padding: 1rem;
-                    border-radius: 10px;
-                    flex-direction: column;
-
-
-                    h3 {
-                        font-size: var(--h3FontSize);
-                        font-weight: 550;
-                        color: var(--whiteColor);
-                        padding: 1rem 0;
-                    }
-
-                    &:hover {
-                        background: var(--PrimaryColor);
-                        box-shadow: 0 2px 2px var(--inputColor);
-                        cursor: pointer;
-
-                        h3 {
-                            color: var(--whiteColor);
-                        }
-                    }
-
-                    img {
-                        border-radius: 10px;
-                        top: 2rem;
-                        max-width: 180px;
-                        box-shadow: var(--boxShadow);
-                    }
-
-                }
-
-                .details {
-                    flex-direction: column;
-                    gap: 2rem;
-
-                    h3 {
-                        font-size: var(--h3FontSize);
-                        font-weight: 550;
-                    }
-                }
-
-            }
-        }
-
+    .backred {
+        background-color: #d83f3f;
     }
 }

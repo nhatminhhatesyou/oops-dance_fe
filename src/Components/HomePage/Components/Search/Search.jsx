@@ -15,6 +15,8 @@ import { IoIosCloseCircle } from "react-icons/io";
 const Search = () => {
     const { user } = useAuth();
     const [startDate, setStartDate] = useState(new Date());
+    const [roomList, setRoomList] = useState([]);
+    const [deposit, setDeposit] = useState();
     const [selectedRoom, setSelectedRoom] = useState('All Rooms');
     const [availableSlots, setAvailableSlots] = useState({});
     const [checkInTime, setCheckInTime] = useState('');
@@ -32,8 +34,20 @@ const Search = () => {
         Aos.init({ duration: 2000 });
     }, []);
 
+    const fetchRoomList = async () => {
+        try {
+            const response = await axios.get(`/rooms/`);
+            setRoomList(response.data);
+        } catch (error) {
+            console.error('Error fetching room list:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchRoomList();
+    }, []);
+
     const handleRoomChange = (room) => {
-        console.log('Selected room:', room);
         setSelectedRoom(room);
     };
 
@@ -82,7 +96,6 @@ const Search = () => {
             await fetchAvailableSlots(startDate);
             setShowResults(true);
 
-            // Kiểm tra và cập nhật trạng thái phòng trống
             if (selectedRoom !== 'All Rooms' && checkInTime && checkOutTime) {
                 const slots = availableSlots[selectedRoom] || [];
                 const roomAvailable = isSlotAvailable(checkInTime, checkOutTime, slots);
@@ -117,6 +130,16 @@ const Search = () => {
         return false;
     };
 
+    const calculateTimeSlots = (checkIn, checkOut) => {
+        const [checkInH, checkInM] = checkIn.split(':').map(Number);
+        const [checkOutH, checkOutM] = checkOut.split(':').map(Number);
+
+        const checkInTimeInMinutes = checkInH * 60 + checkInM;
+        const checkOutTimeInMinutes = checkOutH * 60 + checkOutM;
+
+        return (checkOutTimeInMinutes - checkInTimeInMinutes) / 30;
+    };
+
     const generateTimeOptions = () => {
         const times = [];
         for (let hour = 8; hour <= 22; hour++) {
@@ -140,6 +163,18 @@ const Search = () => {
 
     const showForm = () => {
         console.log("date: ", startDate.toISOString().split('T')[0]);
+        console.log("selected ROOM: ", selectedRoom);
+        console.log("Room list: ", roomList);
+        console.log("Cal Time: ", calculateTimeSlots(checkInTime, checkOutTime));
+        roomList.map((room) => {
+            if (selectedRoom === room.name) {
+                console.log("Price:", room.price)
+                console.log("Full Price:", (calculateTimeSlots(checkInTime, checkOutTime)) * room.price / 2)
+                setDeposit((calculateTimeSlots(checkInTime, checkOutTime)) * room.price / 4)
+                console.log("Deposit:", deposit)
+            }
+        })
+
 
         setActiveForm('formDiv showForm');
         setBlur('blurLayer showLayer');
@@ -154,7 +189,9 @@ const Search = () => {
                 room_name: selectedRoom,
                 checkin_time: checkInTime,
                 checkout_time: checkOutTime,
-                date: startDate.toISOString().split('T')[0]
+                date: startDate.toISOString().split('T')[0],
+                deposit: deposit,
+                full_payment: (deposit * 2)
             });
 
             console.log(response);
@@ -337,6 +374,8 @@ const Search = () => {
                                 <p>Date: {startDate.toDateString()}</p>
                                 <p>Check In: {checkInTime}</p>
                                 <p>Check Out: {checkOutTime}</p>
+                                <p>Deposit: {deposit} VND</p>
+                                <p>Full Payment: {deposit * 2} VND</p>
                             </div>
                         </div>
 

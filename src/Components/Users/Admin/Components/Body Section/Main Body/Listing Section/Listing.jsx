@@ -1,5 +1,6 @@
 import React from 'react'
 import './listing.css'
+import { Link, useNavigate } from 'react-router-dom'
 
 //Imported images ==================>
 import class_1 from '../../../../Assets_Admin/dolinh_class_1.jpeg'
@@ -13,12 +14,17 @@ import { BsArrowRightShort } from "react-icons/bs";
 
 
 const Listing = () => {
+    const navigateTo = useNavigate()
+    const handleNavigate = (path) => {
+        navigateTo(path);
+    }
+
     return (
         <div className='adminListingSection'>
             <div className="cards roomsManagement">
                 <div className="heading flex">
                     <h1>Rooms Management</h1>
-                    <button className="btn flex">
+                    <button onClick={() => handleNavigate('/admin/rooms')} className="btn flex">
                         See All <BsArrowRightShort className='icon' />
                     </button>
                 </div>
@@ -40,7 +46,7 @@ const Listing = () => {
                 <div className="schedule">
                     <div className="heading flex">
                         <h3>Today's Classes</h3>
-                        <button className="btn flex">
+                        <button onClick={() => handleNavigate('/admin/students')} className="btn flex">
                             See All <BsArrowRightShort className='icon' />
                         </button>
                     </div>

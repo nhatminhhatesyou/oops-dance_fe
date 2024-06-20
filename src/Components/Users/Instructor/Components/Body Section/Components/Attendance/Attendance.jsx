@@ -58,7 +58,7 @@ const Attendance = () => {
     const columns = [
         { name: "ID", uid: "id" },
         { name: "Class Name", uid: "class_name" },
-        { name: "Date", uid: "date" },
+        { name: "Date", uid: "date", allowsSorting: true },
         { name: "Checkin Time", uid: "checkin_time" },
         { name: "Checkin Proof", uid: "checkin_proof" },
         { name: "Checkout Time", uid: "checkout_time" },
@@ -67,6 +67,7 @@ const Attendance = () => {
         { name: "Instructor Name", uid: "instructor_name" },
         { name: "Room ID", uid: "room_id" },
         { name: "Status", uid: "status" },
+        { name: "Details", uid: "details" },
     ];
 
     const statusOptions = [
@@ -74,6 +75,7 @@ const Attendance = () => {
         { uid: "waiting", name: "Waiting" },
         { uid: "in_progress", name: "In_progress" },
         { uid: "cancelled", name: "Cancelled" },
+        { uid: "completed", name: "Completed" },
     ];
 
     const formattedData = attendanceList.map((attendanceItem) => ({
@@ -88,6 +90,7 @@ const Attendance = () => {
         checkin_proof: attendanceItem.checkin_proof,
         checkout_proof: attendanceItem.checkout_proof,
         status: attendanceItem.status,
+        details: attendanceItem.details,
     }));
 
     const handleShowCheckinForm = (classData) => {
@@ -112,6 +115,7 @@ const Attendance = () => {
                         data={formattedData}
                         statusOptions={statusOptions}
                         initialVisibleColumns={columns.map(col => col.uid)}
+                        AddNewBtn_active="hidden"
                     />
                 </div>
             </div>
