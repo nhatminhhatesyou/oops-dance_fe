@@ -14,6 +14,7 @@ import { FaDoorOpen } from "react-icons/fa";
 import { FaRegCalendarCheck } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import AvatarUser from './AvatarUser';
 
 
 
@@ -44,12 +45,12 @@ const Navbar = ({ scrollToSection, refs }) => {
     };
 
     return (
-        <div className='navBar flex'>
+        <div className='navBar flex items-center'>
             <div className={noBg}>
                 <div className="logoDiv">
                     <img src={logo} className='logo' />
                     <div className={active}>
-                        <ul className="menu flex">
+                        <ul className="menu flex items-center">
                             <li onClick={() => { removeNavBar(); scrollToSection(refs.homeRef); }} className="listItem">Home</li>
                             <li onClick={() => { removeNavBar(); scrollToSection(refs.aboutRef); }} className="listItem">About</li>
                             <li onClick={() => { removeNavBar(); scrollToSection(refs.offersRef); }} className="listItem">Offers</li>
@@ -68,88 +69,8 @@ const Navbar = ({ scrollToSection, refs }) => {
 
                 <div className="atb flex">
                     {isAuthenticated ? (
-                        <div className="avatarContainer">
-                            <img
-                                src={user?.avatarUrl || avatarPlaceholder}
-                                alt="User Avatar"
-                                className="avatar"
-                                onClick={toggleDropdown}
-                            />
-                            {showDropdown && (
-                                <ul className="dropdownMenu">
-                                    <div className="subMenu flex">
-                                        <div className="userInfo">
-                                            <img src={user?.avatarUrl || avatarPlaceholder} />
-                                            <h3>Welcome, {user.username}!</h3>
-                                        </div>
-                                        <hr />
-                                        <li className="dropdownItem">
-                                            <div className='iconDiv'>
 
-                                                <FaRegUser className='icon' />
-                                            </div>
-                                            <Link to="/instructor" className='link'>
-                                                <h3>
-                                                    My Profile
-                                                </h3>
-                                                <FaLongArrowAltRight />
-                                            </Link>
-                                        </li>
-                                        <li className="dropdownItem">
-                                            <div className='iconDiv'>
-                                                <MdFactCheck className='icon' />
-                                            </div>
-                                            <Link to="/instructor/my-bookings" className='link'>
-                                                <h3>
-                                                    My Bookings
-                                                </h3>
-                                                <FaLongArrowAltRight />
-
-                                            </Link>
-                                        </li>
-                                        <li className="dropdownItem">
-                                            <div className='iconDiv'>
-                                                <FaDoorOpen className='icon' />
-                                            </div>
-                                            <Link to="/instructor/my-classes" className='link'>
-                                                <h3>
-                                                    My Classes
-                                                </h3>
-                                                <FaLongArrowAltRight />
-
-                                            </Link>
-                                        </li>
-                                        <li className="dropdownItem">
-                                            <div className='iconDiv'>
-                                                <FaRegCalendarCheck className='icon' />
-                                            </div>
-                                            <Link to="/instructor/attendance" className='link'>
-                                                <h3>
-                                                    Attendance
-                                                </h3>
-                                                <FaLongArrowAltRight />
-
-                                            </Link>
-                                        </li>
-                                        <li className="dropdownItem">
-                                            <div className='iconDiv'>
-                                                <FiSettings className='icon' />
-                                            </div>
-                                            <Link to="/" className='link'>
-                                                <h3>
-                                                    Setting
-                                                </h3>
-                                                <FaLongArrowAltRight />
-
-                                            </Link>
-                                        </li>
-                                        <li className="dropdownItem button">
-                                            <button className='btn' onClick={handleLogout}>Logout</button>
-                                        </li>
-                                    </div>
-                                </ul>
-                            )}
-                        </div>
+                        <AvatarUser />
                     ) : (
                         <>
                             <a href="/register">

@@ -1,0 +1,26 @@
+.settings-user .rightCard {
+  position: relative;
+  height: 200px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.settings-user .rightCard .videoDiv {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.settings-user .rightCard .videoDiv video {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}/*# sourceMappingURL=setting.css.map */

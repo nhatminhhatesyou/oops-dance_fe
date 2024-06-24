@@ -30,6 +30,7 @@ import {
 } from "@nextui-org/react";
 
 const statusColorMap = {
+    attend: "success",
     present: "success",
     completed: "success",
     absent: "danger",
@@ -51,9 +52,9 @@ const TableTemplate = ({
     rowsPerPageOptions = [5, 10, 15],
     renderActions,
     onAddNew,
-    AddNewBtn_active
+    AddNewBtn_active,
+    StatusBtn_active
 }) => {
-    const [addNewbtn_active, setAddNewBtn] = useState(AddNewBtn_active)
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalImage, setModalImage] = useState("");
     const [filterValue, setFilterValue] = React.useState("");
@@ -61,10 +62,21 @@ const TableTemplate = ({
     const [visibleColumns, setVisibleColumns] = React.useState(new Set(initialVisibleColumns));
     const [statusFilter, setStatusFilter] = React.useState("all");
     const [rowsPerPage, setRowsPerPage] = React.useState(rowsPerPageOptions[0]);
-    const [sortDescriptor, setSortDescriptor] = React.useState({
-        column: "id",
-        direction: "ascending",
-    });
+
+    // Check if the column "no" exists
+    const noColumnExists = columns.some(col => col.uid === "no");
+    const dateColumnExists = columns.some(col => col.uid === "date");
+
+    // Conditionally set the initial sort descriptor
+    const initialSortDescriptor =
+        noColumnExists
+            ? { column: "no", direction: "ascending" }
+            : dateColumnExists
+                ? { column: "date", direction: "descending" }
+                : { column: "id", direction: "ascending" };
+
+    const [sortDescriptor, setSortDescriptor] = React.useState(initialSortDescriptor);
+
     const [page, setPage] = React.useState(1);
 
     const hasSearchFilter = Boolean(filterValue);
@@ -83,6 +95,7 @@ const TableTemplate = ({
             filteredData = filteredData.filter((item) =>
             (
                 item.username?.toLowerCase().includes(filterValue.toLowerCase()) ||
+                item.name?.toLowerCase().includes(filterValue.toLowerCase()) ||
                 item.instructor_name?.toLowerCase().includes(filterValue.toLowerCase()) ||
                 item.day_of_the_week_value?.toLowerCase().includes(filterValue.toLowerCase()) ||
                 item.date?.toLowerCase().includes(filterValue.toLowerCase()) ||
@@ -146,13 +159,28 @@ const TableTemplate = ({
                 return (
                     <div className="text-left">
                         <User
-                            // avatarProps={{ radius: "lg", src: `${cloudinaryBaseUrl}/${item?.user_avatar}` }}
                             avatarProps={
                                 item?.user_avatar
                                     ? { radius: "lg", src: `${cloudinaryBaseUrl}/${item.user_avatar}` }
                                     : undefined
                             }
-                            description={item?.user_email}
+                            description={item?.user_email || item?.email}
+                            name={item?.name || item?.username}
+                        >
+                            {item?.email}
+                        </User>
+                    </div>
+                );
+            case "username":
+                return (
+                    <div className="text-left">
+                        <User
+                            avatarProps={
+                                item?.user_avatar
+                                    ? { radius: "lg", src: `${cloudinaryBaseUrl}/${item.user_avatar}` }
+                                    : undefined
+                            }
+                            description={item?.user_email || item?.email}
                             name={item?.username}
                         >
                             {item?.email}
@@ -284,27 +312,29 @@ const TableTemplate = ({
                         onValueChange={onSearchChange}
                     />
                     <div className="flex gap-2">
-                        <Dropdown>
-                            <DropdownTrigger className="sm:flex">
-                                <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat">
-                                    Status
-                                </Button>
-                            </DropdownTrigger>
-                            <DropdownMenu
-                                disallowEmptySelection
-                                aria-label="Table Columns"
-                                closeOnSelect={false}
-                                selectedKeys={statusFilter}
-                                selectionMode="multiple"
-                                onSelectionChange={setStatusFilter}
-                            >
-                                {statusOptions?.map((status) => (
-                                    <DropdownItem key={status.uid} className="capitalize">
-                                        {capitalize(status.name)}
-                                    </DropdownItem>
-                                ))}
-                            </DropdownMenu>
-                        </Dropdown>
+                        <div className={StatusBtn_active}>
+                            <Dropdown>
+                                <DropdownTrigger className="hidden sm:flex">
+                                    <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat">
+                                        Status
+                                    </Button>
+                                </DropdownTrigger>
+                                <DropdownMenu
+                                    disallowEmptySelection
+                                    aria-label="Table Columns"
+                                    closeOnSelect={false}
+                                    selectedKeys={statusFilter}
+                                    selectionMode="multiple"
+                                    onSelectionChange={setStatusFilter}
+                                >
+                                    {statusOptions?.map((status) => (
+                                        <DropdownItem key={status.uid} className="capitalize">
+                                            {capitalize(status.name)}
+                                        </DropdownItem>
+                                    ))}
+                                </DropdownMenu>
+                            </Dropdown>
+                        </div>
                         <Dropdown>
                             <DropdownTrigger className="sm:flex">
                                 <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat">
@@ -326,7 +356,7 @@ const TableTemplate = ({
                                 ))}
                             </DropdownMenu>
                         </Dropdown>
-                        <Button color="danger" endContent={<PlusIcon />} onClick={onAddNew} className={addNewbtn_active}>
+                        <Button color="danger" endContent={<PlusIcon />} onClick={onAddNew} className={AddNewBtn_active}>
                             Add New
                         </Button>
                     </div>
@@ -363,9 +393,9 @@ const TableTemplate = ({
         return (
             <div className="py-2 px-2 flex justify-between items-center gap-2">
                 <span className="w-[30%] text-small text-default-400">
-                    {selectedKeys === "all"
+                    {/* {selectedKeys === "all"
                         ? "All items selected"
-                        : `${selectedKeys.size} of ${filteredItems.length} selected`}
+                        : `${selectedKeys.size} of ${filteredItems.length} selected`} */}
                 </span>
                 <Pagination
                     className="sm:flex"
@@ -397,15 +427,16 @@ const TableTemplate = ({
                 bottomContent={bottomContent}
                 bottomContentPlacement="outside"
                 classNames={{
-                    wrapper: "max-h-screen text-center", //Change table height here
+                    wrapper: "max-h-screen", //Change table height here
                 }}
-                selectedKeys={selectedKeys}
-                selectionMode="multiple"
+                // selectedKeys={selectedKeys}
+                // selectionMode="multiple"
                 sortDescriptor={sortDescriptor}
                 topContent={topContent}
                 topContentPlacement="outside"
-                onSelectionChange={setSelectedKeys}
+                // onSelectionChange={setSelectedKeys}
                 onSortChange={setSortDescriptor}
+                className="bg-white rounded-xl shadow-md p-4"
             >
                 <TableHeader columns={headerColumns}>
                     {(column) => (
@@ -413,7 +444,7 @@ const TableTemplate = ({
                             key={column.uid}
                             align={column.uid === "actions" ? "center" : "start"}
                             allowsSorting={column.allowsSorting}
-                            className="text-center"
+                        // className="text-center"
                         >
                             {column.name}
                         </TableColumn>

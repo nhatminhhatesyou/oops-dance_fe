@@ -4,7 +4,6 @@ import React from "react";
 import {
     Table, TableHeader, TableColumn, TableBody, TableRow, TableCell,
     Pagination,
-    getKeyValue,
     User
 } from "@nextui-org/react";
 

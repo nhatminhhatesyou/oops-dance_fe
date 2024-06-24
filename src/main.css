@@ -82,6 +82,10 @@ html {
   display: none;
 }
 
+.grid-container {
+  display: grid;
+}
+
 .grid {
   display: grid;
   align-items: center;

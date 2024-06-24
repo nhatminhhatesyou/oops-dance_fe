@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
                     setIsAuthenticatedState(false);
                     localStorage.setItem('isAuthenticated', 'false');
                     localStorage.setItem('user', null);
-                    console.log("err1")
+                    console.log("err1:", err)
 
                 }
             } else {
@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
             await axios.post('/logout/');
             setUser(null);
             setIsAuthenticated(false);
-            localStorage.removeItem('token'); // Clear token from localStorage
+            localStorage.removeItem('token');
             localStorage.setItem('user', null);
 
         } catch (error) {

@@ -29,19 +29,19 @@ const Register = () => {
             const response = await Axios.post('/register/', {
                 email: email,
                 username: userName,
-                password: password
+                password: password,
+                role: "guest"
             });
-            if (response.data.token) {
-                localStorage.setItem('token', response.data.token);
-                setAuth(true);
-                navigateTo('/instructor');
+            console.log("response:", response);
+            if (response.status === 201) {
+                alert("Register Success!")
+                navigateTo('/login');
             }
         } catch (error) {
             console.log(error.response.data);
             setRegisterStatus('Failed to register');
         }
     }
-
 
     return (
         <div className='registerPage flex'>
@@ -50,10 +50,6 @@ const Register = () => {
                 <div className="videoDiv">
 
                     <video src={video} autoPlay muted loop></video>
-                    {/* <div className="textDiv">
-                        <h2 className="title">A Place Where You Shine</h2>
-                        <p>Adopt the peace of nature!</p>
-                    </div> */}
 
                     <div className="footerDiv flex">
                         <span className="text">Already have an account?</span>
