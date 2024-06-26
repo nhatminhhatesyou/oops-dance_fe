@@ -8,6 +8,7 @@ import MainBody from './Main Body/MainBody';
 import Attendance from './Attendance/Attendance';
 import Students from './Students/Students';
 import UserManager from './User Manager/UserManager';
+import Charts from './Charts/Charts';
 
 
 const Body = () => {
@@ -22,6 +23,7 @@ const Body = () => {
                 <Route path="attendance-records" element={<Attendance />} />
                 <Route path="students" element={<Students />} />
                 <Route path="users" element={<UserManager />} />
+                <Route path="charts" element={<Charts />} />
 
             </Routes>
         </div>

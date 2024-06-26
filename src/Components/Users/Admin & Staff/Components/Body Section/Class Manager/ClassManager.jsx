@@ -4,8 +4,6 @@ import './ClassManager.css'
 import ClassList from './Components/Classes/ClassList';
 import Schedule from './Components/Schedules/Schedule';
 
-
-
 const ClassManager = () => {
     return (
         <div className='classManager'>

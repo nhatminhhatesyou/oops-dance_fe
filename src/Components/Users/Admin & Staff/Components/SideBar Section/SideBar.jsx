@@ -83,7 +83,7 @@ const SideBar = () => {
                         <Link to="/admin/students" className="menuLink flex">
                             <SiBytedance className='icon' />
                             <span className="smallText">
-                                Dance Students
+                                Students Manager
                             </span>
                         </Link>
                     </li>
@@ -113,7 +113,7 @@ const SideBar = () => {
                     </li>
 
                     <li className="listItem">
-                        <Link to="#" className="menuLink flex">
+                        <Link to="/admin/charts" className="menuLink flex">
                             <AiOutlinePieChart className='icon' />
                             <span className="smallText">
                                 Charts
@@ -121,7 +121,7 @@ const SideBar = () => {
                         </Link>
                     </li>
 
-                    <li className="listItem">
+                    {/* <li className="listItem">
                         <Link to="#" className="menuLink flex">
                             <MdOutlinePermContactCalendar className='icon' />
                             <span className="smallText">
@@ -137,7 +137,7 @@ const SideBar = () => {
                                 Home Page Setting
                             </span>
                         </Link>
-                    </li>
+                    </li> */}
 
 
                 </ul>

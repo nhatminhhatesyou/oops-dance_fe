@@ -9,6 +9,7 @@ import axios from '../../../../../../../axiosConfig'
 
 //Imported Template =====================>
 import SmallTableTemplate from '../../../../../../SmallTable/SmallTableTemplate';
+import StudentChart from './StudentChart';
 
 const MyClasses = () => {
     const cloudinaryBaseUrl = 'https://res.cloudinary.com/dqgu13tbd';
@@ -30,11 +31,16 @@ const MyClasses = () => {
     return (
         <div>
             {classes.length === 0 ? (
-                <div>You have not enrolled in any class</div>
+                <div className='sectionContainer'>
+                    <h2 className='text-center font-semibold text-3xl'>You have not enrolled in any class</h2>
+                </div>
             ) : (
-                <div className='myClasses'>
+                <div className='myClasses sectionContainer flex flex-col gap-4'>
+                    <div className="header text-center font-bold ">
+                        <h2 className='text-4xl'>Your Classes</h2>
+                    </div>
                     {classes.map((classItem) => (
-                        <div className="sectionContainer singleItem flex">
+                        <div className=" singleItem flex gap-4">
                             <div className='classImgDiv flex'>
                                 <div className="img">
                                     <img src={`${cloudinaryBaseUrl}/${classItem?.image}` || classImagePlaceHolder} />
@@ -110,6 +116,12 @@ const MyClasses = () => {
                     ))}
                 </div>
             )}
+
+            <div className="sectionContainer">
+                <StudentChart
+                    studentId={user.id}
+                />
+            </div>
         </div>
 
     )

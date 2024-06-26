@@ -143,6 +143,16 @@ const TableTemplate = ({
         // console.log(item);
 
         switch (columnKey) {
+            case "class":
+                return (
+                    <div className="text-left">
+                        <User
+                            avatarProps={{ radius: "lg", src: `${cloudinaryBaseUrl}/${item.class_img}` }}
+                            name={item.class_name}
+                        >
+                        </User>
+                    </div>
+                );
             case "status":
                 return (
                     <Chip className="capitalize" color={statusColorMap[cellValue]} size="sm" variant="flat">

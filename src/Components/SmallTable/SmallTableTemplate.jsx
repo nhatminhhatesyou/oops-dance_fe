@@ -4,12 +4,26 @@ import React from "react";
 import {
     Table, TableHeader, TableColumn, TableBody, TableRow, TableCell,
     Pagination,
-    User
+    User,
+    Chip
 } from "@nextui-org/react";
 
 const SmallTableTemplate = ({ data, columns, rowsPerPage = 4 }) => {
-    const [page, setPage] = React.useState(1);
+    const statusColorMap = {
+        attend: "success",
+        present: "success",
+        completed: "success",
+        absent: "danger",
+        late: "warning",
+        pending: "warning",
+        confirmed: "success",
+        canceled: "danger",
+        waiting: "secondary",
+        cancelled: "danger"
+    };
 
+    const cloudinaryBaseUrl = 'https://res.cloudinary.com/dqgu13tbd';
+    const [page, setPage] = React.useState(1);
     const pages = Math.ceil(data.length / rowsPerPage);
 
     const items = React.useMemo(() => {
@@ -22,6 +36,23 @@ const SmallTableTemplate = ({ data, columns, rowsPerPage = 4 }) => {
     const renderCell = (item, columnKey) => {
         const cellValue = item[columnKey];
         switch (columnKey) {
+            case "status":
+                return (
+                    <Chip className="capitalize" color={statusColorMap[cellValue]} size="sm" variant="flat">
+                        {cellValue}
+                    </Chip>
+                );
+
+            case "class":
+                return (
+                    <div className="text-left">
+                        <User
+                            avatarProps={{ radius: "lg", src: `${cloudinaryBaseUrl}/${item.class_img}` }}
+                            name={item.class_name}
+                        >
+                        </User>
+                    </div>
+                );
             case "email":
                 return <a href={`mailto:${cellValue}`} className="text-blue-500">{cellValue}</a>;
             case "user":
@@ -65,7 +96,7 @@ const SmallTableTemplate = ({ data, columns, rowsPerPage = 4 }) => {
         >
             <TableHeader>
                 {columns.map((column) => (
-                    <TableColumn key={column.uid} className="text-center">{column.name}</TableColumn>
+                    <TableColumn key={column.uid} className="">{column.name}</TableColumn>
                 ))}
             </TableHeader>
             <TableBody items={items}>

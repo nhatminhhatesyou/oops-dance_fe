@@ -109,11 +109,11 @@ const ClassList = () => {
     };
 
     //TABLE DEPENDENCIES
-    const INITIAL_VISIBLE_COLUMNS = ["class_id", "class", "class_lesson", "room", "instructor", "schedule", "price", "actions"];
+    const INITIAL_VISIBLE_COLUMNS = ["class_id", "class_name", "class_lesson", "room", "instructor", "schedule", "price", "actions"];
 
     const attendanceColumns = [
         { name: "Class ID", uid: "id", allowsSorting: true },
-        { name: "Class", uid: "class", allowsSorting: true },
+        { name: "Class's name", uid: "class_name", allowsSorting: true },
         { name: "Lesson", uid: "class_lesson", allowsSorting: true },
         { name: "Room", uid: "room", allowsSorting: true },
         { name: "Instructor", uid: "instructor", allowsSorting: true },
@@ -132,7 +132,7 @@ const ClassList = () => {
 
     const formattedClassList = classes.map(record => ({
         id: record.id,
-        class: record.class_name,
+        class_name: record.class_name,
         instructor_id: record.instructor_detail.id,
         instructor_name: record.instructor_detail.username,
         instructor_email: record.instructor_detail.email,

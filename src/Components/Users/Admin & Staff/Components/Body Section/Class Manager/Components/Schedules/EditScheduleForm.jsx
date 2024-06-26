@@ -34,8 +34,16 @@ const EditScheduleForm = ({ isOpen, onOpenChange, fetchSchedule, scheduleId }) =
         }
     }, [scheduleId]);
 
+    const parseTime = (timeString) => {
+        const [hours, minutes] = timeString.split(':').map(Number);
+        return new Date(0, 0, 0, hours, minutes);
+    }
+
     const handleSubmit = async () => {
-        if (startTime <= endTime) {
+        const startTimeObj = parseTime(startTime);
+        const endTimeObj = parseTime(endTime);
+
+        if (startTimeObj >= endTimeObj) {
             setStatus("End time must be after start time");
             return;
         }

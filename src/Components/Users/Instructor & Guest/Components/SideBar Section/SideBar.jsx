@@ -102,14 +102,14 @@ const SideBar = () => {
                 </h3>
                 <ul className="menuLists grid">
 
-                    <li className="listItem">
+                    {/* <li className="listItem">
                         <Link to="chart" className="menuLink flex">
                             <AiOutlinePieChart className='icon' />
                             <span className="smallText">
                                 Charts
                             </span>
                         </Link>
-                    </li>
+                    </li> */}
 
                     <li className="listItem">
                         <Link to="my-profile" className="menuLink flex">

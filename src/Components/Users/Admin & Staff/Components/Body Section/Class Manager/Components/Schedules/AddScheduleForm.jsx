@@ -19,12 +19,16 @@ const AddScheduleForm = ({ isOpen, onOpenChange, fetchSchedule }) => {
     const [endTime, setEndTime] = useState('');
     const [status, setStatus] = useState('');
 
-    const handleSubmit = async () => {
-        console.log(("start time", startTime));
-        console.log(("end time", endTime));
-        console.log(("day", dayOfWeek));
+    const parseTime = (timeString) => {
+        const [hours, minutes] = timeString.split(':').map(Number);
+        return new Date(0, 0, 0, hours, minutes);
+    }
 
-        if (startTime <= endTime) {
+    const handleSubmit = async () => {
+        const startTimeObj = parseTime(startTime);
+        const endTimeObj = parseTime(endTime);
+
+        if (startTimeObj >= endTimeObj) {
             setStatus("End time must be after start time");
             return;
         }
