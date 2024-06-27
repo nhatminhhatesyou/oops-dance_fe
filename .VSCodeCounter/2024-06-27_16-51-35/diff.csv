@@ -1,0 +1,12 @@
+"filename", "language", "JavaScript", "HTML", "JSON", "JavaScript JSX", "Markdown", "XML", "comment", "blank", "total"
+"/Users/MacbookProCuaNminh/Desktop/project/oopsdance_fe/.eslintrc.cjs", "JavaScript", -20, 0, 0, 0, 0, 0, 0, -1, -21
+"/Users/MacbookProCuaNminh/Desktop/project/oopsdance_fe/README.md", "Markdown", 0, 0, 0, 0, -5, 0, 0, -4, -9
+"/Users/MacbookProCuaNminh/Desktop/project/oopsdance_fe/hi.jsx", "JavaScript JSX", 0, 0, 0, -112, 0, 0, 0, -6, -118
+"/Users/MacbookProCuaNminh/Desktop/project/oopsdance_fe/index.html", "HTML", 0, -13, 0, 0, 0, 0, 0, -3, -16
+"/Users/MacbookProCuaNminh/Desktop/project/oopsdance_fe/package-lock.json", "JSON", 0, 0, -10425, 0, 0, 0, 0, -1, -10426
+"/Users/MacbookProCuaNminh/Desktop/project/oopsdance_fe/package.json", "JSON", 0, 0, -47, 0, 0, 0, 0, -1, -48
+"/Users/MacbookProCuaNminh/Desktop/project/oopsdance_fe/postcss.config.cjs", "JavaScript", -6, 0, 0, 0, 0, 0, 0, 0, -6
+"/Users/MacbookProCuaNminh/Desktop/project/oopsdance_fe/public/vite.svg", "XML", 0, 0, 0, 0, 0, -1, 0, 0, -1
+"/Users/MacbookProCuaNminh/Desktop/project/oopsdance_fe/tailwind.config.cjs", "JavaScript", -18, 0, 0, 0, 0, 0, -5, -2, -25
+"/Users/MacbookProCuaNminh/Desktop/project/oopsdance_fe/vite.config.js", "JavaScript", -5, 0, 0, 0, 0, 0, -1, -2, -8
+"Total", "-", -49, -13, -10472, -112, -5, -1, -6, -20, -10678

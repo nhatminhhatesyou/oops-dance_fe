@@ -16,38 +16,40 @@ export const AuthProvider = ({ children }) => {
         return localStorage.getItem('isAuthenticated') === 'true';
     });
 
-    useEffect(() => {
-        const checkAuth = async () => {
-            const token = localStorage.getItem('token');
-            if (token) {
-                try {
-                    const response = await axios.get('/test-token', {
-                        headers: {
-                            Authorization: `Token ${token}`,
-                        },
-                    });
-                    setUser(response.data.user);
-                    setIsAuthenticatedState(true);
-                    localStorage.setItem('isAuthenticated', 'true');
-                    localStorage.setItem('user', JSON.stringify(response.data.user));
-                } catch (err) {
-                    setUser(null);
-                    setIsAuthenticatedState(false);
-                    localStorage.setItem('isAuthenticated', 'false');
-                    localStorage.setItem('user', null);
-                    console.log("err1:", err)
-
-                }
-            } else {
+    const checkAuth = async () => {
+        console.log("check auth ne");
+        const token = localStorage.getItem('token');
+        if (token) {
+            try {
+                const response = await axios.get('/test-token', {
+                    headers: {
+                        Authorization: `Token ${token}`,
+                    },
+                });
+                console.log("user wtf", response.data.user);
+                setUser(response.data.user);
+                setIsAuthenticatedState(true);
+                localStorage.setItem('isAuthenticated', 'true');
+                localStorage.setItem('user', JSON.stringify(response.data.user));
+            } catch (err) {
                 setUser(null);
                 setIsAuthenticatedState(false);
                 localStorage.setItem('isAuthenticated', 'false');
                 localStorage.setItem('user', null);
-                console.log("err2")
+                console.log("err1:", err)
 
             }
-        };
+        } else {
+            setUser(null);
+            setIsAuthenticatedState(false);
+            localStorage.setItem('isAuthenticated', 'false');
+            localStorage.setItem('user', null);
+            console.log("err2")
 
+        }
+    };
+
+    useEffect(() => {
         checkAuth();
     }, []);
 

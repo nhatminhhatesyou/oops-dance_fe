@@ -194,8 +194,6 @@ const Search = () => {
                 full_payment: (deposit * 2)
             });
 
-            console.log(response);
-            console.log(response.data.message);
             if (response.data.message === "Success") {
                 // Success
                 setActiveForm('formDiv');
@@ -400,7 +398,7 @@ const Search = () => {
             <div className={blur}></div>
 
             {showConfirmation && (
-                <div className="confirmation">
+                <div className="confirmation flex flex-col justify-center items-center">
                     <IoIosCloseCircle className='icon' onClick={removeConfirmation} />
                     <h2>{confirmationMessage}</h2>
                     <img src={qrCodeUrl} alt="QR Code for Payment" />

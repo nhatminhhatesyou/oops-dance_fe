@@ -5,7 +5,6 @@ import { useAuth } from '../../../../AuthContext';
 
 const AvatarUser = () => {
     const { user, handleLogout } = useAuth();
-    console.log("user:", user);
     return (
         <div className="flex items-center gap-4">
             <Dropdown

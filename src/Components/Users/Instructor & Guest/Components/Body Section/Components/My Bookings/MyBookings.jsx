@@ -3,8 +3,11 @@ import { useAuth } from '../../../../../../../AuthContext'
 import axios from '../../../../../../../axiosConfig'
 import './MyBookings.css'
 
-//IMPORTED ICONS ==============>
-import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
+//IMPORTED Template ==============>
+import TableTemplate from '../../../../../../Table/TableTemplate';
+import { VerticalDotsIcon } from '../../../../../../Table/VerticalDotsIcon';
+import { Dropdown, DropdownItem, DropdownTrigger, Button, DropdownMenu } from "@nextui-org/react";
+
 
 const MyBookings = () => {
     const { user } = useAuth();
@@ -73,132 +76,158 @@ const MyBookings = () => {
     const handleFilterValueChange = (e) => {
         setFilterValue(e.target.value);
     };
+
+
+
+    //TABLE DEPENDENCIES ==========>
+    const columns = [
+        { name: "Booking ID", uid: "id" },
+        { name: "Guest", uid: "guest" },
+        { name: "Room", uid: "room" },
+        { name: "Date", uid: "date", allowsSorting: true },
+        { name: "Checkin", uid: "checkin_time" },
+        { name: "Checkout", uid: "checkout_time" },
+        { name: "Deposit", uid: "deposit" },
+        { name: "Deposit Status", uid: "deposit_status", allowsSorting: true },
+        { name: "Bank Transfer", uid: "bank_transfer" },
+        { name: "Cash", uid: "cash" },
+        { name: "Status", uid: "status", allowsSorting: true },
+        { name: "Details", uid: "details" },
+        { name: "Actions", uid: "actions" },
+    ];
+    const columns_all = [
+        { name: "Booking ID", uid: "id" },
+        { name: "Guest", uid: "guest" },
+        { name: "Room", uid: "room" },
+        { name: "Date", uid: "date", allowsSorting: true },
+        { name: "Checkin", uid: "checkin_time" },
+        { name: "Checkout", uid: "checkout_time" },
+        { name: "Deposit", uid: "deposit" },
+        { name: "Deposit Status", uid: "deposit_status", allowsSorting: true },
+        { name: "Bank Transfer", uid: "bank_transfer" },
+        { name: "Cash", uid: "cash" },
+        { name: "Status", uid: "status", allowsSorting: true },
+        { name: "Details", uid: "details" },
+    ];
+
+    const INITIAL_VISIBLE_COLUMNS = [
+        "id",
+        "guest",
+        "room",
+        "date",
+        "checkin_time",
+        "checkout_time",
+        "deposit",
+        "deposit_status",
+        "bank_transfer",
+        "cash",
+        "status",
+        "details",
+        "actions"
+    ];
+    const INITIAL_VISIBLE_COLUMNS_ALL = [
+        "id",
+        "guest",
+        "room",
+        "date",
+        "checkin_time",
+        "checkout_time",
+        "deposit",
+        "deposit_status",
+        "bank_transfer",
+        "cash",
+        "status",
+        "details",
+    ];
+
+
+    const statusOptions = [
+        { uid: "pending", name: "pending" },
+        { uid: "waiting", name: "Waiting" },
+        { uid: "in_progress", name: "In_progress" },
+        { uid: "cancelled", name: "Cancelled" },
+        { uid: "completed", name: "Completed" },
+    ];
+
+    const formattedBookingList = bookings.filter(booking => booking.deposit_status === 'waiting').map(record => ({
+        id: record.id,
+        guest_id: record.guest,
+        guest_avatar: record.guest_detail.avatar,
+        guest_email: record.guest_detail.email,
+        guest_username: record.guest_detail.username,
+        room: record.room_id,
+        date: record.date,
+        checkin_time: record.checkin_time,
+        checkout_time: record.checkout_time,
+        deposit: record.deposit,
+        deposit_status: record.deposit_status,
+        bank_transfer: record.bank_transfer,
+        cash: record.cash,
+        status: record.status_name,
+        details: record.details,
+        actions: "Actions",
+    }));
+    const formattedAllBookingList = bookings.map(record => ({
+        id: record.id,
+        guest_id: record.guest,
+        guest_avatar: record.guest_detail.avatar,
+        guest_email: record.guest_detail.email,
+        guest_username: record.guest_detail.username,
+        room: record.room_id,
+        date: record.date,
+        checkin_time: record.checkin_time,
+        checkout_time: record.checkout_time,
+        deposit: record.deposit,
+        deposit_status: record.deposit_status,
+        bank_transfer: record.bank_transfer,
+        cash: record.cash,
+        status: record.status_name,
+        details: record.details,
+        actions: "Actions",
+    }));
+
+    const renderActions = (item) => (
+        <Dropdown>
+            <DropdownTrigger>
+                <Button isIconOnly size="sm" variant="light">
+                    <VerticalDotsIcon className="text-default-300" />
+                </Button>
+            </DropdownTrigger>
+            <DropdownMenu>
+                <DropdownItem >Finish Your Payment</DropdownItem>
+                <DropdownItem >Cancel Bookings</DropdownItem>
+            </DropdownMenu>
+        </Dropdown>
+    );
     return (
         <div className='myBookings'>
             <div className="listing sectionContainer flex">
-                <div className='heading'>
-                    <h1>Unpaid Deposits</h1>
-                </div>
-                <div className="filterDiv">
-                    <label htmlFor="filterType">Filter By:</label>
-                    <select id="filterType" value={filterType} onChange={handleFilterTypeChange}>
-                        <option value="all">All Bookings</option>
-                        <option value="room">Room ID</option>
-                        <option value="date">Date</option>
-                        <option value="status">Status</option>
-                    </select>
-                    {filterType !== 'all' && (
-                        <input
-                            type="text"
-                            placeholder={`Enter ${filterType}`}
-                            value={filterValue}
-                            onChange={handleFilterValueChange}
-                        />
-                    )}
+                <div className='header'>
+                    <h1 className='font-bold text-3xl'>Unpaid Deposits</h1>
                 </div>
 
-                <div className="tableDiv flex">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th onClick={() => handleSort('id')}>Booking ID</th>
-                                <th onClick={() => handleSort('guest')}>Guest ID</th>
-                                <th onClick={() => handleSort('room')}>Room</th>
-                                <th onClick={() => handleSort('date')}>Date</th>
-                                <th onClick={() => handleSort('checkin_time')}>Checkin</th>
-                                <th onClick={() => handleSort('checkout_time')}>Checkout</th>
-                                <th onClick={() => handleSort('deposit')}>Deposit</th>
-                                <th onClick={() => handleSort('deposit_status')}>Deposit Status</th>
-                                <th onClick={() => handleSort('bank_transfer')}>Bank Transfer</th>
-                                <th onClick={() => handleSort('cash')}>Cash</th>
-                                <th onClick={() => handleSort('status_name')}>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredBookings.filter(booking => booking.deposit_status === 'waiting').map((bookingItem) => (
-                                <tr key={bookingItem.id}>
-                                    <td>{bookingItem.id}</td>
-                                    <td>{bookingItem.guest}</td>
-                                    <td>{bookingItem.room}</td>
-                                    <td>{bookingItem.date}</td>
-                                    <td>{bookingItem.checkin_time}</td>
-                                    <td>{bookingItem.checkout_time}</td>
-                                    <td>{bookingItem.deposit}</td>
-                                    <td>{bookingItem.deposit_status}</td>
-                                    <td>{bookingItem.bank_transfer}</td>
-                                    <td>{bookingItem.cash}</td>
-                                    <td>{bookingItem.status_name}</td>
-                                    <td>
-                                        <button className='btn'>Finish Your Payment</button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-
-                </div>
+                <TableTemplate
+                    columns={columns}
+                    data={formattedBookingList}
+                    statusOptions={statusOptions}
+                    initialVisibleColumns={INITIAL_VISIBLE_COLUMNS}
+                    renderActions={renderActions}
+                    AddNewBtn_active="hidden"
+                />
             </div>
 
             <div className="listing sectionContainer flex">
-                <div className='heading'>
-                    <h1>All Bookings</h1>
-                </div>
-                <div className="filterDiv">
-                    <label htmlFor="filterType">Filter By:</label>
-                    <select id="filterType" value={filterType} onChange={handleFilterTypeChange}>
-                        <option value="all">All Bookings</option>
-                        <option value="room">Room ID</option>
-                        <option value="date">Date</option>
-                        <option value="status">Status</option>
-                    </select>
-                    {filterType !== 'all' && (
-                        <input
-                            type="text"
-                            placeholder={`Enter ${filterType}`}
-                            value={filterValue}
-                            onChange={handleFilterValueChange}
-                        />
-                    )}
+                <div className='header'>
+                    <h1 className='font-bold text-3xl'>All Bookings</h1>
                 </div>
 
-                <div className="tableDiv flex">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th onClick={() => handleSort('id')}>Booking ID</th>
-                                <th onClick={() => handleSort('guest')}>Guest ID</th>
-                                <th onClick={() => handleSort('room')}>Room</th>
-                                <th onClick={() => handleSort('date')}>Date</th>
-                                <th onClick={() => handleSort('checkin_time')}>Checkin</th>
-                                <th onClick={() => handleSort('checkout_time')}>Checkout</th>
-                                <th onClick={() => handleSort('deposit')}>Deposit</th>
-                                <th onClick={() => handleSort('deposit_status')}>Deposit Status</th>
-                                <th onClick={() => handleSort('bank_transfer')}>Bank Transfer</th>
-                                <th onClick={() => handleSort('cash')}>Cash</th>
-                                <th onClick={() => handleSort('status_name')}>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredBookings.map((bookingItem) => (
-                                <tr key={bookingItem.id}>
-                                    <td>{bookingItem.id}</td>
-                                    <td>{bookingItem.guest}</td>
-                                    <td>{bookingItem.room}</td>
-                                    <td>{bookingItem.date}</td>
-                                    <td>{bookingItem.checkin_time}</td>
-                                    <td>{bookingItem.checkout_time}</td>
-                                    <td>{bookingItem.deposit}</td>
-                                    <td>{bookingItem.deposit_status}</td>
-                                    <td>{bookingItem.bank_transfer}</td>
-                                    <td>{bookingItem.cash}</td>
-                                    <td>{bookingItem.status_name}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-
-                </div>
+                <TableTemplate
+                    columns={columns_all}
+                    data={formattedAllBookingList}
+                    statusOptions={statusOptions}
+                    initialVisibleColumns={INITIAL_VISIBLE_COLUMNS_ALL}
+                    AddNewBtn_active="hidden"
+                />
             </div>
         </div>
     )

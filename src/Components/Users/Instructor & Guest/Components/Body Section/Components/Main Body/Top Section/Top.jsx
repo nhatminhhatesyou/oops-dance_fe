@@ -73,10 +73,6 @@ const Top = () => {
 
     }, [user]);
 
-
-    console.log("User avatar link :", userInfo.avatar)
-    console.log("Class count  :", classCount)
-
     return (
         <div className='instructorTopSection'>
             <div className="headerSection flex">

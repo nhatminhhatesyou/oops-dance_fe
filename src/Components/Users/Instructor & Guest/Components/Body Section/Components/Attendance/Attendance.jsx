@@ -105,20 +105,7 @@ const Attendance = () => {
 
     return (
         <div className='attendance '>
-            <div className="historyDiv sectionContainer">
-                <div className="header">
-                    <h2>Your Attendance Records</h2>
-                </div>
-                <div className='tableDiv'>
-                    <TableTemplate
-                        columns={columns}
-                        data={formattedData}
-                        statusOptions={statusOptions}
-                        initialVisibleColumns={columns.map(col => col.uid)}
-                        AddNewBtn_active="hidden"
-                    />
-                </div>
-            </div>
+
 
             <div className="todayClassesDiv sectionContainer flex">
                 <div className="heading">
@@ -168,6 +155,20 @@ const Attendance = () => {
 
             </div>
 
+            <div className="historyDiv sectionContainer">
+                <div className="header">
+                    <h2>Your Attendance Records</h2>
+                </div>
+                <div className='tableDiv'>
+                    <TableTemplate
+                        columns={columns}
+                        data={formattedData}
+                        statusOptions={statusOptions}
+                        initialVisibleColumns={columns.map(col => col.uid)}
+                        AddNewBtn_active="hidden"
+                    />
+                </div>
+            </div>
             <CheckinForm
                 isOpen={isCheckinOpen}
                 onOpenChange={onCheckinOpenChange}

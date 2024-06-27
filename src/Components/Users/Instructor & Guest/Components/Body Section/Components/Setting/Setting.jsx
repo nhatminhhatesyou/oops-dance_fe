@@ -1,7 +1,11 @@
-import React from 'react'
-import { Card, CardFooter, Image, Button, Input } from "@nextui-org/react";
+import { React, useState, useEffect } from 'react'
+import { Card, CardFooter, Image, Button, Input, DateInput } from "@nextui-org/react";
 import { useAuth } from '../../../../../../../AuthContext';
+import axios from '../../../../../../../axiosConfig';
+import { parseDate } from "@internationalized/date";
+import { format, parseISO } from 'date-fns';
 import './setting.css'
+
 //imported images ================>
 import studio_img from "../../../../../../Assets/studio-Image2.jpg"
 import video from '../../../../Assets_Instructor/video_short.mp4'
@@ -9,6 +13,76 @@ import video from '../../../../Assets_Instructor/video_short.mp4'
 
 const Setting = () => {
     const { user } = useAuth();
+    const [dateOfBirth, setDateOfBirth] = useState("");
+    const [myDate, setMyDate] = useState("");
+
+    const [userData, setUserData] = useState({
+        username: '',
+        full_name: '',
+        email: '',
+        contact_number: '',
+        date_of_birth: '',
+        role: ''
+    });
+    const [loading, setLoading] = useState(false);
+
+
+    useEffect(() => {
+        if (user.id) {
+            axios.get(`/users/${user.id}/`)
+                .then(response => {
+                    setUserData(response.data);
+                    // console.log("ISO DATE:", format(parseISO(response.data.date_of_birth), " YYYY-MM-DDThh:mm:ssTZD"));
+                    // console.log("ISO DATE:", parseISO(response.data.date_of_birth));
+                    // console.log("DATE:", parseISO(response.data.date_of_birth));
+                    setMyDate(new Date(response.data.date_of_birth))
+                    const datecl = parseDate(format(new Date(response.data.date_of_birth), 'yyyy-MM-dd'))
+                    // console.log("DATE lozzz:", parseDate(format(new Date(response.data.date_of_birth), 'yyyy-MM-dd')));
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+        }
+    }, [user.id]);
+
+    useEffect(() => {
+        if (userData.date_of_birth) {
+            // console.log("DATE cakkk:", parseDate(format(new Date(user.date_of_birth), 'yyyy-MM-dd')));
+
+        }
+    }, [userData])
+
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setUserData({ ...userData, [name]: value });
+    };
+
+    const handleDateChange = (value) => {
+        const formattedDate = format(new Date(value), 'yyyy-MM-dd');
+        setUserData({ ...userData, date_of_birth: formattedDate });
+    };
+
+    const handleSubmit = async () => {
+        setLoading(true);
+        console.log("data:", userData);
+        try {
+            const response = await axios.patch(`/users/${user.id}/`, userData);
+
+            if (response.status === 200) {
+                alert("User updated successfully")
+                fetchUsers();
+                onOpenChange(false);
+            } else {
+                alert("Error updating user");
+            }
+        } catch (error) {
+            alert("Error updating user");
+            console.error("Error updating user:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <div className='settings-user flex flex-col gap-4'>
@@ -50,10 +124,42 @@ const Setting = () => {
                             <span className="font-bold text-xl">General Information</span>
                         </div>
                         <div className="grid grid-cols-1  md:grid-cols-2 gap-4 mb-6">
-                            <Input label="Full name" placeholder="Enter your full name" />
-                            <Input label="Email" placeholder="Enter your email" />
-                            <Input label="Contact number" placeholder="Enter your contact number" />
-                            <Input label="Date of birth" placeholder="Enter your date of birth" />
+                            <Input
+                                clearable
+                                bordered
+                                fullWidth
+                                label="Full Name"
+                                name="full_name"
+                                value={userData.full_name}
+                                onChange={handleInputChange}
+                            />
+                            <Input
+                                clearable
+                                bordered
+                                fullWidth
+                                label="Email"
+                                name="email"
+                                value={userData.email}
+                                onChange={handleInputChange}
+                            />
+                            <Input
+                                clearable
+                                bordered
+                                fullWidth
+                                label="Contact Number"
+                                name="contact_number"
+                                value={userData.contact_number}
+                                onChange={handleInputChange}
+                            />
+                            <DateInput
+                                fullWidth
+                                label="Date of Birth"
+                                {...(user.date_of_birth && {
+                                    defaultValue: parseDate(format(new Date(user.date_of_birth), 'yyyy-MM-dd'))
+                                })}
+
+                                onChange={handleDateChange}
+                            />
                         </div>
                         <div className="button text-center mt-auto">
                             <Button className="bg-blue-500 text-white">Save All</Button>
