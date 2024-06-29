@@ -51,7 +51,7 @@ const Register = () => {
 
                     <video src={video} autoPlay muted loop></video>
 
-                    <div className="footerDiv flex">
+                    <div className="footerDiv flex items-center">
                         <span className="text">Already have an account?</span>
                         <Link to={'/login'}>
                             <button className='btn'>Log In</button>

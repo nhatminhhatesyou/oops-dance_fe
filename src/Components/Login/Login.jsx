@@ -49,6 +49,8 @@ const Login = () => {
                 }
             } else if (error.request) {
                 console.log(error.request);
+                setLoginStatus(error.response.detail);
+
             } else {
                 console.log('Error', error.message);
             }
@@ -77,7 +79,7 @@ const Login = () => {
             <div className="container flex">
                 <div className="videoDiv">
                     <img src={loginImg} alt="Login" />
-                    <div className="footerDiv flex">
+                    <div className="footerDiv flex items-center">
                         <span className="text">Don't have an account?</span>
                         <Link to={'/register'}>
                             <button className='btn'>Sign Up</button>

@@ -10,7 +10,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(() => {
         const storedUser = localStorage.getItem('user');
-        return storedUser ? JSON.parse(storedUser) : 'null';
+        return storedUser ? JSON.parse(storedUser) : null;
     });
     const [isAuthenticated, setIsAuthenticatedState] = useState(() => {
         return localStorage.getItem('isAuthenticated') === 'true';
@@ -18,6 +18,7 @@ export const AuthProvider = ({ children }) => {
 
     const checkAuth = async () => {
         const token = localStorage.getItem('token');
+        console.log("token ne:", token);
         if (token) {
             try {
                 const response = await axios.get('/test-token', {
@@ -25,6 +26,11 @@ export const AuthProvider = ({ children }) => {
                         Authorization: `Token ${token}`,
                     },
                 });
+                console.log("response:", response);
+                if (response.detail) {
+                    console.log("remove token!");
+                    localStorage.removeItem('token')
+                }
                 setUser(response.data.user);
                 setIsAuthenticatedState(true);
                 localStorage.setItem('isAuthenticated', 'true');
@@ -34,6 +40,7 @@ export const AuthProvider = ({ children }) => {
                 setIsAuthenticatedState(false);
                 localStorage.setItem('isAuthenticated', 'false');
                 localStorage.setItem('user', null);
+                localStorage.removeItem('token')
                 console.log("err1:", err)
 
             }
