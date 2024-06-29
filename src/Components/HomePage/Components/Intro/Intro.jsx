@@ -21,7 +21,7 @@ const Intro = () => {
                     <img src={imageGrid} />
                 </div>
                 <div className="textDiv">
-                    <h2 data-aos='fade-down' data-aos-duration='2500'>Dance, Thrive - A Studio That Makes A Difference </h2>
+                    <h2 data-aos='fade-down' data-aos-duration='2500' className='text-3xl font-semibold'>Dance, Thrive - A Studio That Makes A Difference </h2>
 
                     <div className="grids grid">
 

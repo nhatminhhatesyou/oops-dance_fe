@@ -17,7 +17,6 @@ export const AuthProvider = ({ children }) => {
     });
 
     const checkAuth = async () => {
-        console.log("check auth ne");
         const token = localStorage.getItem('token');
         if (token) {
             try {
@@ -26,7 +25,6 @@ export const AuthProvider = ({ children }) => {
                         Authorization: `Token ${token}`,
                     },
                 });
-                console.log("user wtf", response.data.user);
                 setUser(response.data.user);
                 setIsAuthenticatedState(true);
                 localStorage.setItem('isAuthenticated', 'true');

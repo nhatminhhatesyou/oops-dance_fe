@@ -17,8 +17,8 @@ const Support = () => {
         <div className='support container section'>
             <div className="sectionContainer">
                 <div className="titlesDiv">
-                    <small>studio support</small>
-                    <h2>Plan your booking with confidence</h2>
+                    <small >studio support</small>
+                    <h2 className='font-bold'>Plan your booking with confidence</h2>
                     <p>Find help with booking and dancing plans, see what to expect
                         along the journey!</p>
                 </div>

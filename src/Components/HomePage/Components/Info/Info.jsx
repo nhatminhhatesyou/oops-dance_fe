@@ -20,10 +20,7 @@ const Info = () => {
             <div className="infoContainer container">
 
                 <div className="titleDiv flex">
-                    <h2 data-aos='fade-right' data-aos-duration='2500'> Crafting Unforgettable Experiences Just For You</h2>
-                    {/* <button data-aos='fade-left' data-aos-duration='2500' className='btn'>
-                        View All
-                    </button> */}
+                    <h2 data-aos='fade-right' data-aos-duration='2500' className='font-bold text-3xl'> Crafting Unforgettable Experiences Just For You</h2>
                 </div>
 
                 <div className="cardsDiv grid">

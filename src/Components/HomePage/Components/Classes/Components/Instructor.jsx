@@ -1,11 +1,11 @@
 import React from 'react'
 import { Card, CardBody, CardFooter, CardHeader, Image } from '@nextui-org/react'
 
-import ami_img from '../../Assets_HomePage/ami_rmbg.png'
-import bin_img from '../../Assets_HomePage/bin_rmbg.png'
-import dolinh_img from '../../Assets_HomePage/dolinh_rmbg.png'
-import chaeng_img from '../../Assets_HomePage/chaeng_rmbg.png'
-import ducbo_img from '../../Assets_HomePage/ducbo_rmbg.png'
+import ami_img from '../../../Assets_HomePage/ami_rmbg.png'
+import bin_img from '../../../Assets_HomePage/bin_rmbg.png'
+import dolinh_img from '../../../Assets_HomePage/dolinh_rmbg.png'
+import chaeng_img from '../../../Assets_HomePage/chaeng_rmbg.png'
+import ducbo_img from '../../../Assets_HomePage/ducbo_rmbg.png'
 
 const instructors = [
     { name: "Ami", description: "Ami is a renowned K-pop choreographer.", image: ami_img },

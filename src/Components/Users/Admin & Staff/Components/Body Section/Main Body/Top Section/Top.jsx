@@ -1,5 +1,8 @@
-import React from 'react'
+import { React, useState, useEffect } from 'react'
 import './top.css'
+import { useNavigate } from 'react-router-dom'
+import axios from '../../../../../../../axiosConfig';
+import { useAuth } from '../../../../../../../AuthContext';
 
 //Imported icons ================>
 import { BiSearchAlt } from "react-icons/bi";
@@ -16,6 +19,37 @@ import video from '../../../../Assets_Admin/video_short.mp4'
 
 
 const Top = () => {
+    const { user } = useAuth();
+    const [monthlyBookingCount, setMonthlyBookingCount] = useState("")
+    const [totalStudentCount, setTotalStudentCount] = useState("")
+    const navigateTo = useNavigate()
+    const handleNavigate = (path) => {
+        navigateTo(path);
+    }
+
+    const fetchBookingCount = async () => {
+        try {
+            const response = await axios.get(`/monthly-booking-count/`);
+            const data = response.data.monthly_booking_count;
+            setMonthlyBookingCount(data)
+        } catch (error) {
+            console.error('Error fetching booking data:', error);
+        }
+    };
+    const fetchStudentCount = async () => {
+        try {
+            const response = await axios.get(`/total-student-count/`);
+            const data = response.data.total_student_count;
+            setTotalStudentCount(data)
+        } catch (error) {
+            console.error('Error fetching student data:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchBookingCount();
+        fetchStudentCount();
+    }, []);
     return (
         <div className='adminTopSection'>
             <div className="headerSection flex">
@@ -33,7 +67,7 @@ const Top = () => {
                     <TbMessageCircle className='icon' />
                     <RiNotificationLine className='icon' />
                     <div className="adminImage">
-                        <img src={user1} />
+                        <img src={user.avatar_url} />
                     </div>
                 </div>
 
@@ -43,8 +77,8 @@ const Top = () => {
 
                 <div className="rightCard flex">
                     <div className="buttons flex">
-                        <button className='btn'>Revenue</button>
-                        <button className='btn transparent'>Top Instructors</button>
+                        <button onClick={() => handleNavigate('/admin/attendance-records')} className='btn'>Attendance List</button>
+                        <button onClick={() => handleNavigate('/admin/charts')} className='btn transparent'>Top Classes</button>
                     </div>
 
                     <div className="videoDiv">
@@ -58,13 +92,12 @@ const Top = () => {
                             <h1>Studio Stats</h1>
 
                             <div className="studioStats ">
-                                <span className='rooms flex'>
+                                <span className='rooms flex flex-row'>
                                     <div className="title">
-                                        <h3>Rooms status</h3>
+                                        <h3>Number of bookings this month:</h3>
                                     </div>
                                     <div className="roomsStatus">
-                                        <small>Small room: </small>  <small>ocupied by</small><br />
-                                        <small>Large room: </small>  <small>ocupied by</small><br />
+                                        <small> {monthlyBookingCount} </small>
                                     </div>
                                 </span>
 
@@ -73,7 +106,7 @@ const Top = () => {
                                         <h3>Number of participants this month:</h3>
                                     </div>
                                     <div className="participantsStatus">
-                                        <small>1000 </small>
+                                        <small>{totalStudentCount} </small>
                                     </div>
                                 </span>
                             </div>

@@ -18,7 +18,7 @@ const Home = () => {
         <div className='home flex container'>
 
             <div className="mainText flex">
-                <h1 data-aos='fade-up' data-aos-duration='2500'>Create Slay Memories With Us!</h1>
+                <h1 data-aos='fade-up' data-aos-duration='2500' className='text-5xl mb-4'>Create Slay Memories With Us!</h1>
             </div>
 
             <div data-aos='fade-down' data-aos-duration='2500' className="homeImages flex">

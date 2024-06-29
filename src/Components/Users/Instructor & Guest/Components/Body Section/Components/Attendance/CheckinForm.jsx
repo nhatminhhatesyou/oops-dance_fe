@@ -16,7 +16,6 @@ const CheckinForm = ({ isOpen, onOpenChange, classData, user, fetchAttendanceLis
     const [className, setClassName] = useState('');
     const [roomID, setRoomID] = useState('');
     const [attendanceID, setAttendanceID] = useState('');
-    const [checkInStatus, setcheckInStatus] = useState('');
     const [proof, setProof] = useState(null);
     const [fileName, setFileName] = useState('');
     const [loading, setLoading] = useState(false);
@@ -55,7 +54,7 @@ const CheckinForm = ({ isOpen, onOpenChange, classData, user, fetchAttendanceLis
             console.error("Error: ", error);
             alert("ERROR");
         } finally {
-            setLoading(false); // Stop loading after the request is done
+            setLoading(false);
             alert("Checkin Success!");
         }
     };

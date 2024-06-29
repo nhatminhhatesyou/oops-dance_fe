@@ -91,7 +91,7 @@ const SideBar = () => {
                         <Link to="/admin/attendance-records" className="menuLink flex">
                             <FaCalendarCheck className='icon' />
                             <span className="smallText">
-                                Attendance Records
+                                Instructor Attendance Records
                             </span>
                         </Link>
                     </li>

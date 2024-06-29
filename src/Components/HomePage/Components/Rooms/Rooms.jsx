@@ -7,11 +7,6 @@ import 'swiper/css/effect-coverflow'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
-
-
-//Imported Images ======>
-import imageGrid from '../../Assets_HomePage/studio-Image2.jpg'
-
 //room1:
 import room1_1 from '../../Assets_HomePage/room1_1.jpg'
 import room1_2 from '../../Assets_HomePage/room1_2.jpg'
@@ -39,11 +34,11 @@ const Rooms = () => {
         < div className='rooms section flex' >
 
             <div className="sectionContainer container flex">
-                <h1>WELCOME TO OUR SPACE</h1>
-                <p>Explore our studio with 2 modern spaces</p>
+                <h1 className='text-3xl font-bold'>WELCOME TO OUR SPACE</h1>
+                <p className='text-lg font-semibold'>Explore our studio with 2 modern rooms</p>
 
-                <div className="room1 flex">
-                    <div className="headerDiv">
+                <div className="room1 flex font-semibold">
+                    <div className="headerDiv ">
                         <h1>ROOM 1</h1>
                     </div>
 
@@ -109,7 +104,7 @@ const Rooms = () => {
 
                 </div>
 
-                <div className="room2 flex">
+                <div className="room2 flex font-semibold">
                     <div className="headerDiv">
                         <h1>ROOM 2</h1>
                     </div>

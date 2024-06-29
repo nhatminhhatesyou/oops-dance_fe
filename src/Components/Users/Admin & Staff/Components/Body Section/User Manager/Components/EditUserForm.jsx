@@ -10,7 +10,6 @@ import {
     ModalContent,
     Select,
     SelectItem,
-    User,
     Spinner,
     DateInput
 } from "@nextui-org/react";
@@ -52,7 +51,6 @@ const EditUserForm = ({ isOpen, onOpenChange, userId, fetchUsers }) => {
 
     const handleSubmit = async () => {
         setLoading(true);
-        console.log("data:", userData);
         try {
             const response = await axios.patch(`/users/${userId}/`, userData);
 
@@ -70,17 +68,6 @@ const EditUserForm = ({ isOpen, onOpenChange, userId, fetchUsers }) => {
             setLoading(false);
         }
     };
-
-    // const resetForm = () => {
-    //     setUserData({
-    //         username: '',
-    //         full_name: '',
-    //         email: '',
-    //         contact_number: '',
-    //         date_of_birth: '',
-    //         role: ''
-    //     });
-    // };
 
     return (
         <Modal isOpen={isOpen} onOpenChange={(open) => { onOpenChange(open); }}>

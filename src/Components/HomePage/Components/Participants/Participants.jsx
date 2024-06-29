@@ -1,56 +1,71 @@
-import React, { useEffect } from 'react'
-
-//Imported Destination Images ==============>
-import paris from '../../Assets_HomePage/paris.jpg'
-import newyork from '../../Assets_HomePage/newyork.jpg'
-import london from '../../Assets_HomePage/london.jpg'
-
-//Imported Participants Images ==============>
-import participant1 from '../../Assets_HomePage/user_1.jpg'
-import participant2 from '../../Assets_HomePage/user_2.jpg'
-import participant3 from '../../Assets_HomePage/user_3.jpg'
+import React, { useEffect, useState } from 'react'
 
 //Import AOS ==================>
 import Aos from 'aos'
 import 'aos/dist/aos.css'
+import Axios from '../../../../axiosConfig'
 
 // High order array method called MAP to display all data =====>
 
-const participant = [
-    {
-        id: 1,
-        destinationImage: paris,
-        participantImage: participant1,
-        participantName: 'Somi Xinh',
-        socialLink: '@somixinhngok'
-    },
-    {
-        id: 2,
-        destinationImage: newyork,
-        participantImage: participant2,
-        participantName: 'Obanh Xinh',
-        socialLink: '@obanhdangghec'
-    },
-    {
-        id: 3,
-        destinationImage: london,
-        participantImage: participant3,
-        participantName: 'Nminh Xinh',
-        socialLink: '@nminhxinhnhattg'
-    }
-]
 
 
 const Participants = () => {
+    const avatar_holder = '/image/upload/v1719635039/avatar-holder_avb7g3.png'
+    const cloudinaryBaseUrl = 'https://res.cloudinary.com/dqgu13tbd';
+    const [classes, setClasses] = useState([]);
+    const [participants, setParticipants] = useState([]);
+    useEffect(() => {
+        fetchClasses();
+    }, []);
+
+    const fetchClasses = () => {
+        Axios.get('/class-list/')
+            .then((response) => {
+                setClasses(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    useEffect(() => {
+        if (classes.length > 0) {
+            const newParticipants = classes.map((item, index) => {
+                const firstStudent = item.students[0] || {};
+                return {
+                    id: index + 1,
+                    destinationImage: item.image,
+                    participantImage: firstStudent?.avatar || avatar_holder,
+                    participantName: firstStudent?.full_name || firstStudent?.username || '',
+                    socialLink: firstStudent.email
+                };
+            });
+            setParticipants(newParticipants);
+        }
+    }, [classes]);
+
+
     //UseEffect to set animation duration====>
     useEffect(() => {
         Aos.init({ duration: 2000 })
     }, [])
 
     return (
-        <div className='participants container section'>
+        <div className='participants section bg-gradient-to-l from-yellow-500 to-red-500 p-4'>
             <div className="sectionContainer">
-                <h2 data-aos='fade-down' data-aos-duration='2500'>
+
+                <h2
+                    data-aos='fade-down' data-aos-duration='2500'
+                    className="text-6xl font-bold"
+                    style={{
+                        background: 'linear-gradient(to right, #1976D2, #F45E53)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                    }}
+                >
+                    HALL OF FAME!!!!
+                </h2>
+                <h2 data-aos='fade-down' data-aos-duration='2500' className='text-2xl font-semibold'>
                     Top participants of this month!
                 </h2>
 
@@ -58,16 +73,16 @@ const Participants = () => {
 
 
                     {
-                        participant.map(({ id, destinationImage, participantImage, participantName, socialLink }) => {
+                        participants.map(({ id, destinationImage, participantImage, participantName, socialLink }) => {
                             return (
                                 //single participant card 
                                 <div data-aos='fade-up' data-aos-duration='2500' key={id} className="singleparticipant">
 
-                                    <img className='destinationImage' src={destinationImage} />
+                                    <img className='destinationImage' src={`${cloudinaryBaseUrl}/${destinationImage}`} />
 
                                     <div className="participantDetails">
                                         <div className="participantPicture">
-                                            <img src={participantImage} className='participantImage' />
+                                            <img src={`${cloudinaryBaseUrl}/${participantImage}`} className='participantImage' />
                                         </div>
 
                                         <div className="participantName">

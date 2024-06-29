@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { RxCalendar } from 'react-icons/rx';
+import { FiClock } from "react-icons/fi";
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import axios from '../../../../axiosConfig';
 import { useAuth } from '../../../../AuthContext';
-
 
 //IMPORTED ICON ================>
 import { FaRegQuestionCircle } from "react-icons/fa";
@@ -260,7 +260,7 @@ const Search = () => {
 
                 <div data-aos='fade-up' data-aos-duration='2000' className='searchInputs grid'>
                     <div className='singleInput flex'>
-                        <div className='iconDiv'>
+                        <div className='iconDiv flex items-center'>
                             <RxCalendar className='icon' />
                         </div>
                         <div className='texts'>
@@ -275,8 +275,8 @@ const Search = () => {
                         </div>
                     </div>
                     <div className='singleInput flex'>
-                        <div className='iconDiv'>
-                            <RxCalendar className='icon' />
+                        <div className='iconDiv flex items-center'>
+                            <FiClock className='icon' />
                         </div>
                         <div className='texts'>
                             <h4>Check In</h4>
@@ -293,8 +293,8 @@ const Search = () => {
                         </div>
                     </div>
                     <div className='singleInput flex'>
-                        <div className='iconDiv'>
-                            <RxCalendar className='icon' />
+                        <div className='iconDiv flex items-center'>
+                            <FiClock className='icon' />
                         </div>
                         <div className='texts'>
                             <h4>Check Out</h4>

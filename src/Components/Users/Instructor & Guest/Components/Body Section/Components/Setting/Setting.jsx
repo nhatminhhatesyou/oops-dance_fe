@@ -1,9 +1,10 @@
 import { React, useState, useEffect } from 'react'
-import { Card, CardFooter, Image, Button, Input, DateInput } from "@nextui-org/react";
+import { Card, CardFooter, Image, Button, Input, DateInput, Spinner, Avatar } from "@nextui-org/react";
 import { useAuth } from '../../../../../../../AuthContext';
 import axios from '../../../../../../../axiosConfig';
 import { parseDate } from "@internationalized/date";
-import { format, parseISO } from 'date-fns';
+import { format } from 'date-fns';
+import heic2any from "heic2any";
 import './setting.css'
 
 //imported images ================>
@@ -13,45 +14,31 @@ import video from '../../../../Assets_Instructor/video_short.mp4'
 
 const Setting = () => {
     const { user } = useAuth();
-    const [dateOfBirth, setDateOfBirth] = useState("");
-    const [myDate, setMyDate] = useState("");
+    const [avatar, setAvatar] = useState(null);
+    const [fileName, setFileName] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const [userData, setUserData] = useState({
-        username: '',
         full_name: '',
         email: '',
         contact_number: '',
         date_of_birth: '',
-        role: ''
     });
-    const [loading, setLoading] = useState(false);
 
 
     useEffect(() => {
+        console.log("user:", user);
         if (user.id) {
             axios.get(`/users/${user.id}/`)
                 .then(response => {
                     setUserData(response.data);
-                    // console.log("ISO DATE:", format(parseISO(response.data.date_of_birth), " YYYY-MM-DDThh:mm:ssTZD"));
-                    // console.log("ISO DATE:", parseISO(response.data.date_of_birth));
-                    // console.log("DATE:", parseISO(response.data.date_of_birth));
-                    setMyDate(new Date(response.data.date_of_birth))
                     const datecl = parseDate(format(new Date(response.data.date_of_birth), 'yyyy-MM-dd'))
-                    // console.log("DATE lozzz:", parseDate(format(new Date(response.data.date_of_birth), 'yyyy-MM-dd')));
                 })
                 .catch(error => {
                     console.error('Error fetching user data:', error);
                 });
         }
     }, [user.id]);
-
-    useEffect(() => {
-        if (userData.date_of_birth) {
-            // console.log("DATE cakkk:", parseDate(format(new Date(user.date_of_birth), 'yyyy-MM-dd')));
-
-        }
-    }, [userData])
-
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -65,14 +52,11 @@ const Setting = () => {
 
     const handleSubmit = async () => {
         setLoading(true);
-        console.log("data:", userData);
         try {
             const response = await axios.patch(`/users/${user.id}/`, userData);
 
             if (response.status === 200) {
                 alert("User updated successfully")
-                fetchUsers();
-                onOpenChange(false);
             } else {
                 alert("Error updating user");
             }
@@ -84,11 +68,90 @@ const Setting = () => {
         }
     };
 
+    const handleImageChange = async (e) => {
+        const file = e.target.files[0];
+        setFileName(file.name);
+
+        if (file && file.type === "image/heic") {
+            try {
+                const convertedBlob = await heic2any({ blob: file, toType: "image/jpeg" });
+                const convertedFile = new File([convertedBlob], file.name.replace(/\.heic$/i, ".jpeg"), { type: "image/jpeg" });
+                setAvatar(convertedFile);
+            } catch (error) {
+                console.error("Error converting HEIC to JPEG:", error);
+            }
+        } else {
+            setAvatar(file);
+        }
+    };
+
+    const handleChangeAvatar = async () => {
+
+        setLoading(true);
+        const formData = new FormData();
+        formData.append('avatar', avatar);
+
+        try {
+            await axios.patch(`/users/${user.id}/`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+        } catch (error) {
+            console.error("Error: ", error);
+            alert("ERROR");
+            setAvatar(null);
+            setFileName('');
+        } finally {
+            setLoading(false);
+            setAvatar(null);
+            setFileName('');
+            alert("Change Success!");
+        }
+    };
+
+    //PASSWORD CHANGE ===============>
+    const [passwordData, setPasswordData] = useState({
+        old_password: '',
+        new_password: '',
+        confirm_password: ''
+    });
+
+    const handleChangePassword = (e) => {
+        const { name, value } = e.target;
+        setPasswordData({ ...passwordData, [name]: value });
+    };
+
+    const handleSubmitPassword = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        try {
+            const response = await axios.patch('/change-password/', passwordData, {
+                headers: {
+                    'Authorization': `Token ${user.token}`
+                }
+            });
+
+            if (response.status === 200) {
+                alert('Password changed successfully');
+                setPasswordData({
+                    old_password: '',
+                    new_password: '',
+                    confirm_password: ''
+                });
+            } else {
+                alert('Error changing password');
+            }
+        } catch (error) {
+            alert('Error changing password');
+            console.error("Error changing password:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className='settings-user flex flex-col gap-4'>
-            {/* <div className="tilte text-center">
-                <span className='text-4xl font-bold '>My Profile Setting</span>
-            </div> */}
             <div className="topSection flex gap-5 h-30 flex-col lg:flex-row">
                 <div className="leftCard p-4 bg-gray-700 rounded-lg shadow-lg flex flex-col items-center justify-center">
                     <div className="header mb-4">
@@ -96,16 +159,40 @@ const Setting = () => {
                     </div>
                     <div className="flex items-center text-center flex-col gap-10 md:flex-row">
                         <div className="bg-white w-20 h-20 flex-none rounded-3xl md:gap-10">
-                            <Image
-                                className="object-cover w-full h-full rounded-3xl"
+                            {/* <Image
+                                className="object-hidden w-20 h-20 rounded-3xl"
+                                src={user.avatar_url}
+                            /> */}
+                            <Avatar
+                                isBordered
+                                radius="sm"
+                                className="object-hidden w-20 h-20"
                                 src={user.avatar_url}
                             />
                         </div>
                         <div className="button flex gap-2">
-                            <Button className="bg-blue-500 text-white font-bold">Upload Avatar</Button>
-                            <Button color="danger" variant="bordered" className='font-bold'>
-                                Delete Avatar
-                            </Button>
+                            <div style={{ marginBottom: '16px' }}>
+                                <Button
+                                    color="primary"
+                                    onPress={() => document.getElementById('avatar').click()}
+                                >
+                                    Upload Avatar
+                                </Button>
+                                <input
+                                    type="file"
+                                    id="avatar"
+                                    style={{ display: 'none' }}
+                                    accept="image/*"
+                                    onChange={handleImageChange}
+                                />
+                                {fileName && <div style={{ marginTop: '10px', color: "white" }}>{fileName}</div>}
+                            </div>
+
+                            {avatar ? (
+                                <Button color="primary" variant='bordered' onPress={handleChangeAvatar} disabled={loading}>
+                                    {loading ? <Spinner color="white" size="sm" /> : 'Change Avatar'}
+                                </Button>
+                            ) : null}
                         </div>
                     </div>
                 </div>
@@ -162,22 +249,51 @@ const Setting = () => {
                             />
                         </div>
                         <div className="button text-center mt-auto">
-                            <Button className="bg-blue-500 text-white">Save All</Button>
+                            <Button color="primary" onPress={handleSubmit} disabled={loading}>
+                                {loading ? <Spinner color="white" size="sm" /> : 'Save Changes'}
+                            </Button>
                         </div>
                     </div>
                     <div className="change-password p-4 bg-white rounded-lg shadow-lg">
                         <div className="header mb-4">
                             <span className="font-bold text-xl">Change Password</span>
                         </div>
-                        <div className="flex flex-col gap-4 mb-6">
-                            <Input label="Recent password" placeholder="Enter recent password" />
-                            <Input label="New password" placeholder="Enter new password" />
-                            <Input label="Confirm new password" placeholder="Confirm new password" />
-                        </div>
-                        <div className="button text-center mt-auto">
-                            <Button className="bg-blue-500 text-white">Save Password</Button>
-                        </div>
+                        <form onSubmit={handleSubmitPassword} className="flex flex-col gap-4 mb-6">
+                            <Input
+                                label="Recent password"
+                                placeholder="Enter recent password"
+                                type="password"
+                                name="old_password"
+                                value={passwordData.old_password}
+                                onChange={handleChangePassword}
+                                required
+                            />
+                            <Input
+                                label="New password"
+                                placeholder="Enter new password"
+                                type="password"
+                                name="new_password"
+                                value={passwordData.new_password}
+                                onChange={handleChangePassword}
+                                required
+                            />
+                            <Input
+                                label="Confirm new password"
+                                placeholder="Confirm new password"
+                                type="password"
+                                name="confirm_password"
+                                value={passwordData.confirm_password}
+                                onChange={handleChangePassword}
+                                required
+                            />
+                            <div className="button text-center mt-auto">
+                                <Button type="submit" color="primary" disabled={loading}>
+                                    {loading ? <Spinner color="white" size="sm" /> : 'Save Password'}
+                                </Button>
+                            </div>
+                        </form>
                     </div>
+
                 </div>
                 <div className="section2 col-span-1 flex flex-col gap-10 basis-1/3 justify-center">
 

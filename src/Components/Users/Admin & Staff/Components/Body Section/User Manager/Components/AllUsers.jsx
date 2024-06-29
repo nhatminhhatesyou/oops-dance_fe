@@ -2,17 +2,9 @@ import React, { useEffect, useState } from 'react'
 import axios from '../../../../../../../axiosConfig'
 
 import {
-    Button,
-    DropdownTrigger,
-    Dropdown,
-    DropdownMenu,
-    DropdownItem,
     useDisclosure,
     Tooltip
 } from "@nextui-org/react";
-
-//IMPORTED ICON ================>
-import { VerticalDotsIcon } from '../../../../../../Table/VerticalDotsIcon'
 
 //IMPORTED Template ================>
 import TableTemplate from '../../../../../../Table/TableTemplate'

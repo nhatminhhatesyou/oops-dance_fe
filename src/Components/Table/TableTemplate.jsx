@@ -140,7 +140,7 @@ const TableTemplate = ({
 
     const renderCell = React.useCallback((item, columnKey) => {
         const cellValue = item[columnKey];
-        // console.log(item);
+        console.log("item:", item);
 
         switch (columnKey) {
             case "class":
@@ -172,7 +172,9 @@ const TableTemplate = ({
                             avatarProps={
                                 item?.user_avatar
                                     ? { radius: "lg", src: `${cloudinaryBaseUrl}/${item.user_avatar}` }
-                                    : undefined
+                                    : item?.avatar
+                                        ? { radius: "lg", src: `${cloudinaryBaseUrl}/${item.avatar}` }
+                                        : null
                             }
                             description={item?.user_email || item?.email}
                             name={item?.name || item?.username}

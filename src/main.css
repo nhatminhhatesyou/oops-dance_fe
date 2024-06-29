@@ -530,6 +530,7 @@ h2 {
   text-align: center;
   gap: 2rem;
   flex-direction: column;
+  justify-content: center;
 }
 .home .mainText {
   justify-content: center;
@@ -972,9 +973,9 @@ h2 {
   font-family: "League Spartan", sans-serif;
   color: var(--blackColor);
   text-transform: uppercase;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
-  width: 60%;
+  width: 70%;
   white-space: normal;
   overflow-wrap: break-word;
 }
@@ -996,6 +997,16 @@ h2 {
 .classes .sectionContainer .timeTableDiv table .dance-class:not(:first-child) span {
   text-align: right;
   margin-left: 2.2rem;
+}
+.classes .sectionContainer .infoDiv {
+  z-index: 1;
+}
+.classes .sectionContainer .infoDiv .facebook-button {
+  background-color: #1877F2;
+  color: white;
+}
+.classes .sectionContainer .infoDiv .facebook-button:hover {
+  background-color: #145dbf;
 }
 
 .support .sectionContainer .titlesDiv {
@@ -1150,7 +1161,7 @@ h2 {
      object-fit: cover;
   border-radius: 50%;
   bottom: 30px;
-  left: 28%;
+  left: 32%;
   transform: translateX(-50%);
   border: 5px solid var(--whiteColor);
   transition: var(--transition);
@@ -1342,9 +1353,6 @@ h2 {
   }
 }
 @media screen and (min-width: 570px) {
-  .home .mainText {
-    width: 80%;
-  }
   .home .homeImages .video {
     border-radius: 15rem;
   }
@@ -1399,9 +1407,6 @@ h2 {
   }
 }
 @media screen and (min-width: 680px) {
-  .home .mainText {
-    width: 80%;
-  }
   .home .homeImages .videoDiv {
     width: 80%;
   }
@@ -1577,10 +1582,7 @@ h2 {
     padding-top: 13rem;
   }
   .home .mainText {
-    width: 70%;
-    padding-bottom: 1.5rem;
     font-size: 22px;
-    line-height: 4rem;
   }
   .search .sectionContainer .searchInputs {
     display: grid;
@@ -1632,7 +1634,6 @@ h2 {
     padding: 0 5rem;
   }
   .home .mainText {
-    width: 100%;
     font-size: 25px;
   }
   .home .homeImages .videoDiv {

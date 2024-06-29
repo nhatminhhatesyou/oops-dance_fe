@@ -8,15 +8,12 @@ import Rooms from './Components/Rooms/Rooms';
 import Participants from './Components/Participants/Participants';
 import Subscribers from './Components/Subscribers/Subscribers';
 import Footer from './Components/Footer/Footer';
-import TimeTable from './Components/Classes/TimeTable';
 import Intro from './Components/Intro/Intro';
-import ClassInfo from './Components/Classes/ClassInfo';
-import Instructor from './Components/Classes/Instructor';
+import DanceClasses from './Components/Classes/DanceClasses';
 
 const HomePage = () => {
     const homeRef = useRef(null);
     const aboutRef = useRef(null);
-    const offersRef = useRef(null);
     const roomsRef = useRef(null);
     const classesRef = useRef(null);
 
@@ -26,7 +23,7 @@ const HomePage = () => {
 
     return (
         <div className='homePage'>
-            <Navbar scrollToSection={scrollToSection} refs={{ homeRef, aboutRef, offersRef, roomsRef, classesRef }} />
+            <Navbar scrollToSection={scrollToSection} refs={{ homeRef, aboutRef, roomsRef, classesRef }} />
             <div ref={homeRef}>
                 <Home />
             </div>
@@ -39,11 +36,9 @@ const HomePage = () => {
             <Search />
             <Support />
             <div ref={classesRef}>
-                <ClassInfo />
-                <Instructor />
-                <TimeTable />
+                <DanceClasses />
             </div>
-            <Info />
+            {/* <Info /> */}
             <Participants />
             <Subscribers />
             <Footer />

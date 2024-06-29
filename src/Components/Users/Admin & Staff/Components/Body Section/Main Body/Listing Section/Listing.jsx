@@ -45,7 +45,7 @@ const Listing = () => {
             <div className="cards classesManagement flex">
                 <div className="schedule">
                     <div className="heading flex">
-                        <h3>Today's Classes</h3>
+                        <h3 className='font-bold text-xl'>Today's Classes</h3>
                         <button onClick={() => handleNavigate('/admin/students')} className="btn flex">
                             See All <BsArrowRightShort className='icon' />
                         </button>
