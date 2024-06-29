@@ -49,8 +49,6 @@ const Login = () => {
                 }
             } else if (error.request) {
                 console.log(error.request);
-                setLoginStatus(error.response.detail);
-
             } else {
                 console.log('Error', error.message);
             }
